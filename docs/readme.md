@@ -23,8 +23,16 @@ For example, Laravel ships with a session guard which maintains state using sess
 Providers define how users are retrieved from your persistent storage. Laravel ships with support for retrieving users using Eloquent and the database query builder. However, you are free to define additional providers as needed for your application.
 
 
+** Admin
+
+Tutti i controller in admin estendono il controller AdminController che ha nel costruttore il middleware auth per autenticazione !!!
 
 ** users management
+
+
+
+
+
 
 
 

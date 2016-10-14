@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\User;
 
 
 class UsersController extends AdminController
@@ -15,7 +16,9 @@ class UsersController extends AdminController
      */
     public function index()
     {
-        echo "ciao";
+        $users = User::paginate(10);
+
+        return view('admin.users.index', compact('users'));
     }
 
     /**
