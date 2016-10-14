@@ -21,4 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+
+
 Route::get('/pannello', 'HomeController@index');
+
+
+Route::resource('admin/users', 'Admin\UsersController');
