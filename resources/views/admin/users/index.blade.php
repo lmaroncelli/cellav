@@ -9,18 +9,19 @@
         <thead>
             <tr>
                 <th>#</th> 
-                <th>First Name</th> 
-                <th>Last Name</th> 
+                <th>Name</th> 
                 <th>Username</th> 
             </tr>
             </thead>
             <tbody> 
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td> 
-                <td>Otto</td> 
-                <td>@mdo</td>
-            </tr>
+            @foreach ($users as $count => $user)
+                <tr>
+                    <th scope="row">{{$count+1}}</th>
+                    <td>{{$user->name}}</td> 
+                    <td>{{$user->email}}</td> 
+                    <td></td>
+                </tr>
+            @endforeach
             </tbody> 
     </table>
     </div>
