@@ -27,4 +27,5 @@ Auth::routes();
 Route::get('/pannello', 'HomeController@index');
 
 
+Route::get('admin/users/{user}/confirm', ['as' => 'users.confirm', 'uses' => 'Admin\UsersController@confirm']);
 Route::resource('admin/users', 'Admin\UsersController');

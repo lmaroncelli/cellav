@@ -86,4 +86,9 @@ class UsersController extends AdminController
     {
         //
     }
+
+    public function confirm($id)
+    {
+        //
+    }
 }
