@@ -23,12 +23,14 @@ class UsersController extends AdminController
 
     /**
      * Show the form for creating a new resource.
-     *
+     * 
+     * $user : Method Injection !!! 
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(User $user)
     {
-        //
+        return view('admin.users.form', compact('user'));
     }
 
     /**

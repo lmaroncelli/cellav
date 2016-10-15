@@ -91,7 +91,7 @@ http://localhost:8000/fonts/bootstrap/glyphicons-halflings-regular.woff2 Failed 
 
 non vedo le icone di bootstrap perché mancano dei font che vengono cercati in fonts/bootstrap
 
-Quindi aggiungo il elixir il comando per copiare i font nella directory
+Quindi aggiungo con elixir il comando per copiare i font nella directory
 
 .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts');
 

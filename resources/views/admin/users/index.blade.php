@@ -1,10 +1,15 @@
 @extends('admin.layouts.backend')
 
+@section('title')
+    Utenti
+@stop
+
 @section('content')
-<div class="container">
-    <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-    <div class="panel panel-default">
+
+    {{-- creare nuovo utente --}}
+    <a class="btn btn-primary" href="{{ route('users.create') }}">Nuovo utente</a>
+
+    {{-- Elenco degli utenti --}}
     <table class="table table-striped">
         <thead>
             <tr>
@@ -27,8 +32,6 @@
             @endforeach
             </tbody> 
     </table>
-    </div>
-    </div>
-    </div>
-</div>
+    {{$users->render()}}
+
 @endsection

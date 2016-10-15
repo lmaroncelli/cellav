@@ -35,7 +35,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/pannello') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -44,6 +44,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        <li><a href="{{ route('users.index') }}">Utenti</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -77,8 +78,17 @@
                 </div>
             </div>
         </nav>
+        
+        <div class="container">
+            <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1 class="page-header">@yield('title')</h1>
+                @yield('content')
+            </div>
+            </div>
+        </div>
+       
 
-        @yield('content')
     </div>
 
     <!-- Scripts -->
