@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\StoreUserRequest;
 use App\User;
+use Illuminate\Http\Request;
 
 
 class UsersController extends AdminController
@@ -36,12 +37,15 @@ class UsersController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        User::create($request->all());
+
+        return redirect()->route('users.index')->with('status', 'Utente creato correttamente!');;
+
     }
 
     /**
@@ -63,7 +67,9 @@ class UsersController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.users.form', compact('user'));
+        
     }
 
     /**
