@@ -45,6 +45,7 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         <li><a href="{{ route('users.index') }}">Utenti</a></li>
+                        <li><a href="{{ route('pages.index') }}">Pagine</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

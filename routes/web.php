@@ -29,3 +29,7 @@ Route::get('/pannello', 'HomeController@index');
 
 Route::get('admin/users/{user}/confirm', ['as' => 'users.confirm', 'uses' => 'Admin\UsersController@confirm']);
 Route::resource('admin/users', 'Admin\UsersController');
+
+
+Route::get('admin/pages/{page}/confirm', ['as' => 'pages.confirm', 'uses' => 'Admin\PagesController@confirm']);
+Route::resource('admin/pages', 'Admin\PagesController');

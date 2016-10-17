@@ -1,9 +1,9 @@
 - cambio nome alla app per i namespace
 
-** php artisan app:name Cms
+**php artisan app:name Cms**
 
 
-** authentication
+**authentication**
 
 Want to get started fast? Just run 
 
@@ -23,21 +23,15 @@ For example, Laravel ships with a session guard which maintains state using sess
 Providers define how users are retrieved from your persistent storage. Laravel ships with support for retrieving users using Eloquent and the database query builder. However, you are free to define additional providers as needed for your application.
 
 
-** Admin
+**Admin**
 
 Tutti i controller in admin estendono il controller AdminController che ha nel costruttore il middleware auth per autenticazione !!!
 
-** users management
 
 
 
 
-
-
-
-
-
-** package.json file
+**package.json file**
 
 
 installo node.js (che ha già una versione di npm)
@@ -127,5 +121,15 @@ gulp
 [16:55:47] Finished 'default' after 5.76 ms
 
 
+**users management - CRUD**
+
+
+Per il form non utilizzo il package esterno laravelcollective/html, ma rimango con form html ed utilizzo old()
+
+
+> What everyone seems to be missing is that if you are not using the laravelcollective/html package you can easily do this by taking advantage of the fact that old() takes a default parameter.  value="{{ old('my-input', $default-my-input) }}"
+
+> so:
+value="{{ old('my-input',  isset($post->title) ? $post->title : null) }}" 
 
 
