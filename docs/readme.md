@@ -1,4 +1,9 @@
-- cambio nome alla app per i namespace
+# To DO
+
+-	form delle pagine con WYSIWYG scaricato con npm e gulp
+
+
+
 
 **php artisan app:name Cms**
 
