@@ -44,7 +44,7 @@ class UsersController extends AdminController
     {
         User::create($request->all());
 
-        return redirect()->route('users.index')->with('status', 'Utente creato correttamente!');;
+        return redirect()->route('users.index')->with('status', 'Utente creato correttamente!');
 
     }
 

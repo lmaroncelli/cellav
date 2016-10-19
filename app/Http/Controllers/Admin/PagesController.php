@@ -38,7 +38,9 @@ class PagesController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+        Page::create($request->all());
+        return redirect()->route('pages.index')->with('status', 'Pagina creata correttamente!');
+
     }
 
     /**
@@ -84,5 +86,15 @@ class PagesController extends AdminController
     public function destroy($id)
     {
         //
+    }
+
+
+    public function createUri(Request $request)
+    {
+
+        $value = $request->input("value");
+
+        echo str_slug($value,'-');
+
     }
 }

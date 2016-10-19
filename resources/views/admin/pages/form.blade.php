@@ -1,5 +1,9 @@
 @extends('admin.layouts.backend')
 
+@section('css')
+	<link href="/css/supernote.css" rel="stylesheet">
+@stop
+
 @section('title')
 	{{ $page->exists ? 'Modifica Pagina' : 'Nuova pagina'}}
 @stop
@@ -17,11 +21,6 @@
 		<div class="form-group">
 	    	<label for="titolo">Titolo</label>
 	    	<input type="text" class="form-control" id="titolo" placeholder="Titolo" name="title" value="{{old('title', isset($page->title) ? $page->title : null)}}">
-	  	</div>
-
-	  	<div class="form-group">
-	    	<label for="nome">Nome</label>
-	    	<input type="text" class="form-control" id="nome" placeholder="Nome" name="name" value="{{old('name', isset($page->name) ? $page->name : null)}}">
 	  	</div>
 
 	  	<div class="form-group">
@@ -45,8 +44,8 @@
 	<script>
 	     $(document).ready(function(){
 
-	         $('#nome').blur(function(event){
-	             alert($(this).val());
+	         $('#titolo').blur(function(event){
+	             
 	           uri = $("#uri");
 
 	           if (uri.val() == '') {
@@ -69,7 +68,12 @@
 
 	         });
 
+	        $("#content").summernote({
+              height:300,
+            });
+
 	     });
 
 	</script>
+
 @stop

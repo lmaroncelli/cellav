@@ -142,6 +142,9 @@ value="{{ old('my-input',  isset($post->title) ? $post->title : null) }}"
 
 **compiling assets**
 
+
+
+
 The gulpfile.js file in your project's root directory contains all of your Elixir tasks. 
 Elixir tasks can be chained together to define exactly how your assets should be compiled.
 
@@ -221,3 +224,148 @@ And then, in your bootstrap.js:
 var $ = require("jquery");
 
 ==================================================================================================================================================================================================================================================================================================================================================================
+
+
+*WYSIWYG*
+
+Utilizzo [summernote](http://summernote.org/)
+
+
+$ npm install cd-summernote --save
+
+> in questo modo viene scritta anche la dipendenza nel file package.json
+
+
+> ho dovuto rilanciare 
+
+$ npm install
+
+Usage
+
+
+```js
+> And then, in your bootstrap.js:
+
+require('cd-summernote');
+```
+
+```css
+@import '~cd-summernote/index.less';
+
+
+
+ATTENZIONE 
+
+require('cd-summernote'); lo metto nel mio bootstrap.js
+ il file index.less lo devo compilare per ottenere un file css; utilzzo il comando
+ mix.less() di elixir
+
+By default source paths in elixir is 'resources/assets' and destination path is 'public' directory.
+Ma posso sovrascrivere in questo modo
+
+elixir(mix => {
+    mix.sass('app.scss')
+       .webpack('app.js')
+       .combine(['public/js/app.js','node_modules/jquery/dist/jquery.min.js'],'public/js/app.js')
+       .less('index.less','public/css/supernote.css','node_modules/cd-summernote')
+       .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts');
+});
+
+
+vagrant@homestead:~/Code/Laravel/public/cellav$ gulp
+[09:53:47] Using gulpfile ~/Code/Laravel/public/cellav/gulpfile.js
+[09:53:47] Starting 'all'...
+[09:53:47] Starting 'sass'...
+[09:53:49] Finished 'sass' after 1.48 s
+[09:53:49] Starting 'webpack'...
+[09:53:52] 
+[09:53:52] Finished 'webpack' after 3.67 s
+[09:53:52] Starting 'combine'...
+[09:53:52] Finished 'combine' after 63 ms
+[09:53:52] Starting 'less'...
+[09:53:53] Finished 'less' after 721 ms
+[09:53:53] Starting 'copy'...
+[09:53:53] Finished 'copy' after 174 ms
+[09:53:53] Finished 'all' after 6.11 s
+[09:53:53] Starting 'default'...
+┌───────────────┬───────────────────────────────┬───────────────────────────────────────────────┬──────────────────────────┐
+│ Task          │ Summary                       │ Source Files                                  │ Destination              │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.sass()    │ 1. Compiling Sass             │ resources/assets/sass/app.scss                │ public/css/app.css       │
+│               │ 2. Autoprefixing CSS          │                                               │                          │
+│               │ 3. Concatenating Files        │                                               │                          │
+│               │ 4. Writing Source Maps        │                                               │                          │
+│               │ 5. Saving to Destination      │                                               │                          │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.webpack() │ 1. Transforming ES2015 to ES5 │ resources/assets/js/app.js                    │ public/js/app.js         │
+│               │ 2. Writing Source Maps        │                                               │                          │
+│               │ 3. Saving to Destination      │                                               │                          │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.combine() │ 1. Concatenating Files        │ public/js/app.js                              │ public/js/app.js         │
+│               │ 2. Saving to Destination      │ node_modules/jquery/dist/jquery.min.js        │                          │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.less()    │ 1. Compiling Less             │ node_modules/cd-summernote/index.less         │ public/css/supernote.css │
+│               │ 2. Autoprefixing CSS          │                                               │                          │
+│               │ 3. Concatenating Files        │                                               │                          │
+│               │ 4. Writing Source Maps        │                                               │                          │
+│               │ 5. Saving to Destination      │                                               │                          │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.copy()    │ 1. Saving to Destination      │ node_modules/bootstrap-sass/assets/fonts/**/* │ public/fonts             │
+└───────────────┴───────────────────────────────┴───────────────────────────────────────────────┴──────────────────────────┘
+
+
+ATTENZIONE 
+
+ottengo l'errore
+
+$node.attr(...).tooltip is not a function(…)
+
+perché Summernote use bootstrap's javascript for dialog and tooltip and so on.
+
+quindi includo il js di bootstrap 
+
+
+elixir(mix => {
+    mix.sass('app.scss')
+       .webpack('app.js')
+       .combine(['public/js/app.js','node_modules/jquery/dist/jquery.min.js', 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js')
+       .less('index.less','public/css/supernote.css','node_modules/cd-summernote')
+       .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts');
+});
+
+
+...
+┌───────────────┬───────────────────────────────┬─────────────────────────────────────────────────────────────────┬──────────────────────────┐
+│ Task          │ Summary                       │ Source Files                                                    │ Destination              │
+├───────────────┼───────────────────────────────┼─────────────────────────────────────────────────────────────────┼──────────────────────────┤
+│ mix.sass()    │ 1. Compiling Sass             │ resources/assets/sass/app.scss                                  │ public/css/app.css       │
+│               │ 2. Autoprefixing CSS          │                                                                 │                          │
+│               │ 3. Concatenating Files        │                                                                 │                          │
+│               │ 4. Writing Source Maps        │                                                                 │                          │
+│               │ 5. Saving to Destination      │                                                                 │                          │
+├───────────────┼───────────────────────────────┼─────────────────────────────────────────────────────────────────┼──────────────────────────┤
+│ mix.webpack() │ 1. Transforming ES2015 to ES5 │ resources/assets/js/app.js                                      │ public/js/app.js         │
+│               │ 2. Writing Source Maps        │                                                                 │                          │
+│               │ 3. Saving to Destination      │                                                                 │                          │
+├───────────────┼───────────────────────────────┼─────────────────────────────────────────────────────────────────┼──────────────────────────┤
+│ mix.combine() │ 1. Concatenating Files        │ public/js/app.js                                                │ public/js/app.js         │
+│               │ 2. Saving to Destination      │ node_modules/jquery/dist/jquery.min.js                          │                          │
+│               │                               │ node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js │                          │
+│               │                               │ node_modules/cd-summernote/index.js                             │                          │
+├───────────────┼───────────────────────────────┼─────────────────────────────────────────────────────────────────┼──────────────────────────┤
+│ mix.less()    │ 1. Compiling Less             │ node_modules/cd-summernote/index.less                           │ public/css/supernote.css │
+│               │ 2. Autoprefixing CSS          │                                                                 │                          │
+│               │ 3. Concatenating Files        │                                                                 │                          │
+│               │ 4. Writing Source Maps        │                                                                 │                          │
+│               │ 5. Saving to Destination      │                                                                 │                          │
+├───────────────┼───────────────────────────────┼─────────────────────────────────────────────────────────────────┼──────────────────────────┤
+│ mix.copy()    │ 1. Saving to Destination      │ node_modules/bootstrap-sass/assets/fonts/**/*                   │ public/fonts             │
+└───────────────┴───────────────────────────────┴─────────────────────────────────────────────────────────────────┴──────────────────────────┘
+
+
+poi devo aggiungere anche i fonts
+
+create:1 GET http://homestead.app/css/fonts/summernote.ttf 404 (Not Found)
+
+aggiungo
+       mix.copy('node_modules/cd-summernote/fonts', 'public/css/fonts');

@@ -10,6 +10,8 @@ window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
 
+require('cd-summernote');
+
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -30,6 +32,7 @@ Vue.http.interceptors.push((request, next) => {
 
     next();
 });
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

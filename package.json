@@ -16,6 +16,7 @@
     "vue-resource": "^1.0.3"
   },
   "dependencies": {
+    "cd-summernote": "0.0.4",
     "jquery": "^3.1.1"
   }
 }

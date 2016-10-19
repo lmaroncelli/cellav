@@ -32,4 +32,5 @@ Route::resource('admin/users', 'Admin\UsersController');
 
 
 Route::get('admin/pages/{page}/confirm', ['as' => 'pages.confirm', 'uses' => 'Admin\PagesController@confirm']);
+Route::post('admin/pages/uri_ajax', ['as' => 'pages.uri_ajax', 'uses' => 'Admin\PagesController@createUri']);
 Route::resource('admin/pages', 'Admin\PagesController');
