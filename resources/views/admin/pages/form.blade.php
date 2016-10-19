@@ -12,9 +12,10 @@
 	
 
 	@if ($page->exists)
-		<form action="{{ route('pages.update', $page->id) }}" method="PUT">
+		<form  method="POST" action="{{ route('pages.update', $page->id) }}">
+		{{ method_field('PUT') }}
 	@else
-		<form action="{{ route('pages.store') }}" method="POST">
+		<form  method="POST" action="{{ route('pages.store') }}">
 	@endif
 		
 		{{ csrf_field() }}
@@ -31,7 +32,7 @@
 
 		<div class="form-group">
 		  	<label for="nome">Content</label>
-		  	
+
 	  		<textarea class="form-control" rows="3" name="content" id="content">{{old('content', isset($page->content) ? $page->content : null)}}</textarea>
 		</div>
 		

@@ -18,7 +18,8 @@
 	 --}}
 
 	@if ($user->exists)
-		<form method="PUT" action="{{ route('users.update',$user->id) }}">
+		<form method="POST" action="{{ route('users.update',$user->id) }}">
+		{{ method_field('PUT') }}
 	@else
 		<form method="POST" action="{{ route('users.store') }}">
 	@endif

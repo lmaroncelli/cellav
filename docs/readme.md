@@ -138,6 +138,23 @@ Per il form non utilizzo il package esterno laravelcollective/html, ma rimango c
 value="{{ old('my-input',  isset($post->title) ? $post->title : null) }}" 
 
 
+ATTENZIONE per i method diversi da POST/GET (PUT/PATCH/DELETE) utilizzare
+
+{{ method_field('PUT') }}
+
+> HTML forms do not support PUT, PATCH or DELETE actions. So, when defining PUT, PATCH or  DELETE routes that are called from an HTML form, you will need to add a hidden _method field to the form. The value sent with the _method field will be used as the HTTP request method:
+
+<form action="/foo/bar" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+</form>
+You may use the method_field helper to generate the _method input:
+
+{{ method_field('PUT') }}
+
+
+
+
 
 
 **compiling assets**

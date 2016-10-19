@@ -64,7 +64,7 @@ class PagesController extends AdminController
     {
         $page = Page::find($id);
         return view('admin.pages.form', compact('page'));
-        
+
     }
 
     /**
@@ -76,7 +76,12 @@ class PagesController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $page = Page::find($id);
+        $page->fill($request->all())->save();
+
+        return redirect()->route('pages.index')->with('status', 'Pagina modificata correttamente!');
+
     }
 
     /**
