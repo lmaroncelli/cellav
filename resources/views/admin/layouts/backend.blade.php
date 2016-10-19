@@ -83,12 +83,14 @@
         </nav>
         
         <div class="container">
+        <div class="panel">
             <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <h1 class="page-header">@yield('title')</h1>
                 @yield('content')
             </div>
             </div>
+        </div>
         </div>
        
 

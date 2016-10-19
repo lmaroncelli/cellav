@@ -37,7 +37,7 @@ class PagesController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         Page::create($request->all());
         return redirect()->route('pages.index')->with('status', 'Pagina creata correttamente!');
 
@@ -62,7 +62,9 @@ class PagesController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $page = Page::find($id);
+        return view('admin.pages.form', compact('page'));
+        
     }
 
     /**

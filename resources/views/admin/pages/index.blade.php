@@ -10,9 +10,7 @@
 	<table class="table table-striped">
        <thead>
            <tr>
-               <th>Title</th> 
-               <th>URI</th> 
-               <th>Name</th> 
+               <th>Titolo</th> 
                <th>Edit</th> 
                <th>Delete</th> 
            </tr>
@@ -21,10 +19,9 @@
 			@if (count($pages))
 	           @foreach ($pages as $count => $page)
 	               <tr>
-	                   <td><a href="{{ route('pages.edit',$user->id) }}">{{$user->name}}</a></td> 
-	                   <td>{{$user->email}}</td> 
-	                   <td><a href="{{ route('pages.edit',$user->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
-	                   <td><a href="{{ route('pages.confirm',$user->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+	                   <td><a href="{{ route('pages.edit',$page->id) }}">{{$page->title}}</a></td>
+	                   <td><a href="{{ route('pages.edit',$page->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+	                   <td><a href="{{ route('pages.confirm',$page->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
 	               </tr>
 	           @endforeach
 			@else

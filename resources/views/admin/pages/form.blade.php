@@ -9,6 +9,7 @@
 @stop
 
 @section('content')
+	
 
 	@if ($page->exists)
 		<form action="{{ route('pages.update', $page->id) }}" method="PUT">
@@ -30,6 +31,7 @@
 
 		<div class="form-group">
 		  	<label for="nome">Content</label>
+		  	
 	  		<textarea class="form-control" rows="3" name="content" id="content">{{old('content', isset($page->content) ? $page->content : null)}}</textarea>
 		</div>
 		
@@ -69,7 +71,8 @@
 	         });
 
 	        $("#content").summernote({
-              height:300,
+              height:500,
+
             });
 
 	     });
