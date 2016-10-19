@@ -44,7 +44,7 @@
     </div>
 		
 
-		<button type="submit" class="btn btn-primary">{{ $user->exists ? 'Modifica Utente' : 'Crea Utente'}}</button>
+		<button type="submit" class="btn btn-primary">{{ $user->exists ? 'Modifica' : 'Salva'}}</button>
 
 	</form>
 

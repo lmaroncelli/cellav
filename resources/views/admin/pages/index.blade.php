@@ -5,6 +5,8 @@
 @stop
 
 @section('content')
+	
+	<a href="{{ route('pages.create') }}" class="btn btn-primary" title="Crea una nuova pagina">Nuova</a>
 	<table class="table table-striped">
        <thead>
            <tr>

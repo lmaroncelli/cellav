@@ -15,9 +15,9 @@ class PagesController extends AdminController
      */
     public function index()
     {
-    $pages = Page::all();
+        $pages = Page::all();
 
-    return view('admin.pages.index', compact('pages'));
+        return view('admin.pages.index', compact('pages'));
     }
 
     /**
@@ -25,9 +25,9 @@ class PagesController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Page $page)
     {
-        //
+        return view('admin.pages.form', compact('page'));
     }
 
     /**
