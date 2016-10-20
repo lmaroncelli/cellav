@@ -78,6 +78,7 @@
                  ['Insert', ['picture', 'link', 'video', 'table','hr']],
                  ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
                  ['fontsize', ['fontsize']],
+                 ['fontname', ['fontname']],
                  ['color', ['color']],
                  ['para', ['ul', 'ol', 'paragraph']],
                  ['height', ['height']],
