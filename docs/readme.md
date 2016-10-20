@@ -438,7 +438,7 @@ quindi
 .combine(['public/js/app.js','node_modules/jquery/dist/jquery.min.js', 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js') 
 diventa
 .combine(['public/js/app.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js')
-e così vanno anche i dropdown di summernote !!
+*e così vanno anche i dropdown di summernote !!*
 
 
 elixir(mix => {
