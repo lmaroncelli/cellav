@@ -386,3 +386,112 @@ create:1 GET http://homestead.app/css/fonts/summernote.ttf 404 (Not Found)
 
 aggiungo
        mix.copy('node_modules/cd-summernote/fonts', 'public/css/fonts');
+
+
+##If we use Summernote editor by normal process then it is not possible to upload images on the server because Summernote converts images to Base 64 format so when we save an image in the database then it takes too much space in the database.##
+
+##We can get image url and store image path in database instead of Base64 string using "intervention/image" package to work with image handling.##
+
+
+
+ composer require intervention/images
+
+> Intervention Image has optional support for Laravel and comes with a Service Provider and Facades for easy integration. The vendor/autoload.php is included by Laravel, so you don't have to require or autoload manually.
+
+> After you have installed Intervention Image, open your Laravel config file config/app.php and add the following lines.
+
+> In the $providers array add the service providers for this package.
+
+
+  
+>Intervention\Image\ImageServiceProvider::class
+
+>Add the facade of this package to the $aliases array.
+
+
+  
+>'Image' => Intervention\Image\Facades\Image::class
+
+>Now the Image Class will be auto-loaded by Laravel.
+
+> By default Intervention Image uses PHP's GD library extension to process all images. 
+
+
+
+ATTENZIONE::
+
+nel vecchio file gulp.js 
+
+
+elixir(mix => {
+    mix.sass('app.scss')
+       .webpack('app.js')
+       .combine(['public/js/app.js','node_modules/jquery/dist/jquery.min.js', 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js')
+       .less('index.less','public/css/supernote.css','node_modules/cd-summernote')
+       .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts')
+       .copy('node_modules/cd-summernote/fonts', 'public/css/fonts');
+});
+
+
+jquery e bootstrap vengono già caricate in app.js (che include bootstrap.js che fa i require)
+quindi 
+.combine(['public/js/app.js','node_modules/jquery/dist/jquery.min.js', 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js') 
+diventa
+.combine(['public/js/app.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js')
+e così vanno anche i dropdown di summernote !!
+
+
+elixir(mix => {
+    mix.sass('app.scss')
+       .webpack('app.js')
+       .combine(['public/js/app.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js')
+       .less('index.less','public/css/supernote.css','node_modules/cd-summernote')
+       .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts')
+       .copy('node_modules/cd-summernote/fonts', 'public/css/fonts');
+});
+
+vagrant@homestead:~/Code/Laravel/public/cellav$ gulp
+[09:41:30] Using gulpfile ~/Code/Laravel/public/cellav/gulpfile.js
+[09:41:30] Starting 'all'...
+[09:41:30] Starting 'sass'...
+[09:41:32] Finished 'sass' after 1.65 s
+[09:41:32] Starting 'webpack'...
+[09:41:36] 
+[09:41:36] Finished 'webpack' after 4.04 s
+[09:41:36] Starting 'combine'...
+[09:41:36] Finished 'combine' after 67 ms
+[09:41:36] Starting 'less'...
+[09:41:37] Finished 'less' after 764 ms
+[09:41:37] Starting 'copy'...
+[09:41:37] Finished 'copy' after 184 ms
+[09:41:37] Starting 'copy'...
+[09:41:37] Finished 'copy' after 25 ms
+[09:41:37] Finished 'all' after 6.74 s
+[09:41:37] Starting 'default'...
+┌───────────────┬───────────────────────────────┬───────────────────────────────────────────────┬──────────────────────────┐
+│ Task          │ Summary                       │ Source Files                                  │ Destination              │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.sass()    │ 1. Compiling Sass             │ resources/assets/sass/app.scss                │ public/css/app.css       │
+│               │ 2. Autoprefixing CSS          │                                               │                          │
+│               │ 3. Concatenating Files        │                                               │                          │
+│               │ 4. Writing Source Maps        │                                               │                          │
+│               │ 5. Saving to Destination      │                                               │                          │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.webpack() │ 1. Transforming ES2015 to ES5 │ resources/assets/js/app.js                    │ public/js/app.js         │
+│               │ 2. Writing Source Maps        │                                               │                          │
+│               │ 3. Saving to Destination      │                                               │                          │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.combine() │ 1. Concatenating Files        │ public/js/app.js                              │ public/js/app.js         │
+│               │ 2. Saving to Destination      │ node_modules/cd-summernote/index.js           │                          │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.less()    │ 1. Compiling Less             │ node_modules/cd-summernote/index.less         │ public/css/supernote.css │
+│               │ 2. Autoprefixing CSS          │                                               │                          │
+│               │ 3. Concatenating Files        │                                               │                          │
+│               │ 4. Writing Source Maps        │                                               │                          │
+│               │ 5. Saving to Destination      │                                               │                          │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.copy()    │ 1. Saving to Destination      │ node_modules/bootstrap-sass/assets/fonts/**/* │ public/fonts             │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────┤
+│ mix.copy()    │ 1. Saving to Destination      │ node_modules/cd-summernote/fonts/**/*         │ public/css/fonts         │
+└───────────────┴───────────────────────────────┴───────────────────────────────────────────────┴──────────────────────────┘
+[09:41:37] Finished 'default' after 10 ms

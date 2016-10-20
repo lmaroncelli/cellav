@@ -5,9 +5,47 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests;
 use App\Page;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class PagesController extends AdminController
 {
+
+    private function _manage_content_summernote($content)
+    {
+      $dom = new \DomDocument();
+      $dom->encoding='utf-8';
+      
+      libxml_use_internal_errors(true);
+      $dom->loadHtml(utf8_decode($content), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);    
+      $images = $dom->getElementsByTagName('img');
+     // foreach <img> in the submited content
+      foreach($images as $img){
+          $src = $img->getAttribute('src');
+          
+          // if the img source is 'data-url'
+          if(preg_match('/data:image/', $src)){                
+              // get the mimetype
+              preg_match('/data:image\/(?<mime>.*?)\;/', $src, $groups);
+              $mimetype = $groups['mime'];                
+              // Generating a random filename
+              $filename = uniqid();
+              $filepath = "summernoteimages/$filename.$mimetype";    
+              // @see http://image.intervention.io/api/
+              $image = Image::make($src)
+                // resize if required
+                /* ->resize(300, 200) */
+                ->encode($mimetype, 100)  // encode file to the specified mimetype
+                ->save(public_path($filepath));                
+              $new_src = asset($filepath);
+              $img->removeAttribute('src');
+              $img->setAttribute('src', $new_src);
+          } // <!--endif
+      } // <!-- endfor
+      return $dom->saveHTML($dom->documentElement);
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -76,9 +114,11 @@ class PagesController extends AdminController
      */
     public function update(Request $request, $id)
     {
+        $content = self::_manage_content_summernote($request->get('content'));
 
         $page = Page::find($id);
-        $page->fill($request->all())->save();
+        $page->fill(['content' => $content]);
+        $page->fill($request->except('content'))->save();
 
         return redirect()->route('pages.index')->with('status', 'Pagina modificata correttamente!');
 
