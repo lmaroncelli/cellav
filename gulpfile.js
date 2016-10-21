@@ -13,10 +13,11 @@ require('laravel-elixir-vue-2');
  |
  */
 
+
 elixir(mix => {
     mix.sass('app.scss')
        .webpack('app.js')
-       .combine(['public/js/app.js','node_modules/jquery/dist/jquery.min.js', 'node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js')
+       .combine(['public/js/app.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js')
        .less('index.less','public/css/supernote.css','node_modules/cd-summernote')
        .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts')
        .copy('node_modules/cd-summernote/fonts', 'public/css/fonts');

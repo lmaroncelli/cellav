@@ -13,15 +13,7 @@
 
 
 
-
-Route::get('/', function () {
-    return view('admin.layouts.backend');
-});
-
-
 Auth::routes();
-
-
 
 
 Route::get('/pannello', 'HomeController@index');
@@ -36,3 +28,6 @@ Route::get('admin/pages/{page}/confirm', ['as' => 'pages.confirm', 'uses' => 'Ad
 Route::post('admin/pages/uri_ajax', ['as' => 'pages.uri_ajax', 'uses' => 'Admin\PagesController@createUri']);
 
 Route::resource('admin/pages', 'Admin\PagesController');
+
+
+Route::get('/{slug?}', 'SiteController@make');
