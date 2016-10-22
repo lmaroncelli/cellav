@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\admin\AdminController;
+
 use App\Http\Requests;
+use App\Prodotto;
 use Illuminate\Http\Request;
 
-class ProductsController extends AdminController
+class ProdottiController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,10 @@ class ProductsController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
-        //
+    $prodotti = Prodotto::all();
+    return view('admin.prodotti.index', compact('prodotti'));
     }
 
     /**
@@ -23,9 +26,9 @@ class ProductsController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Prodotto $prodotto)
     {
-        //
+        return view('admin.prodotti.form', compact('prodotto')); 
     }
 
     /**
