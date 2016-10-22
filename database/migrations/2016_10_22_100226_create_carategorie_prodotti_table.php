@@ -14,8 +14,11 @@ class CreateCarategorieProdottiTable extends Migration
     public function up()
     {
         Schema::create('tblCategorieProdotti', function (Blueprint $table) {
-            $table->integer('prodotto_id')->unsigned();
-           $table->integer('categoria_id')->unsigned();
+            $table->integer('prodotto_id')->unsigned()->index();
+            $table->foreign('prodotto_id')->references('id')->on('tblProdotti')->onDelete('cascade');
+            $table->integer('categoria_id')->unsigned()->index();
+            $table->foreign('categoria_id')->references('id')->on('tblCategorie')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

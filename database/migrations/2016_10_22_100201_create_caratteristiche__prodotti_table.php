@@ -14,8 +14,12 @@ class CreateCaratteristicheProdottiTable extends Migration
     public function up()
     {
         Schema::create('tblCaratteristicheProdotti', function (Blueprint $table) {
-           $table->integer('prodotto_id')->unsigned();
-           $table->integer('caratteristica_id')->unsigned();
+           $table->integer('prodotto_id')->unsigned()->index();
+           $table->foreign('prodotto_id')->references('id')->on('tblProdotti')->onDelete('cascade');
+           $table->integer('caratteristica_id')->unsigned()->index();
+           $table->foreign('caratteristica_id')->references('id')->on('tblCaratteristiche')->onDelete('cascade');
+           
+           $table->timestamps();
         });
     }
 
