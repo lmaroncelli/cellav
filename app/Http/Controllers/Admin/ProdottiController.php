@@ -39,7 +39,7 @@ class ProdottiController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

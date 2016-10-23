@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	{{ $prodotto->exists ? 'Modifica Pagina' : 'Nuova pagina'}}
+	{{ $prodotto->exists ? 'Modifica Prodotto' : 'Nuova Prodotto'}}
 @stop
 
 @section('content')
@@ -20,22 +20,79 @@
 		
 		{{ csrf_field() }}
 		
-		<div class="form-group">
-	    	<label for="titolo">Titolo</label>
-	    	<input type="text" class="form-control" id="titolo" placeholder="Titolo" name="title" value="{{old('title', isset($prodotto->title) ? $prodotto->title : null)}}">
+			<div class="form-group">
+	    	<label for="codice">Codice</label>
+	    	<input type="text" class="form-control" id="codice" placeholder="Codice" name="codice" value="{{old('codice', isset($prodotto->codice) ? $prodotto->codice : null)}}">
 	  	</div>
 
 	  	<div class="form-group">
-	    	<label for="nome">URI</label>
-	    	<input type="text" class="form-control" id="uri" placeholder="URI" name="uri" value="{{old('uri', isset($prodotto->uri) ? $prodotto->uri : null)}}">
+	    	<label for="nome">Nome</label>
+	    	<input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" value="{{old('nome', isset($prodotto->nome) ? $prodotto->nome : null)}}">
 	  	</div>
 
-		<div class="form-group">
-		  	<label for="nome">Content</label>
+	  	<div class="form-group">
+	    	<label for="peso">Peso</label>
+	    	<input type="text" class="form-control" id="peso" placeholder="Peso" name="peso" value="{{old('peso', isset($prodotto->peso) ? $prodotto->peso : null)}}">
+	  	</div>
 
-	  		<textarea class="form-control" rows="3" name="content" id="content">{{old('content', isset($prodotto->content) ? $prodotto->content : null)}}</textarea>
+
+		<div class="form-group">
+		  	<label for="nome">Descrizione</label>
+	  		<textarea class="form-control" rows="3" name="descrizione" id="descrizione">{{old('descrizione', isset($prodotto->descrizione) ? $prodotto->descrizione : null)}}</textarea>
 		</div>
+
+		<div class="form-group">
+		  	<label for="nome">Scheda tecnica</label>
+	  		<textarea class="form-control" rows="3" name="scheda" id="scheda">{{old('scheda', isset($prodotto->scheda) ? $prodotto->scheda : null)}}</textarea>
+		</div>
+
+		<div class="form-group">
+		  	<label for="nome">Ingredienti</label>
+	  		<textarea class="form-control" rows="3" name="ingredienti" id="ingredienti">{{old('ingredienti', isset($prodotto->ingredienti) ? $prodotto->ingredienti : null)}}</textarea>
+		</div>
+  	
+  	<div class="form-group">
+    	<label for="nome">URI</label>
+    	<input type="text" class="form-control" id="uri" placeholder="URI" name="uri" value="{{old('uri', isset($prodotto->uri) ? $prodotto->uri : null)}}">
+  	</div>
+
+  	<div class="form-group">
+    	<label for="prezzo">Prezzo</label>
+    	<input type="text" class="form-control" id="prezzo" placeholder="Prezzo" name="prezzo" value="{{old('prezzo', isset($prodotto->prezzo) ? $prodotto->prezzo : null)}}">
+  	</div>
 		
+		<div class="form-group">
+    	<label for="prezzo_offerta">Prezzo offerta</label>
+    	<input type="text" class="form-control" id="prezzo_offerta" placeholder="Prezzo offerta" name="prezzo_offerta" value="{{old('prezzo_offerta', isset($prodotto->prezzo_offerta) ? $prodotto->prezzo_offerta : null)}}">
+  	</div>
+
+  	<div class="form-group">
+    	<label for="disponibile">Disponibile</label>
+    	<input type="text" class="form-control" id="disponibile" placeholder="Prezzo offerta" name="disponibile" value="{{old('disponibile', isset($prodotto->disponibile) ? $prodotto->disponibile : null)}}">
+  	</div>
+  	
+  	<div class="checkbox">
+  	  <label>
+  	    <input type="checkbox" id="novita" value="1" aria-label="Novità" @if (old('novita')==1) checked @endif> 
+  	    	Novità
+  	   </label>
+  	</div>
+
+  	<div class="checkbox">
+  	  <label>
+  	    <input type="checkbox" id="offerta" value="1" aria-label="Offerta" @if (old('offerta')==1) checked @endif> 
+  	    	Offerta
+  	   </label>
+  	</div>
+
+  	<div class="checkbox">
+  	  <label>
+  	    <input type="checkbox" id="visibile" value="1" aria-label="Visibile" @if (old('visibile')==1) checked @endif> 
+  	    	Visibile
+  	   </label>
+  	</div>
+
+
 		<button type="submit" class="btn btn-primary">{{ $prodotto->exists ? 'Modifica' : 'Salva'}}</button>
 
 	</form>
@@ -47,32 +104,41 @@
 	<script>
 	     $(document).ready(function(){
 
-	         $('#titolo').blur(function(event){
-	             
-	           uri = $("#uri");
+	        $('#descrizione').summernote({
+              height:250,
+              toolbar: [
+                 // [groupName, [list of button]]
+                 ['Insert', ['picture', 'link', 'video', 'table','hr']],
+                 ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                 ['fontsize', ['fontsize']],
+                 ['fontname', ['fontname']],
+                 ['color', ['color']],
+                 ['para', ['ul', 'ol', 'paragraph']],
+                 ['height', ['height']],
+                 ['Misc',['fullscreen','codeview']]
+               ],
 
-	           if (uri.val() == '') {
+            });
 
-	             val = $(this).val();
-	             
-	             $.ajax({
-	               url: '<?=url("admin/prodotti/uri_ajax") ?>',
-	               type: "post",
-	               data : { 
-	                 'value': val,
-	                 '_token': '{{ csrf_token() }}'
-	               },
-	               success: function(data) {
-	                 uri.val(data);
-	               }
-	             });
-	           
-	           }
+	        $('#scheda').summernote({
+              height:250,
+              toolbar: [
+                 // [groupName, [list of button]]
+                 ['Insert', ['picture', 'link', 'video', 'table','hr']],
+                 ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                 ['fontsize', ['fontsize']],
+                 ['fontname', ['fontname']],
+                 ['color', ['color']],
+                 ['para', ['ul', 'ol', 'paragraph']],
+                 ['height', ['height']],
+                 ['Misc',['fullscreen','codeview']]
+               ],
 
-	         });
+            });
 
-	        $("#content").summernote({
-              height:500,
+
+	        $('#ingredienti').summernote({
+              height:250,
               toolbar: [
                  // [groupName, [list of button]]
                  ['Insert', ['picture', 'link', 'video', 'table','hr']],
