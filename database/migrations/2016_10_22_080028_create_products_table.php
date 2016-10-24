@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
@@ -21,10 +22,10 @@ class CreateProductsTable extends Migration
             $table->text('descrizione');            
             $table->text('scheda');            
             $table->text('ingredienti');            
-            $table->integer('disponibile');
-            $table->date('scadenza');
-            $table->decimal('prezzo', 10, 2);
-            $table->decimal('prezzo_offerta', 10, 2);
+            $table->integer('disponibile')->default(0);
+            $table->date('scadenza')->nullable()->default(null);
+            $table->decimal('prezzo', 10, 2)->default(0.00);
+            $table->decimal('prezzo_offerta', 10, 2)->default(0.00);
             $table->boolean('novita')->default(false);
             $table->boolean('offerta')->default(false);
             $table->boolean('visibile')->default(false);

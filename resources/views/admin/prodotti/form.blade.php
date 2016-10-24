@@ -64,7 +64,7 @@
     <div class="checkbox">
         @foreach ($caratteristiche as $key => $nome)
         <label>
-          <input type="checkbox" id="{{$nome}}" name="caratteristiche[]" value="1" aria-label="{{$nome}}" @if (old($nome)==1) checked @endif> 
+          <input type="checkbox" id="{{$nome}}" name="caratteristiche[]" value="{{$key}}" aria-label="{{$nome}}" @if (old($nome)==1) checked @endif> 
           {{$nome}}
         </label>
         @endforeach
@@ -76,13 +76,13 @@
     <div class="checkbox">
         @foreach ($categorie as $key => $nome)
         <label>
-          <input type="checkbox" id="{{$nome}}" name="categorie[]" value="1" aria-label="{{$nome}}" @if (old($nome)==1) checked @endif> 
+          <input type="checkbox" id="{{$nome}}" name="categorie[]" value="{{$key}}" aria-label="{{$nome}}" @if (old($nome)==1) checked @endif> 
           {{$nome}}
         </label>
         @endforeach
     </div>
     </div>
-    
+
     <div class="form-group">
       <label for="nome">URI</label>
       <input type="text" class="form-control" id="uri" placeholder="URI" name="uri" value="{{old('uri', isset($prodotto->uri) ? $prodotto->uri : null)}}">
@@ -100,7 +100,7 @@
 
     <div class="form-group">
       <label for="disponibile">Disponibile</label>
-      <input type="text" class="form-control" id="disponibile" placeholder="Prezzo offerta" name="disponibile" value="{{old('disponibile', isset($prodotto->disponibile) ? $prodotto->disponibile : null)}}">
+      <input type="text" class="form-control" id="disponibile" placeholder="Disponibile" name="disponibile" value="{{old('disponibile', isset($prodotto->disponibile) ? $prodotto->disponibile : null)}}">
     </div>
     
 
@@ -124,6 +124,11 @@
   	    	Visibile
   	   </label>
   	</div>
+
+    <div class="form-group">
+      <label for="scadenza">Scadenza</label>
+      <input type="text" class="form-control" id="scadenza" placeholder="scadenza" name="scadenza" value="{{old('scadenza', isset($prodotto->scadenza) ? $prodotto->scadenza : null)}}">
+    </div>
 
 
 		<button type="submit" class="btn btn-primary">{{ $prodotto->exists ? 'Modifica' : 'Salva'}}</button>

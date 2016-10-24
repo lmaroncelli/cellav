@@ -12,6 +12,14 @@ use Illuminate\Http\Request;
 
 class ProdottiController extends AdminController
 {
+
+    /**
+   * [getDates You may customize which fields are automatically mutated to instances of Carbon by overriding the getDates method]
+   */
+  public function getDates() 
+    {
+    return ['scadenza'];
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,10 +53,18 @@ class ProdottiController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-                'codice' => 'required',
-            ]);
+    { 
+        $prodotto = Prodotto::create($request->all());
+
+        $caratteristiche = $request->get('caratteristiche');
+        $prodotto->caratteristiche->sync($caratteristiche);
+
+        $categorie = $request->get('categorie');
+        $prodotto->categorie->sync($categorie);
+
+        $prodotto->save();
+
+        return redirect()->route('prodotti.index')->with('status', 'Prodotto creato correttamente!');
     }
 
     /**
