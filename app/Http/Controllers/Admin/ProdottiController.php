@@ -54,15 +54,14 @@ class ProdottiController extends AdminController
      */
     public function store(Request $request)
     { 
+        //dd($request->all());
         $prodotto = Prodotto::create($request->all());
 
         $caratteristiche = $request->get('caratteristiche');
-        $prodotto->caratteristiche->sync($caratteristiche);
+        $prodotto->caratteristiche()->attach($caratteristiche);
 
         $categorie = $request->get('categorie');
-        $prodotto->categorie->sync($categorie);
-
-        $prodotto->save();
+        $prodotto->categorie()->attach($categorie);
 
         return redirect()->route('prodotti.index')->with('status', 'Prodotto creato correttamente!');
     }
@@ -98,7 +97,13 @@ class ProdottiController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
+    
+
+        /*$caratteristiche = $request->get('caratteristiche');
+        $prodotto->caratteristiche->sync($caratteristiche);
+
+        $categorie = $request->get('categorie');
+        $prodotto->categorie->sync($categorie);*/
     }
 
     /**

@@ -16,7 +16,7 @@ class Caratteristica extends Model
 
 	public function prodotti()
 	{
-		$this->belongsToMany('App\Prodotto','tblCaratteristicheProdotti','prodotto_id','caratteristica_id');
+		return $this->belongsToMany('App\Prodotto','tblCaratteristicheProdotti','caratteristica_id','prodotto_id');
 	}
 	
 

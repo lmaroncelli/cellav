@@ -16,12 +16,12 @@ class CreateProductsTable extends Migration
     {
         Schema::create('tblProdotti', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
-            $table->string('codice');
-            $table->string('peso');
-            $table->text('descrizione');            
-            $table->text('scheda');            
-            $table->text('ingredienti');            
+            $table->string('nome')->default('');
+            $table->string('codice')->default('');
+            $table->string('peso')->default('');
+            $table->text('descrizione')->default('');            
+            $table->text('scheda')->default('');            
+            $table->text('ingredienti')->default('');            
             $table->integer('disponibile')->default(0);
             $table->date('scadenza')->nullable()->default(null);
             $table->decimal('prezzo', 10, 2)->default(0.00);
@@ -30,9 +30,9 @@ class CreateProductsTable extends Migration
             $table->boolean('offerta')->default(false);
             $table->boolean('visibile')->default(false);
             $table->string('uri')->unique();
-            $table->string('title');
-            $table->string('keywords');            
-            $table->text('description');            
+            $table->string('title')->default('');
+            $table->string('keywords')->default('');            
+            $table->text('description')->default('');            
             $table->integer('produttore_id')->unsigned();
             // se cancello un produttore voglio cancellare a cascata anche tutti i prodotti di quel produttore
             $table->foreign('produttore_id')->references('id')->on('tblProduttori')->onDelete('cascade');

@@ -15,7 +15,7 @@ class Categoria extends Model
 
 	public function prodotti()
 	{
-		$this->belongsToMany('App\Prodotto','tblCategorieProdotti','prodotto_id','categoria_id');
+		return $this->belongsToMany('App\Prodotto','tblCategorieProdotti','categoria_id', 'prodotto_id');
 	}
 
 

@@ -28,7 +28,15 @@
 	           @foreach ($prodotti as $count => $prodotto)
 	               <tr>
 	                   <td><a href="{{ route('prodotti.edit',$prodotto->id) }}">{{$prodotto->codice}}</a></td>
-	                   <td><a href="{{ route('prodotti.edit',$prodotto->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                     <td>{{$prodotto->codice}}</td>
+                     <td>{{$prodotto->disponibile}}</td>
+                     <td>{{$prodotto->scadenza}}</td>
+                     <td>{{$prodotto->prezzo}}</td>
+                     <td>{{$prodotto->prezzo_offerta}}</td>
+                     <td>{{$prodotto->novita}}</td>
+                     <td>{{$prodotto->offerta}}</td>
+	                   <td>{{$prodotto->visibile}}</td>
+                     <td><a href="{{ route('prodotti.edit',$prodotto->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
 	                   <td><a href="{{ route('prodotti.confirm',$prodotto->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
 	               </tr>
 	           @endforeach

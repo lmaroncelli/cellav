@@ -25,6 +25,7 @@ class Prodotto extends Model
 		'descrizione',
 		'scheda',
 		'ingredienti',
+		'uri',
 	];
 
 
@@ -35,20 +36,20 @@ class Prodotto extends Model
 	 */
 	public function produttore()
 		{
-			$this->belongsTo('App\Produttore','produttore_id','id');
+			return $this->belongsTo('App\Produttore','produttore_id','id');
 		}
 
 
 
 	public function caratteristiche()
 		{
-			$this->belongsToMany('App\Caratteristica','tblCaratteristicheProdotti','caratteristica_id','prodotto_id');
+			return $this->belongsToMany('App\Caratteristica','tblCaratteristicheProdotti','prodotto_id', 'caratteristica_id');
 		}
 
 
 	public function categorie()
 		{
-			$this->belongsToMany('App\Categoria','tblCategorieProdotti','categoria_id','prodotto_id');
+			return $this->belongsToMany('App\Categoria','tblCategorieProdotti','prodotto_id','categoria_id');
 		}
 
 
