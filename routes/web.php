@@ -28,6 +28,7 @@ Route::get('admin/pages/{page}/confirm', ['as' => 'pages.confirm', 'uses' => 'Ad
 Route::post('admin/pages/uri_ajax', ['as' => 'pages.uri_ajax', 'uses' => 'Admin\PagesController@createUri']);
 
 Route::resource('admin/pages', 'Admin\PagesController');
+Route::resource('admin/prodotti', 'Admin\ProdottiController');
 
 
 Route::get('/{slug?}', 'SiteController@make');

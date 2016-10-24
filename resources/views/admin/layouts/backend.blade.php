@@ -48,6 +48,7 @@
                         &nbsp;
                         <li><a href="{{ route('users.index') }}">Utenti</a></li>
                         <li><a href="{{ route('pages.index') }}">Pagine</a></li>
+                        <li><a href="{{ route('prodotti.index') }}">Prodotti</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -85,7 +86,7 @@
         <div class="container">
         <div class="panel">
             <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <h1 class="page-header">@yield('title')</h1>
                 @yield('content')
             </div>
