@@ -24,7 +24,7 @@
         <label for="codice">Produttore</label>
         <select class="form-control" name="produttore_id">
           @foreach ($produttori as $key => $nome)
-            <option value="{{$key}}" @if(old('produttore_id') == $key) selected @endif>{{$nome}}</option>
+            <option value="{{$key}}" @if( old('produttore_id') == $key || (isset($prodotto->produttore_id) && $prodotto->produttore_id == $key)) selected @endif>{{$nome}}</option>
           @endforeach
         </select>
       </div>
@@ -60,11 +60,11 @@
 		</div>
     
     <div class="form-group">
-    <label for="disponibile">Caratteristiche</label>
+    <label for="caratteristiche">Caratteristiche</label>
     <div class="checkbox">
         @foreach ($caratteristiche as $key => $nome)
         <label>
-          <input type="checkbox" id="{{$nome}}" name="caratteristiche[]" value="{{$key}}" aria-label="{{$nome}}" @if (old($nome)==1) checked @endif> 
+          <input type="checkbox" id="{{$nome}}" name="caratteristiche[]" value="{{$key}}" aria-label="{{$nome}}" @if ( old($nome)==1 || in_array($key, $caratteristiche_associate) ) checked @endif>
           {{$nome}}
         </label>
         @endforeach
@@ -72,11 +72,11 @@
     </div>
 
     <div class="form-group">
-    <label for="disponibile">Categorie</label>
+    <label for="categorie">Categorie</label>
     <div class="checkbox">
         @foreach ($categorie as $key => $nome)
         <label>
-          <input type="checkbox" id="{{$nome}}" name="categorie[]" value="{{$key}}" aria-label="{{$nome}}" @if (old($nome)==1) checked @endif> 
+          <input type="checkbox" id="{{$nome}}" name="categorie[]" value="{{$key}}" aria-label="{{$nome}}" @if ( old($nome)==1 || in_array($key, $categorie_associate) ) checked @endif> 
           {{$nome}}
         </label>
         @endforeach
@@ -106,21 +106,21 @@
 
   	<div class="checkbox">
   	  <label>
-  	    <input type="checkbox" id="novita" name="novita" value="1" aria-label="Novità" @if (old('novita')==1) checked @endif> 
+  	    <input type="checkbox" id="novita" name="novita" value="1" aria-label="Novità" @if (old('novita')==1 || (isset($prodotto->novita) && $prodotto->novita == 1) ) checked @endif> 
   	    	Novità
   	   </label>
   	</div>
 
   	<div class="checkbox">
   	  <label>
-  	    <input type="checkbox" id="offerta" name="offerta" value="1" aria-label="Offerta" @if (old('offerta')==1) checked @endif> 
+  	    <input type="checkbox" id="offerta" name="offerta" value="1" aria-label="Offerta" @if (old('offerta')==1 || (isset($prodotto->offerta) && $prodotto->offerta == 1) ) checked @endif> 
   	    	Offerta
   	   </label>
   	</div>
 
   	<div class="checkbox">
   	  <label>
-  	    <input type="checkbox" id="visibile" name="visibile" value="1" aria-label="Visibile" @if (old('visibile')==1) checked @endif> 
+  	    <input type="checkbox" id="visibile" name="visibile" value="1" aria-label="Visibile" @if ( old('visibile')==1 || (isset($prodotto->visibile) && $prodotto->visibile == 1) ) checked @endif> 
   	    	Visibile
   	   </label>
   	</div>

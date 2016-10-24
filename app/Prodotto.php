@@ -59,17 +59,20 @@ class Prodotto extends Model
 	 */
 	
 	// I prezzo se sono stringhe vuote devono diventare 0
-	public function setPrezzoOffertaAttribute($value)
+
+/*	
+public function setPrezzoOffertaAttribute($value)
     {
     		if ($value == '')
-        	$this->attributes['prezzo_offerta'] = 0;
+        	$this->attributes['prezzo_offerta'] = 0.00;
     }
 
-  public function setPrezzoAttribute($value)
+public function setPrezzoAttribute($value)
     {
     		if ($value == '')
-        	$this->attributes['prezzo'] = 0;
+        	$this->attributes['prezzo'] = 0.00;
     }
+ */
 
 	public function setScadenzaAttribute($value)
     {

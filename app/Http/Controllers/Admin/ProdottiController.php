@@ -85,7 +85,13 @@ class ProdottiController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $prodotto = Prodotto::find($id);
+        $produttori = Produttore::pluck('nome', 'id');
+        $caratteristiche = Caratteristica::pluck('nome', 'id');
+        $categorie = Categoria::pluck('nome', 'id');
+        $caratteristiche_associate = $prodotto->caratteristiche()->pluck('id')->toArray();
+        $categorie_associate = $prodotto->categorie()->pluck('id')->toArray();
+        return view('admin.prodotti.form', compact('prodotto','produttori','caratteristiche','categorie','caratteristiche_associate','categorie_associate')); 
     }
 
     /**
@@ -97,13 +103,16 @@ class ProdottiController extends AdminController
      */
     public function update(Request $request, $id)
     {
-    
+        $prodotto = Prodotto::find($id);
+        $prodotto->fill($request->all())->save();
 
-        /*$caratteristiche = $request->get('caratteristiche');
-        $prodotto->caratteristiche->sync($caratteristiche);
+        $caratteristiche = $request->get('caratteristiche');
+        $prodotto->caratteristiche()->sync($caratteristiche);
 
         $categorie = $request->get('categorie');
-        $prodotto->categorie->sync($categorie);*/
+        $prodotto->categorie()->sync($categorie);
+
+        return redirect()->route('prodotti.index')->with('status', 'Prodotto modificato correttamente!');
     }
 
     /**
