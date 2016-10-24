@@ -19,7 +19,15 @@
 	@endif
 		
 		{{ csrf_field() }}
-		
+		  
+      <div class="form-group">
+        <label for="codice">Produttore</label>
+        <select class="form-control" name="produttore_id">
+          @foreach ($produttori as $key => $nome)
+            <option value="{{$key}}" @if(old('produttore_id') == $key) selected @endif>{{$nome}}</option>
+          @endforeach
+        </select>
+      </div>
 			<div class="form-group">
 	    	<label for="codice">Codice</label>
 	    	<input type="text" class="form-control" id="codice" placeholder="Codice" name="codice" value="{{old('codice', isset($prodotto->codice) ? $prodotto->codice : null)}}">
@@ -50,44 +58,69 @@
 		  	<label for="nome">Ingredienti</label>
 	  		<textarea class="form-control" rows="3" name="ingredienti" id="ingredienti">{{old('ingredienti', isset($prodotto->ingredienti) ? $prodotto->ingredienti : null)}}</textarea>
 		</div>
-  	
-  	<div class="form-group">
-    	<label for="nome">URI</label>
-    	<input type="text" class="form-control" id="uri" placeholder="URI" name="uri" value="{{old('uri', isset($prodotto->uri) ? $prodotto->uri : null)}}">
-  	</div>
+    
+    <div class="form-group">
+    <label for="disponibile">Caratteristiche</label>
+    <div class="checkbox">
+        @foreach ($caratteristiche as $key => $nome)
+        <label>
+          <input type="checkbox" id="{{$nome}}" name="caratteristiche[]" value="1" aria-label="{{$nome}}" @if (old($nome)==1) checked @endif> 
+          {{$nome}}
+        </label>
+        @endforeach
+    </div>
+    </div>
 
-  	<div class="form-group">
-    	<label for="prezzo">Prezzo</label>
-    	<input type="text" class="form-control" id="prezzo" placeholder="Prezzo" name="prezzo" value="{{old('prezzo', isset($prodotto->prezzo) ? $prodotto->prezzo : null)}}">
-  	</div>
-		
-		<div class="form-group">
-    	<label for="prezzo_offerta">Prezzo offerta</label>
-    	<input type="text" class="form-control" id="prezzo_offerta" placeholder="Prezzo offerta" name="prezzo_offerta" value="{{old('prezzo_offerta', isset($prodotto->prezzo_offerta) ? $prodotto->prezzo_offerta : null)}}">
-  	</div>
+    <div class="form-group">
+    <label for="disponibile">Categorie</label>
+    <div class="checkbox">
+        @foreach ($categorie as $key => $nome)
+        <label>
+          <input type="checkbox" id="{{$nome}}" name="categorie[]" value="1" aria-label="{{$nome}}" @if (old($nome)==1) checked @endif> 
+          {{$nome}}
+        </label>
+        @endforeach
+    </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="nome">URI</label>
+      <input type="text" class="form-control" id="uri" placeholder="URI" name="uri" value="{{old('uri', isset($prodotto->uri) ? $prodotto->uri : null)}}">
+    </div>
 
-  	<div class="form-group">
-    	<label for="disponibile">Disponibile</label>
-    	<input type="text" class="form-control" id="disponibile" placeholder="Prezzo offerta" name="disponibile" value="{{old('disponibile', isset($prodotto->disponibile) ? $prodotto->disponibile : null)}}">
-  	</div>
-  	
+    <div class="form-group">
+      <label for="prezzo">Prezzo</label>
+      <input type="text" class="form-control" id="prezzo" placeholder="Prezzo" name="prezzo" value="{{old('prezzo', isset($prodotto->prezzo) ? $prodotto->prezzo : null)}}">
+    </div>
+    
+    <div class="form-group">
+      <label for="prezzo_offerta">Prezzo offerta</label>
+      <input type="text" class="form-control" id="prezzo_offerta" placeholder="Prezzo offerta" name="prezzo_offerta" value="{{old('prezzo_offerta', isset($prodotto->prezzo_offerta) ? $prodotto->prezzo_offerta : null)}}">
+    </div>
+
+    <div class="form-group">
+      <label for="disponibile">Disponibile</label>
+      <input type="text" class="form-control" id="disponibile" placeholder="Prezzo offerta" name="disponibile" value="{{old('disponibile', isset($prodotto->disponibile) ? $prodotto->disponibile : null)}}">
+    </div>
+    
+
   	<div class="checkbox">
   	  <label>
-  	    <input type="checkbox" id="novita" value="1" aria-label="Novità" @if (old('novita')==1) checked @endif> 
+  	    <input type="checkbox" id="novita" name="novita" value="1" aria-label="Novità" @if (old('novita')==1) checked @endif> 
   	    	Novità
   	   </label>
   	</div>
 
   	<div class="checkbox">
   	  <label>
-  	    <input type="checkbox" id="offerta" value="1" aria-label="Offerta" @if (old('offerta')==1) checked @endif> 
+  	    <input type="checkbox" id="offerta" name="offerta" value="1" aria-label="Offerta" @if (old('offerta')==1) checked @endif> 
   	    	Offerta
   	   </label>
   	</div>
 
   	<div class="checkbox">
   	  <label>
-  	    <input type="checkbox" id="visibile" value="1" aria-label="Visibile" @if (old('visibile')==1) checked @endif> 
+  	    <input type="checkbox" id="visibile" name="visibile" value="1" aria-label="Visibile" @if (old('visibile')==1) checked @endif> 
   	    	Visibile
   	   </label>
   	</div>

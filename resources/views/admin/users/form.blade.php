@@ -6,8 +6,6 @@
 
 @section('content')
 	
-	@include('admin.show_errors')
-
 	{{-- 
 	
 	What everyone seems to be missing is that if you are not using the laravelcollective/html package you can easily do this by taking advantage of the fact that old() takes a default parameter.  value="{{ old('my-input', $default-my-input) }}"

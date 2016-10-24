@@ -88,6 +88,7 @@
             <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <h1 class="page-header">@yield('title')</h1>
+                @include('admin.show_errors')
                 @yield('content')
             </div>
             </div>

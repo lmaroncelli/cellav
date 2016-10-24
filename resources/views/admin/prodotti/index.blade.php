@@ -6,7 +6,7 @@
 
 @section('content')
 	
-	<a href="{{ route('prodotti.create') }}" class="btn btn-primary" title="Crea una nuova pagina">Nuova</a>
+	<a href="{{ route('prodotti.create') }}" class="btn btn-primary" title="Crea un nuovo prodotto">Nuovo</a>
 	<table class="table table-striped">
        <thead>
            <tr>
