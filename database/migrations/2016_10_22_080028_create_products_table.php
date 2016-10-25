@@ -20,13 +20,13 @@ class CreateProductsTable extends Migration
             $table->string('codice')->default('');
             $table->string('peso')->default('');
             $table->text('descrizione');            
-            $table->text('scheda');            
+            $table->text('scheda')->nullable();            
             $table->text('ingredienti')->nullable();            
             $table->integer('disponibile')->default(0);
             $table->date('scadenza')->nullable()->default(null);
             $table->decimal('prezzo', 10, 2)->default(0.00);
             $table->decimal('prezzo_offerta', 10, 2)->default(0.00);
-            $table->boolean('novita')->default(false);
+            $table->boolean('novita')->nullable()->default(false);
             $table->boolean('offerta')->default(false);
             $table->boolean('visibile')->default(false);
             $table->string('uri')->unique();
