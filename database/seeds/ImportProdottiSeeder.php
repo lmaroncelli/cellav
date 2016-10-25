@@ -11,6 +11,8 @@ class ImportProdottiSeeder extends Seeder
      */
     public function run()
     {
+     //DB::table('tblProdotti')->truncate();
+     
      $prodotti_cel = DB::table('prodotto')->get();
 
      foreach ($prodotti_cel as $count => $pd) 

@@ -14,14 +14,14 @@ class CaratteristicheSeeder extends Seeder
       //DB::table('tblCaratteristiche')->truncate();
 
       DB::table('tblCaratteristiche')->insert([
-      		['nome' => 'Senza Lievito'], 
-      		['nome' => 'Senza Uova'],
-      		['nome' => 'Senza Sale'] ,
-      		['nome' => 'Senza Lattosio'], 
-      		['nome' => 'Senza Zucchero'],
-      		['nome' => 'Senza Soia'],
-      		['nome' => 'Biologico'],
-      		['nome' => 'Spiga Sbarrata'], 
+      		['id' => 1,'nome' => 'Senza Lievito'], 
+      		['id' => 2,'nome' => 'Senza Uova'],
+      		['id' => 3,'nome' => 'Senza Sale'] ,
+      		['id' => 4,'nome' => 'Senza Lattosio'], 
+      		['id' => 5,'nome' => 'Senza Zucchero'],
+      		['id' => 6,'nome' => 'Senza Soia'],
+      		['id' => 7,'nome' => 'Biologico'],
+      		['id' => 8,'nome' => 'Spiga Sbarrata'], 
       	]);
     }
 }

@@ -19,9 +19,9 @@ class CreateProductsTable extends Migration
             $table->string('nome')->default('');
             $table->string('codice')->default('');
             $table->string('peso')->default('');
-            $table->text('descrizione')->default('');            
-            $table->text('scheda')->default('');            
-            $table->text('ingredienti')->default('');            
+            $table->text('descrizione');            
+            $table->text('scheda');            
+            $table->text('ingredienti')->nullable();            
             $table->integer('disponibile')->default(0);
             $table->date('scadenza')->nullable()->default(null);
             $table->decimal('prezzo', 10, 2)->default(0.00);
@@ -32,7 +32,7 @@ class CreateProductsTable extends Migration
             $table->string('uri')->unique();
             $table->string('title')->default('');
             $table->string('keywords')->default('');            
-            $table->text('description')->default('');            
+            $table->text('description');            
             $table->integer('produttore_id')->unsigned();
             // se cancello un produttore voglio cancellare a cascata anche tutti i prodotti di quel produttore
             $table->foreign('produttore_id')->references('id')->on('tblProduttori')->onDelete('cascade');

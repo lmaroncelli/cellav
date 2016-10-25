@@ -15,13 +15,13 @@ class CategorieSeeder extends Seeder
       //DB::table('tblCategorie')->truncate();
 
       DB::table('tblCategorie')->insert([
-      		['nome' => 'Pane pizza e...'], 
-      		['nome' => 'Dolci e Biscotti'],
-      		['nome' => 'Farine'] ,
-      		['nome' => 'Pasta e Riso'], 
-      		['nome' => 'Freschi e artigianali'],
-      		['nome' => 'Area Bimbi'],
-      		['nome' => 'Varie'],
+      		['id' => 1,'nome' => 'Pane pizza e...'], 
+      		['id' => 2,'nome' => 'Dolci e Biscotti'],
+      		['id' => 3,'nome' => 'Farine'] ,
+      		['id' => 4,'nome' => 'Pasta e Riso'], 
+      		['id' => 5,'nome' => 'Freschi e artigianali'],
+      		['id' => 6,'nome' => 'Area Bimbi'],
+      		['id' => 7,'nome' => 'Varie'],
       	]);
     }
 }
