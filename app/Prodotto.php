@@ -105,7 +105,10 @@ public function setPrezzoAttribute($value)
     		if(strpos($categorie, ",") !== false)
     			{
     			// se ci sono PIU' CATEGORIE
-
+    			// 
+					return $query->whereHas('categorie', function($q) use ($categorie){
+				        $q->whereIn( 'categoria_id', explode(',',$categorie) );
+				    });
     			}
     		else 
     			{
@@ -113,6 +116,40 @@ public function setPrezzoAttribute($value)
 
     			return $query->whereHas('categorie', function($q) use ($categorie){
     		        $q->where('categoria_id', $categorie);
+    		    });
+
+    			}
+       
+    }
+
+
+    public function scopeListingCaratteristiche($query, $caratteristiche)
+   	{
+      	if(!$caratteristiche)
+       		return $query;
+
+       	// trovo gli id dei prodotti che che hanno ALMENO tutte le caratteristiche elencate in $caratteristiche
+    		// e poi faccio una query whereIn
+    		
+    		
+    		if(strpos($caratteristiche, ",") !== false)
+    			{
+    			// se ci sono PIU' CARATTERISTICHE
+    			// ATTENZIONE in QUESTO MODO PRENDE i prodotti che hanno ALMENO UNA CARATTERISTICA
+    			// invece se seleziono 3 caratteristiche (senza uovo, senza lattosio, senza soia)
+    			// voglio i prodotti CHE ABBIANO TUTTE QUELLE CARATTERISTICHE !!! 
+					
+					return $query->whereHas('caratteristiche', function($q) use ($caratteristiche){
+				        $q->whereIn( 'caratteristica_id', explode(',',$caratteristiche) );
+				    });
+					
+    			}
+    		else 
+    			{
+    			// se c'è SOLO 1 CARATTERISTICA
+
+    			return $query->whereHas('caratteristiche', function($q) use ($caratteristiche){
+    		        $q->where('caratteristica_id', $caratteristiche);
     		    });
 
     			}

@@ -122,7 +122,19 @@ class PagesController extends AdminController
     public function edit($id)
     {
         $page = Page::find($id);
-        return view('admin.pages.form', compact('page'));
+        
+        $caratteristiche = Caratteristica::pluck('nome', 'id');
+        $categorie = Categoria::pluck('nome', 'id');
+        $categorie_associate = [];
+        $caratteristiche_associate = [];
+
+        if (!is_null($page->listingCategorie)) 
+            $categorie_associate = explode(',',$page->listingCategorie);
+        
+        if (!is_null($page->listingCaratteristiche)) 
+            $caratteristiche_associate = explode(',',$page->listingCaratteristiche);
+
+        return view('admin.pages.form', compact('page','caratteristiche','categorie','caratteristiche_associate','categorie_associate'));
 
     }
 
@@ -135,12 +147,25 @@ class PagesController extends AdminController
      */
     public function update(Request $request, $id)
     {
+
+        
         $content = self::_manage_content_summernote($request->get('content'));
 
         $page = Page::find($id);
         $page->fill(['content' => $content]);
-        $page->fill($request->except('content'))->save();
+        $page->fill($request->except('content','listingCaratteristiche', 'listingCategorie'));
 
+        // caratteristiche e categorie
+        $caratteristiche = $request->get('caratteristiche');
+        if (!is_null($caratteristiche))
+            $page->fill(['listingCaratteristiche' => implode(',',$caratteristiche)]);
+
+
+        $categorie = $request->get('categorie');        
+        if (!is_null($categorie))
+            $page->fill(['listingCategorie' => implode(',',$categorie)]);
+
+        $page->save();
         return redirect()->route('pages.index')->with('status', 'Pagina modificata correttamente!');
 
     }

@@ -15,8 +15,9 @@ class SiteController extends Controller
 		{
 			$prodotti = Prodotto::visibile()
 										->listingCategorie($page->listingCategorie)
+										->listingCaratteristiche($page->listingCaratteristiche)
 										->get();
-			dd($prodotti);
+			//dd($prodotti);
 		}
 
 	public function make($slug = "")
