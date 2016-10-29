@@ -93,6 +93,13 @@ public function setPrezzoAttribute($value)
    		return $query->where('visibile', 1);	
    	}
 
+
+   	/**
+   	 * [scopeListingCategorie PIU' categorie sono cercate in OR (se appartiene a pane e pizza oppure  dolci)]
+   	 * @param  [type] $query     [description]
+   	 * @param  [type] $categorie [description]
+   	 * @return [type]            [description]
+   	 */
    public function scopeListingCategorie($query, $categorie)
    	{
       	if(!$categorie)
@@ -122,7 +129,12 @@ public function setPrezzoAttribute($value)
        
     }
 
-
+    /**
+     * [scopeListingCaratteristiche description]
+     * @param  [type] $query           [description]
+     * @param  [type] $caratteristiche [description]
+     * @return [type]                  [description]
+     */
     public function scopeListingCaratteristiche($query, $caratteristiche)
    	{
       	if(!$caratteristiche)
@@ -134,15 +146,17 @@ public function setPrezzoAttribute($value)
     		
     		if(strpos($caratteristiche, ",") !== false)
     			{
-    			// se ci sono PIU' CARATTERISTICHE
-    			// ATTENZIONE in QUESTO MODO PRENDE i prodotti che hanno ALMENO UNA CARATTERISTICA
-    			// invece se seleziono 3 caratteristiche (senza uovo, senza lattosio, senza soia)
+    			// se ci sono PIU' CARATTERISTICHE le devo prendere im AN
+    			// se seleziono 3 caratteristiche (senza uovo, senza lattosio, senza soia)
     			// voglio i prodotti CHE ABBIANO TUTTE QUELLE CARATTERISTICHE !!! 
 					
 					return $query->whereHas('caratteristiche', function($q) use ($caratteristiche){
-				        $q->whereIn( 'caratteristica_id', explode(',',$caratteristiche) );
+				        foreach (explode(',',$caratteristiche) as $caratteristica) 
+				        	{
+				        	$q->where('caratteristica_id', $caratteristica);
+				        	}
 				    });
-					
+
     			}
     		else 
     			{

@@ -23,11 +23,11 @@ class AfterDBQueryMiddleware
         //retrieve all executed queries
         $queries = DB::getQueryLog();
 
-        dd($queries);
+        //dd($queries);
      
         //code to save query logs in a file
         
-        $content_response = $content_response . "<br/>----------------<br/>" . print_r($queries);
+        $content_response = $content_response . "<br/><br/><br/><br/><br/><br/>" . print_r($queries);
 
         $response->setContent($content_response);
 

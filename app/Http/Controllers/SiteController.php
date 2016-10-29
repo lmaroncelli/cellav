@@ -13,11 +13,42 @@ class SiteController extends Controller
 
 	private function _createPageListing($page)
 		{
-			$prodotti = Prodotto::visibile()
-										->listingCategorie($page->listingCategorie)
-										->listingCaratteristiche($page->listingCaratteristiche)
-										->get();
-			//dd($prodotti);
+			if(strpos($page->listingCaratteristiche, ",") !== false)
+    		{
+  			// se ci sono PIU' CARATTERISTICHE
+  			$prodotti_ids = [];
+  			foreach (explode(',',$page->listingCaratteristiche) as $caratteristica) 
+  				{
+  				// Prodotto con la caratteristica $caratteristica
+					$prodotti = Prodotto::visibile()
+												->listingCategorie($page->listingCategorie)
+												->listingCaratteristiche($caratteristica)
+												->get();
+  				
+					foreach ($prodotti as $prodotto) 
+						{
+						
+						// lo inserisco se è il primo prodotto oppure se ha anche le altre caratteristiche
+						if (empty($prodotti_ids) || in_array($prodotto->id, $prodotti_ids))
+							$prodotti_ids[] = $prodotto->id;
+						
+						}
+  				} // loop caratteristiche
+  			
+  			dd(array_unique($prodotti_ids));
+
+  			}
+  		else 
+  			{
+  			// se c'è SOLO 1 CARATTERISTICA
+				$prodotti = Prodotto::visibile()
+											->listingCategorie($page->listingCategorie)
+											->listingCaratteristiche($page->listingCaratteristiche)
+											->get();
+  			
+  			}
+
+			dd($prodotti);
 		}
 
 	public function make($slug = "")
