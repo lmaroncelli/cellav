@@ -88,4 +88,39 @@ public function setPrezzoAttribute($value)
 
 
 
+   public function scopeVisibile($query)
+   	{
+   		return $query->where('visibile', 1);	
+   	}
+
+   public function scopeListingCategorie($query, $categorie)
+   	{
+      	if(!$categorie)
+       		return $query;
+
+       	// trovo gli id dei prodotti che che hanno ALMENO tutte le categorie elencate in $categorie
+    		// e poi faccio una query whereIn
+    		
+    		
+    		if(strpos($categorie, ",") !== false)
+    			{
+    			// se ci sono PIU' CATEGORIE
+
+    			}
+    		else 
+    			{
+    			// se c'è SOLO 1 CATEGORIA
+
+    			return $query->whereHas('categorie', function($q) use ($categorie){
+    		        $q->where('categoria_id', $categorie);
+    		    });
+
+    			}
+       
+    }
+
+
+
+
+
 }

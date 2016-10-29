@@ -43,7 +43,9 @@ class ProdottiController extends AdminController
         $produttori = Produttore::pluck('nome', 'id');
         $caratteristiche = Caratteristica::pluck('nome', 'id');
         $categorie = Categoria::pluck('nome', 'id');
-        return view('admin.prodotti.form', compact('prodotto','produttori','caratteristiche','categorie')); 
+        $categorie_associate = [];
+        $caratteristiche_associate = [];
+        return view('admin.prodotti.form', compact('prodotto','produttori','caratteristiche','categorie','caratteristiche_associate', 'categorie_associate')); 
     }
 
     /**

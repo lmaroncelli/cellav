@@ -35,6 +35,41 @@
 
 	  		<textarea class="form-control" rows="3" name="content" id="content">{{old('content', isset($page->content) ? $page->content : null)}}</textarea>
 		</div>
+
+		<hr />
+		<div class="form-group">
+		<label for="caratteristiche">Listing prodotti</label>
+		<div class="checkbox">
+  	  <label>
+  	    <input type="checkbox" id="listing" name="listing" value="1" aria-label="Offerta" @if (old('listing')==1 || (isset($prodotto->listing) && $prodotto->listing == 1) ) checked @endif> 
+  	    	attiva
+  	   </label>
+  	</div>
+  	</div>
+
+  	<div class="form-group">
+  	<label for="caratteristiche">Prodotti con caratteristiche:</label>
+  	<div class="checkbox">
+  	    @foreach ($caratteristiche as $key => $nome)
+  	    <label>
+  	      <input type="checkbox" id="{{$nome}}" name="caratteristiche[]" value="{{$key}}" aria-label="{{$nome}}" @if ( old($nome)==1 || in_array($key, $caratteristiche_associate) ) checked @endif>
+  	      {{$nome}}
+  	    </label>
+  	    @endforeach
+  	</div>
+  	</div>
+
+  	<div class="form-group">
+  	<label for="categorie">Prodotti nella categoria:</label>
+  	<div class="checkbox">
+  	    @foreach ($categorie as $key => $nome)
+  	    <label>
+  	      <input type="checkbox" id="{{$nome}}" name="categorie[]" value="{{$key}}" aria-label="{{$nome}}" @if ( old($nome)==1 || in_array($key, $categorie_associate) ) checked @endif> 
+  	      {{$nome}}
+  	    </label>
+  	    @endforeach
+  	</div>
+  	</div>
 		
 		<button type="submit" class="btn btn-primary">{{ $page->exists ? 'Modifica' : 'Salva'}}</button>
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Caratteristica;
+use App\Categoria;
 use App\Http\Requests;
 use App\Page;
 use Illuminate\Http\Request;
@@ -65,7 +67,11 @@ class PagesController extends AdminController
      */
     public function create(Page $page)
     {
-        return view('admin.pages.form', compact('page'));
+        $caratteristiche = Caratteristica::pluck('nome', 'id');
+        $categorie = Categoria::pluck('nome', 'id');
+        $categorie_associate = [];
+        $caratteristiche_associate = [];
+        return view('admin.pages.form', compact('page','caratteristiche','categorie','caratteristiche_associate','categorie_associate'));
     }
 
     /**
@@ -75,8 +81,23 @@ class PagesController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        Page::create($request->all());
+    {   
+        //dd($request->all());
+        
+        $page = Page::create($request->all());
+
+        $caratteristiche = $request->get('caratteristiche');
+        if (!is_null($caratteristiche))
+            $page->listingCaratteristiche = implode(',',$caratteristiche);
+
+        $categorie = $request->get('categorie');        
+        if (!is_null($categorie))
+            $page->listingCategorie = implode(',',$categorie);
+        
+
+        $page->save();
+
+
         return redirect()->route('pages.index')->with('status', 'Pagina creata correttamente!');
 
     }
