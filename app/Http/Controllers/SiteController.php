@@ -15,40 +15,55 @@ class SiteController extends Controller
 		{
 			if(strpos($page->listingCaratteristiche, ",") !== false)
     		{
-  			// se ci sono PIU' CARATTERISTICHE
+  			// se ci sono PIU' CARATTERISTICHE (le cerco in AND)
   			$prodotti_ids = [];
+  			$count = 0;
+
   			foreach (explode(',',$page->listingCaratteristiche) as $caratteristica) 
   				{
+
+					$count++;
+
   				// Prodotto con la caratteristica $caratteristica
 					$prodotti = Prodotto::visibile()
+												/*->valido()*/
 												->listingCategorie($page->listingCategorie)
 												->listingCaratteristiche($caratteristica)
 												->get();
   				
 					foreach ($prodotti as $prodotto) 
 						{
-						
-						// lo inserisco se è il primo prodotto oppure se ha anche le altre caratteristiche
-						if (empty($prodotti_ids) || in_array($prodotto->id, $prodotti_ids))
-							$prodotti_ids[] = $prodotto->id;
-						
+							
+							!isset($prodotti_ids[$prodotto->id]) ? $prodotti_ids[$prodotto->id] = 1 : $prodotti_ids[$prodotto->id]++; 	
 						}
+
+
   				} // loop caratteristiche
   			
-  			dd(array_unique($prodotti_ids));
+  			$final_prodotti_ids = [];
+  			
+  			// prendo gli id dei prodotti che hanno ALMENO TUTTE LE CARATTERISTICHE CERCATE
+  			foreach ($prodotti_ids as $id => $c) 
+  				{
+  				if($c==$count) $final_prodotti_ids[]=$id; 
+  				}
+
+  			$prodotti = Prodotto::with(['caratteristiche'])->whereIn('id',array_unique($final_prodotti_ids))->get();
 
   			}
   		else 
   			{
   			// se c'è SOLO 1 CARATTERISTICA
-				$prodotti = Prodotto::visibile()
+				$prodotti = Prodotto::with(['caratteristiche'])
+											->visibile()
+											/*->valido()*/
 											->listingCategorie($page->listingCategorie)
 											->listingCaratteristiche($page->listingCaratteristiche)
 											->get();
   			
   			}
-
-			dd($prodotti);
+  		//dd($prodotti);
+			return $prodotti;
 		}
 
 	public function make($slug = "")
@@ -65,7 +80,7 @@ class SiteController extends Controller
 			if ($page->listing) 
 				$prodotti = self::_createPageListing($page);
 			
-			return view('site',compact('page'));
+			return view('site',compact('page','prodotti'));
 			}
 				
 	}

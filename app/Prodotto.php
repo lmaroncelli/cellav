@@ -93,6 +93,10 @@ public function setPrezzoAttribute($value)
    		return $query->where('visibile', 1);	
    	}
 
+   public function scopeValido($query)
+    {
+      return $query->where('scadenza', '>=' , date('Y-m-d'));  
+    }
 
    	/**
    	 * [scopeListingCategorie PIU' categorie sono cercate in OR (se appartiene a pane e pizza oppure  dolci)]
@@ -130,7 +134,9 @@ public function setPrezzoAttribute($value)
     }
 
     /**
-     * [scopeListingCaratteristiche description]
+     * [scopeListingCaratteristiche se ci sono più caratteristiche separate da ',' vengono ricerca in OR
+     * siccome le devo cercare in AND non le passo MAI in questo modo, ma nel SiteController looppo sulle
+     * caratteristiche e chiamao questo queryscope ogni volta con una caratteristica SINGOLA ]
      * @param  [type] $query           [description]
      * @param  [type] $caratteristiche [description]
      * @return [type]                  [description]

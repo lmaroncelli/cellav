@@ -158,12 +158,20 @@ class PagesController extends AdminController
         // caratteristiche e categorie
         $caratteristiche = $request->get('caratteristiche');
         if (!is_null($caratteristiche))
-            $page->fill(['listingCaratteristiche' => implode(',',$caratteristiche)]);
+            $listingCaratteristiche =  implode(',',$caratteristiche);
+        else
+            $listingCaratteristiche = null;
+
+        $page->fill(['listingCaratteristiche' => $listingCaratteristiche]);
 
 
         $categorie = $request->get('categorie');        
         if (!is_null($categorie))
-            $page->fill(['listingCategorie' => implode(',',$categorie)]);
+            $listingCategorie = implode(',',$categorie);
+        else
+            $listingCategorie = null;
+
+        $page->fill(['listingCategorie' => $listingCategorie]);
 
         $page->save();
         return redirect()->route('pages.index')->with('status', 'Pagina modificata correttamente!');
