@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Carrello' => 'App\Policies\CarrelloPolicy',
     ];
 
     /**
@@ -25,6 +25,21 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // se non è autenticato ritorna automaticamente false
+        // Gate::define('visualizza-carrello', function($user,$carrello){
+        // return $user->id == $carrello->user_id;
+        // })
+        
+
+        ///////////
+        // RUOLI //
+        ///////////
+        
+        // definisco una relazione molti-a-molti tra User e Role
+        
+        /*$gate->define('edit-forum', function ($user) {
+            return $user->hasRole('manager');
+        })*/
+
     }
 }
