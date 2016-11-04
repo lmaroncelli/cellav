@@ -86,3 +86,46 @@ La stessa cosa farò per le caratteristiche
 ======================== ACL  ==========================
 ========================================================
 
+`role` ENUM('admin','operatore','commerciale','hotel') NOT NULL COLLATE 'utf8_unicode_ci',
+
+
+
+
+Class User
+
+
+public function hasRole($roles)
+    {
+
+    if(is_array($roles))
+      $roles_arr = $roles;
+    else
+      $roles_arr = [$roles];
+
+    foreach($roles_arr as $role_neded)
+      {
+      if(strtolower($role_neded) === strtolower($this->role))
+        return true;
+      }
+
+    return false;
+    }
+
+
+// middleware query 
+
+ public function terminate($request, $response) 
+    {
+    
+      //retrieve all executed queries
+     
+      if (in_array($request->ip(),\Utility::validIP())) {
+        
+        $queries = DB::getQueryLog();
+        echo '<pre style="display:none;">';
+          print_r($queries);
+      echo "</pre>";
+      
+      }
+    }
+  }
