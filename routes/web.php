@@ -35,3 +35,7 @@ Route::resource('admin/prodotti', 'Admin\ProdottiController');
 
 
 Route::get('/{slug?}', 'SiteController@make')/*->middleware('beforeDBQuery','afterDBQuery')*/;
+
+
+Route::any('carrello/add/{prodotto_id}', ['as' => 'carrello.add', 'uses' => 'Admin\CarrelloController@addProdotto']);
+
