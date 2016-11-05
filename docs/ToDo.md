@@ -1,4 +1,4 @@
-Quello che sto cercando di fare è "ricostruire il sito" con tecnolgie più nuove e più robuste. Sto implementando un piccolo CMS con Laravel 5.3 - quello che è attualmente il framework de facto dei programmatori PHP.
+Quello che sto cercando di fare è "ricostruire il sito" con tecnolgie più nuove e più robuste. Sto implementando un piccolo CMS con   Laravel 5.3 - quello che è attualmente il framework de facto dei programmatori PHP.
 Questo credo sia la base necessaria ma non sufficiente per implementare poi le funzionalità che hai richiesto (tour virtaule, upload dei video, integrazione "avanzata" con Facebbok).
 
 In questo nuovo sito ci saranno le pagine listing dei prodotti ? 

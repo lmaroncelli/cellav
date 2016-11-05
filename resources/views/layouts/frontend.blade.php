@@ -30,7 +30,6 @@
     
     @yield('css')
     
-    <script src="/frontend/assets/js/modernizr.js"></script>
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -56,17 +55,28 @@
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.html">HOME</a></li>
-            <li><a href="about.html">ABOUT</a></li>
-            <li><a href="contact.html">CONTACT</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">PAGES <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="blog.html">BLOG</a></li>
-                <li><a href="single-post.html">SINGLE POST</a></li>
-                <li><a href="portfolio.html">PORTFOLIO</a></li>
-                <li><a href="single-project.html">SINGLE PROJECT</a></li>
-              </ul>
-            </li>
+            @if (Auth::guest())
+                <li><a href="{{ url('/login') }}">Login</a></li>
+                <li><a href="{{ url('/register') }}">Register</a></li>
+            @else
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                      <a href="{{ url('/logout') }}"
+                          onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                          Logout
+                      </a>
+
+                      <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                          {{ csrf_field() }}
+                      </form>
+                  </li>
+                </ul>
+              </li>
+            @endif
+
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -96,6 +106,19 @@
         </div><! --/row -->
      </div><! --/container -->
     
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <script src="/frontend/assets/js/bootstrap.min.js"></script>
+    <script src="/frontend/assets/js/retina-1.1.0.js"></script>
+    <script src="/frontend/assets/js/jquery.hoverdir.js"></script>
+    <script src="/frontend/assets/js/jquery.hoverex.min.js"></script>
+    <script src="/frontend/assets/js/jquery.prettyPhoto.js"></script>
+      <script src="/frontend/assets/js/jquery.isotope.min.js"></script>
+      <script src="/frontend/assets/js/custom.js"></script>
+
+
     @yield('script')
     
 </body>
