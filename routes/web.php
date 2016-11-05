@@ -15,7 +15,6 @@
 
 Auth::routes();
 
-Route::get('/pannello', 'Admin\AdminController@index');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ROUTE ACCESSIBILI SOLO AL PROFILO ADMIN: oltre a dover essere loggato perché estende AdminController, è in un  //
@@ -23,6 +22,8 @@ Route::get('/pannello', 'Admin\AdminController@index');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 Route::group(['middleware' => ['admin']], function () {
+		
+		Route::get('/pannello', 'Admin\AdminController@index');
   
 		Route::get('admin/users/{user}/confirm', ['as' => 'users.confirm', 'uses' => 'Admin\UsersController@confirm']);
 
@@ -50,6 +51,8 @@ Route::group(['middleware' => ['admin']], function () {
 // ROUTE ACCESSIBILE SOLO DA LOGGATO PERCHE' ESTENDE AdminController //
 ///////////////////////////////////////////////////////////////////////
 Route::any('carrello/add/{prodotto_id}', ['as' => 'carrello.add', 'uses' => 'Admin\CarrelloController@addProdotto']);
+
+Route::get('carrello', ['as' => 'carrello.show', 'uses' => 'Admin\CarrelloController@showCarrello']);
 
 
 //////////////////

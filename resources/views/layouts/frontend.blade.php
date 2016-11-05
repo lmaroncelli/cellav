@@ -12,7 +12,13 @@
 
     <link rel="shortcut icon" href="assets/ico/favicon.ico">
 
-    <title>{{$page->title}}</title>
+    <title>
+      @if (isset($page))
+        {{$page->title}}
+      @else
+        @yield('title')
+      @endif
+    </title>
     
 
     <!-- Bootstrap core CSS -->
@@ -59,6 +65,11 @@
                 <li><a href="{{ url('/login') }}">Login</a></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
             @else
+              <li><a href="{{ route('carrello.show') }}">
+                  <i class="material-icons">carrello</i><span class="badge green">1</span>  
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </a>
+              </li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
                 <ul class="dropdown-menu">
