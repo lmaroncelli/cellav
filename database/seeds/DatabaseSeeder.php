@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {   
+        /////////////////////
+        // Creo ADMIN user //
+        /////////////////////
+        //$this->call(UserSeeder::class);
+
+
         ////////////////////////////////////////////////////////////////
         // importo caratteristiche, categorie e produttori con gli ID //
         ////////////////////////////////////////////////////////////////

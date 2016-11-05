@@ -32,7 +32,7 @@
                 <td class="col-sm-1 col-md-1 text-center"></td>
                 <td class="col-sm-1 col-md-1 text-center"><strong>€ {{$prodottoCarrello->prodotto->prezzo}}</strong></td>
                 <td class="col-sm-1 col-md-1">
-                    <a href="/removeItem/{{$prodottoCarrello->id}}"> <button type="button" class="btn btn-danger">
+                    <a href="{{ route('carrello.remove', $prodottoCarrello->id )}} "> <button type="button" class="btn btn-danger">
                             <span class="fa fa-remove"></span> Remove
                         </button>
                     </a>

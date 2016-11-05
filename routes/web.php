@@ -51,6 +51,7 @@ Route::group(['middleware' => ['admin']], function () {
 // ROUTE ACCESSIBILE SOLO DA LOGGATO PERCHE' ESTENDE AdminController //
 ///////////////////////////////////////////////////////////////////////
 Route::any('carrello/add/{prodotto_id}', ['as' => 'carrello.add', 'uses' => 'Admin\CarrelloController@addProdotto']);
+Route::any('carrello/remove/{prodotto_id}', ['as' => 'carrello.remove', 'uses' => 'Admin\CarrelloController@removeProdotto']);
 
 Route::get('carrello', ['as' => 'carrello.show', 'uses' => 'Admin\CarrelloController@showCarrello']);
 

@@ -60,16 +60,18 @@
         </div>
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">HOME</a></li>
+            <li class="active"><a href="{{ url('/pane-pizza-senza-glutine') }}">HOME</a></li>
             @if (Auth::guest())
                 <li><a href="{{ url('/login') }}">Login</a></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
             @else
-              <li><a href="{{ route('carrello.show') }}">
-                  <i class="material-icons">carrello</i><span class="badge green">1</span>  
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  </a>
-              </li>
+              @if (Auth::user()->carrelli->count() > 0)
+                <li><a href="{{ route('carrello.show') }}">
+                    <i class="material-icons">carrello</i><span class="badge green">{{Auth::user()->carrelli()->first()->prodotti()->count()}}</span>  
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+                </li>
+              @endif
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
                 <ul class="dropdown-menu">

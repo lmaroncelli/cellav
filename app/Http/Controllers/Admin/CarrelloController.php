@@ -62,9 +62,9 @@ class CarrelloController extends AdminController
         return view('carrello.viewCarrello',['prodottiCarrello'=>$prodottiCarrello,'total'=>$total]);
     }
  
-    public function removeItem($id){
+    public function removeProdotto($prodotto_id){
  
-        CartItem::destroy($id);
+        ProdottoCarrello::destroy($prodotto_id);
         return redirect('/carrello');
     }
 
