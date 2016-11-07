@@ -22,11 +22,11 @@
     
 
     <!-- Bootstrap core CSS -->
-    <link href="/frontend/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ url('frontend/assets/css/bootstrap.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/frontend/assets/css/style.css" rel="stylesheet">
-    <link href="/frontend/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{ url('frontend/assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ url('frontend/assets/css/font-awesome.min.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -123,13 +123,13 @@
       ================================================== -->
       <!-- Placed at the end of the document so the pages load faster -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      <script src="/frontend/assets/js/bootstrap.min.js"></script>
-    <script src="/frontend/assets/js/retina-1.1.0.js"></script>
-    <script src="/frontend/assets/js/jquery.hoverdir.js"></script>
-    <script src="/frontend/assets/js/jquery.hoverex.min.js"></script>
-    <script src="/frontend/assets/js/jquery.prettyPhoto.js"></script>
-      <script src="/frontend/assets/js/jquery.isotope.min.js"></script>
-      <script src="/frontend/assets/js/custom.js"></script>
+      <script src={{ url('frontend/assets/js/bootstrap.min.js') }}></script>
+    <script src="{{ url('frontend/assets/js/retina-1.1.0.js') }}"></script>
+    <script src="{{ url('frontend/assets/js/jquery.hoverdir.js') }}"></script>
+    <script src="{{ url('frontend/assets/js/jquery.hoverex.min.js') }}"></script>
+    <script src="{{ url('frontend/assets/js/jquery.prettyPhoto.js') }}"></script>
+      <script src="{{ url('frontend/assets/js/jquery.isotope.min.js') }}"></script>
+      <script src="{{ url('frontend/assets/js/custom.js') }}"></script>
 
 
     @yield('script')
