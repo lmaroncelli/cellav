@@ -65,6 +65,68 @@
                                 @endif
                             </div>
                         </div>
+                        
+                        <hr>
+
+                         {{-- CAMPI AGGIUNTIVI --}}
+                        
+                        <div class="form-group{{ $errors->has('indirizzo') ? ' has-error' : '' }}">
+                            <label for="indirizzo" class="col-md-4 control-label">Indirizzo</label>
+
+                            <div class="col-md-6">
+                                <input id="indirizzo" type="indirizzo" class="form-control" name="indirizzo" value="{{ old('indirizzo') }}">
+
+                                @if ($errors->has('indirizzo'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('indirizzo') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('citta') ? ' has-error' : '' }}">
+                            <label for="citta" class="col-md-4 control-label">Città</label>
+
+                            <div class="col-md-6">
+                                <input id="citta" type="citta" class="form-control" name="citta" value="{{ old('citta') }}">
+
+                                @if ($errors->has('citta'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('citta') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('cap') ? ' has-error' : '' }}">
+                            <label for="cap" class="col-md-4 control-label">CAP</label>
+
+                            <div class="col-md-6">
+                                <input id="cap" type="cap" class="form-control" name="cap" value="{{ old('cap') }}">
+
+                                @if ($errors->has('cap'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('cap') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('provincia') ? ' has-error' : '' }}">
+                            <label for="provincia" class="col-md-4 control-label">Provincia</label>
+
+                            <div class="col-md-6">
+                                <input id="provincia" type="provincia" class="form-control" name="provincia" value="{{ old('provincia') }}">
+
+                                @if ($errors->has('provincia'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('provincia') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        {{-- CAMPI AGGIUNTIVI --}}
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
