@@ -10,8 +10,8 @@
 	</div>
 @endif
 
-@if (isset($status))
+@if (session('status'))
 	<div class="alert alert-info">
-		 {{$status}}
+		  {{ session('status') }}
 	</div>
 @endif

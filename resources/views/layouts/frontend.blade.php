@@ -114,6 +114,7 @@
      <div class="container mtb">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-2">
+                 @include('admin.show_errors')
                  @yield('content')
             </div>
         </div><! --/row -->

@@ -31,7 +31,7 @@
                 <td class="col-sm-1 col-md-1 text-center"><strong>€ {{$prodottoCarrello->prodotto->prezzo}}</strong></td>
                 <td class="col-sm-1 col-md-1" style="text-align: center">{{$prodottoCarrello->numero}}</td>
                 <td class="col-sm-1 col-md-1">
-                    <select name="qty" id="qty" data-id="{{$prodottoCarrello->id}}" class="form-control" title="Quantità">
+                    <select name="qty" id="qty" class="change_qty" data-id="{{$prodottoCarrello->id}}" class="form-control" title="Quantità">
                         <option value="1">quantità</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -53,10 +53,12 @@
         <tr>
             <td>   </td>
             <td>   </td>
+            <td>   </td>
             <td><h3>Total</h3></td>
-            <td class="text-right"><h3><strong>€ {{$total}}</strong></h3></td>
+            <td colspan="2" class="text-left"><h3><strong>€ {{$total}}</strong></h3></td>
         </tr>
         <tr>
+            <td>   </td>
             <td>   </td>
             <td>   </td>
             <td>
@@ -78,7 +80,7 @@
 
     <script type="text/javascript">
 
-    $("#qty").change(function(event) {
+    $(".change_qty").change(function(event) {
 
 
         event.preventDefault();

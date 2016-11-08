@@ -10,6 +10,7 @@ use App\ProdottoCarrello;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CarrelloController extends AdminController
 {
@@ -20,6 +21,13 @@ class CarrelloController extends AdminController
 
 		$carrello = Carrello::where('user_id',Auth::user()->id)->first();
         $prodotto = Prodotto::findOrFail($prodotto_id);
+
+        $count = ProdottoCarrello::where('prodotto_id', $prodotto_id)->where('carrello_id', $carrello->id)->count();
+
+        if($count)
+            {
+            return Redirect::route('carrello.show')->with('status','Il prodotto è già presente nel carrello!');
+            }
 
 			
         if(!$carrello)
@@ -55,8 +63,9 @@ class CarrelloController extends AdminController
         $total=0;
         foreach($prodottiCarrello as $prodottoCarrello){
 
-        		$prodotto = $prodottoCarrello->prodotto;
-        		$total+=$prodotto->prezzo;
+                $prodotto = $prodottoCarrello->prodotto;
+        		$qty = $prodottoCarrello->numero;
+        		$total+=$prodotto->prezzo*$qty;
         		
         	
         }
