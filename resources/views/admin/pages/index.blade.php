@@ -19,7 +19,7 @@
 			@if (count($pages))
 	           @foreach ($pages as $count => $page)
 	               <tr>
-	                   <td><a href="{{ route('pages.edit',$page->id) }}">{{$page->title}}</a></td>
+	                   <td><a href="{{ url($page->uri) }}" target="_blank">{{$page->title}}</a></td>
 	                   <td><a href="{{ route('pages.edit',$page->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
 	                   <td><a href="{{ route('pages.confirm',$page->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
 	               </tr>

@@ -129,3 +129,22 @@ public function hasRole($roles)
       }
     }
   }
+
+
+
+
+
+
+  se un elemento lo identifico come
+
+<span data-id="{{$id}}" class="delete_page">
+
+jQuery(".delete_page").click(function(e){
+      e.preventDefault();
+        var id = jQuery(this).data('id');
+       jQuery.post(
+              baseUrl+"/admin/menu-categorie-pagine/del_page_menu", 
+              id:id
+        }).done(function(data){
+          // nothing
+        });

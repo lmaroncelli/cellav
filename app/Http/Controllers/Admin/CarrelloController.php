@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Carrello;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Prodotto;
 use App\ProdottoCarrello;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
@@ -17,6 +18,8 @@ class CarrelloController extends AdminController
 	public function addProdotto($prodotto_id)
 		{
 		$carrello = Carrello::where('user_id',Auth::user()->id)->first();
+        $prodotto = Prodotto::findOrFail($prodotto_id);
+
 			
     if(!$carrello)
     	{
@@ -28,6 +31,12 @@ class CarrelloController extends AdminController
     $prodottoCarrello  = new ProdottoCarrello();
     $prodottoCarrello->prodotto_id=$prodotto_id;
     $prodottoCarrello->carrello_id= $carrello->id;
+
+    if (!is_null($prodotto->prezzo_offerta) && $prodotto->prezzo_offerta > 0) {
+        $prodottoCarrello->prezzo = $prodotto->prezzo_offerta;
+    } else {
+        $prodottoCarrello->prezzo = $prodotto->prezzo;
+    }
     $prodottoCarrello->save();
 
     return redirect('/carrello');
@@ -52,9 +61,9 @@ class CarrelloController extends AdminController
         		$prodotto = $prodottoCarrello->prodotto;
         	
         		if (!is_null($prodotto->prezzo_offerta) && $prodotto->prezzo_offerta > 0) {
-        			$total+=$prodottoCarrello->prodotto->prezzo_offerta;
+        			$total+=$prodotto->prezzo_offerta;
         		} else {
-        			$total+=$prodottoCarrello->prodotto->prezzo;
+        			$total+=$prodotto->prezzo;
         		}
         	
         }
