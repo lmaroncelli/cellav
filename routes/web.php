@@ -55,6 +55,9 @@ Route::any('carrello/remove/{prodotto_id}', ['as' => 'carrello.remove', 'uses' =
 
 Route::get('carrello', ['as' => 'carrello.show', 'uses' => 'Admin\CarrelloController@showCarrello']);
 
+Route::get('update-carrello-qty', ['as' => 'carrello.update-qty', 'uses' => 'Admin\CarrelloController@updateCarrelloQtyAjax']);
+
+
 
 //////////////////
 // ROUTE LIBERA //

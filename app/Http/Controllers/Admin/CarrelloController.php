@@ -17,29 +17,26 @@ class CarrelloController extends AdminController
 
 	public function addProdotto($prodotto_id)
 		{
+
 		$carrello = Carrello::where('user_id',Auth::user()->id)->first();
         $prodotto = Prodotto::findOrFail($prodotto_id);
 
 			
-    if(!$carrello)
-    	{
-     	$carrello =  new Carrello();
-     	$carrello->user_id=Auth::user()->id;
-     	$carrello->save();
-    	}
+        if(!$carrello)
+        	{
+         	$carrello =  new Carrello();
+         	$carrello->user_id=Auth::user()->id;
+         	$carrello->save();
+        	}
 
-    $prodottoCarrello  = new ProdottoCarrello();
-    $prodottoCarrello->prodotto_id=$prodotto_id;
-    $prodottoCarrello->carrello_id= $carrello->id;
-
-    if (!is_null($prodotto->prezzo_offerta) && $prodotto->prezzo_offerta > 0) {
-        $prodottoCarrello->prezzo = $prodotto->prezzo_offerta;
-    } else {
+        $prodottoCarrello  = new ProdottoCarrello();
+        $prodottoCarrello->prodotto_id=$prodotto_id;
+        $prodottoCarrello->carrello_id= $carrello->id;
         $prodottoCarrello->prezzo = $prodotto->prezzo;
-    }
-    $prodottoCarrello->save();
+        
+        $prodottoCarrello->save();
 
-    return redirect('/carrello');
+        return redirect('/carrello');
 			
 			
 		}
@@ -59,16 +56,12 @@ class CarrelloController extends AdminController
         foreach($prodottiCarrello as $prodottoCarrello){
 
         		$prodotto = $prodottoCarrello->prodotto;
-        	
-        		if (!is_null($prodotto->prezzo_offerta) && $prodotto->prezzo_offerta > 0) {
-        			$total+=$prodotto->prezzo_offerta;
-        		} else {
-        			$total+=$prodotto->prezzo;
-        		}
+        		$total+=$prodotto->prezzo;
+        		
         	
         }
  
-        return view('carrello.viewCarrello',['prodottiCarrello'=>$prodottiCarrello,'total'=>$total]);
+        return view('carrello.viewCarrello',['carrello_id' => $carrello->id ,'prodottiCarrello'=>$prodottiCarrello,'total'=>$total]);
     }
  
     public function removeProdotto($prodotto_id){
@@ -78,6 +71,19 @@ class CarrelloController extends AdminController
     }
 
 
+
+
+    public function updateCarrelloQtyAjax(Request $request)
+        {
+            
+            $prodottoCarrelloId = $request->get('prodottoCarrelloId');
+            $qty = $request->get('qty');
+
+            ProdottoCarrello::where('id', $prodottoCarrelloId)->update(['numero' => $qty]);
+
+            echo "ok";
+
+        }
 
 
 

@@ -40,6 +40,16 @@ class Prodotto extends Model
 	];
 
 
+
+  ///////////////////////////////////////////////////////////
+  // Accessor:  se c'è un'offerta prendo il prezzo offerte //
+  ///////////////////////////////////////////////////////////
+  public function getPrezzoAttribute($value)
+      {
+          return $this->attributes['prezzo'] = (!is_null($this->prezzo_offerta) && $this->prezzo_offerta > 0) ? $this->prezzo_offerta : $value;
+      }
+
+
 	/**
 	 * [Un prodotto è di un produttore]
 	 * 

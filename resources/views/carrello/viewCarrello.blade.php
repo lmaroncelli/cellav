@@ -31,7 +31,8 @@
                 <td class="col-sm-1 col-md-1 text-center"><strong>€ {{$prodottoCarrello->prodotto->prezzo}}</strong></td>
                 <td class="col-sm-1 col-md-1" style="text-align: center">{{$prodottoCarrello->numero}}</td>
                 <td class="col-sm-1 col-md-1">
-                    <select name="qty" id="qty" class="form-control" title="Cart Quantity">
+                    <select name="qty" id="qty" data-id="{{$prodottoCarrello->id}}" class="form-control" title="Quantità">
+                        <option value="1">quantità</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -77,45 +78,30 @@
 
     <script type="text/javascript">
 
-    $("#qty").change(function() {
+    $("#qty").change(function(event) {
+
+
+        event.preventDefault();
 
         var qty = $(this).val();
 
-        alert(qty);
+        var prodottoCarrelloId = $(this).data('id');
+        
         
         
         var data = {
-            qty = qty,
-        }
-        
+                    prodottoCarrelloId: prodottoCarrelloId, 
+                    qty: qty 
+                    };
+
         $.ajax({
         
-            url: $apertura,
+            url: "{{ url('update-carrello-qty') }}",
             type: 'GET',
             data: data,
             success: function(msg) {
             
-                if (msg=='')  {
-                    
-                    top.location.href = window.location.href
-                    
-                } else {
-                    
-                    $('div.risultati_ricerca').fadeOut('fast', function(){
-                        $('div.risultati_ricerca').html(msg);
-                        window.assegnaClick();
-                        window.checkedCount();
-
-                    });
-                    
-                    $('div.risultati_ricerca').fadeIn(1000,function(){
-                        $('div.wrapper_risultati_ricerca').removeClass('loading');
-                    });
-                    
-                        
-                }
-                
-                window.closeLoading();
+                location.reload();
             
             }
         
