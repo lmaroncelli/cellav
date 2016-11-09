@@ -17,7 +17,7 @@ class CreateOrdineTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->decimal('totale', 10, 2)->default(0.00);
-            $table->text('indirizzo')->nullable();
+            $table->text('note')->nullable();
             // se cancello un utente voglio cancellare a cascata anche tutti i suoi carrelli 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
