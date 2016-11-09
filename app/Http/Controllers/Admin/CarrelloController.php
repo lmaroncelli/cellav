@@ -11,6 +11,9 @@ use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Stripe\Charge;
+use Stripe\Customer;
+use Stripe\Stripe;
 
 class CarrelloController extends AdminController
 {
@@ -105,6 +108,57 @@ class CarrelloController extends AdminController
 
 
         }
+
+
+    public function postCheckout(Request $request)
+    {
+        //dd($request->all());
+        /*
+        array:4 [▼
+          "_token" => "sn7eMN4iLvJjxwEU0bDi679Qu9Utrus7kE63Fn37"
+          "stripeToken" => "tok_19E3gFL8VvGCsPcJuJYu4Acx"
+          "stripeTokenType" => "card"
+          "stripeEmail" => "lmaroncelli@gmail.com"
+        ]
+         */
+        
+        
+// TUTTE QUESTE OPERAZIONI ANDREBBERO FATTE DOPO LA REGISTRAZIONE:
+// creo subito un customer Stripe la prima volta e memorizzo il customer->id associato all'utente
+// successivamente se l'utente ha un customer id posso caricare l'id e fare direttamente il charge 
+
+
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // nel reale salvo questo customer->id nel datase in modo da non fare sempre reinserire i dati della carta di credito 
+        // se ho il customer->id posso fare il charge !!!//ATTENZIONE QUI DEVO RICARICARE I PRODTTI PER RIFARE IL TOTALE //
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        $customer = Customer::create(array(
+             'email' =>  $request->get('stripeEmail'),
+             'source'  => $request->get('stripeToken')
+         ));
+
+
+
+        ///////////////////////////////////////////////////////////////////
+        // ATTENZIONE QUI DEVO RICARICARE I PRODTTI PER RIFARE IL TOTALE //
+        ///////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////
+        // NON LO PASSO VIA FORM HIDDEN, PUO' ESSERE MANIPOLATO //
+        //////////////////////////////////////////////////////////
+        $charge = Charge::create(array(
+              'customer' => $customer->id,
+              'amount'   => 5000,
+              'currency' => 'eur'
+          ));
+
+
+    }
 
 
 
