@@ -495,3 +495,12 @@ vagrant@homestead:~/Code/Laravel/public/cellav$ gulp
 │ mix.copy()    │ 1. Saving to Destination      │ node_modules/cd-summernote/fonts/**/*         │ public/css/fonts         │
 └───────────────┴───────────────────────────────┴───────────────────────────────────────────────┴──────────────────────────┘
 [09:41:37] Finished 'default' after 10 ms
+
+
+
+
+
+STRIPE
+
+user: lmaroncelli@gmail.com
+pwd: <solita>610?
