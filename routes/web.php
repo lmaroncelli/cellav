@@ -57,6 +57,7 @@ Route::get('carrello', ['as' => 'carrello.show', 'uses' => 'Admin\CarrelloContro
 
 Route::get('update-carrello-qty', ['as' => 'carrello.update-qty', 'uses' => 'Admin\CarrelloController@updateCarrelloQtyAjax']);
 
+Route::get('checkout', ['as' => 'checkout', 'uses' => 'Admin\CarrelloController@getCheckout']);
 
 
 //////////////////

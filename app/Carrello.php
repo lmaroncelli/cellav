@@ -24,4 +24,25 @@ class Carrello extends Model
 			return $this->belongsTo('App\User','user_id','id');
 		}
 
+
+	public function getTotale()
+		{
+
+		$prodottiCarrello = $this->prodotti;
+
+		$total=0.00;
+		
+		foreach($prodottiCarrello as $prodottoCarrello)
+			{
+
+		    $prezzo = $prodottoCarrello->prezzo;
+				$qty = $prodottoCarrello->numero;
+				$total+=$prezzo*$qty;
+				
+			}
+		
+		return $total;
+		
+		}
+
 }

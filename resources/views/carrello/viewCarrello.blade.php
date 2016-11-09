@@ -28,7 +28,7 @@
                       </div>        
                     </div>
                 </td>
-                <td class="col-sm-1 col-md-1 text-center"><strong>€ {{$prodottoCarrello->prodotto->prezzo}}</strong></td>
+                <td class="col-sm-1 col-md-1 text-center"><strong>€ {{$prodottoCarrello->prezzo}}</strong></td>
                 <td class="col-sm-1 col-md-1" style="text-align: center">{{$prodottoCarrello->numero}}</td>
                 <td class="col-sm-1 col-md-1">
                     <select name="qty" id="qty" class="change_qty" data-id="{{$prodottoCarrello->id}}" class="form-control" title="Quantità">
@@ -40,7 +40,7 @@
                         <option value="5">5</option>
                     </select>
                 </td>
-                <td class="col-sm-1 col-md-1 text-center">€ {{$prodottoCarrello->prodotto->prezzo * $prodottoCarrello->numero}}</td>
+                <td class="col-sm-1 col-md-1 text-center">€ {{$prodottoCarrello->prezzo * $prodottoCarrello->numero}}</td>
                 <td class="col-sm-1 col-md-1">
                     <a href="{{ route('carrello.remove', $prodottoCarrello->id )}} "> <button type="button" class="btn btn-danger">
                             <span class="fa fa-remove"></span> Remove
@@ -67,9 +67,9 @@
                     </button>
                 </a></td>
             <td>
-                <button type="button" class="btn btn-success">
+                <a href="{{ route('checkout') }}" class="btn btn-success">
                     Checkout <span class="fa fa-play"></span>
-                </button></td>
+                </a></td>
         </tr>
         </tbody>
     </table>

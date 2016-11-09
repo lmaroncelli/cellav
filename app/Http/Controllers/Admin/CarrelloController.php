@@ -60,15 +60,8 @@ class CarrelloController extends AdminController
         }
  
         $prodottiCarrello = $carrello->prodotti;
-        $total=0;
-        foreach($prodottiCarrello as $prodottoCarrello){
-
-                $prodotto = $prodottoCarrello->prodotto;
-        		$qty = $prodottoCarrello->numero;
-        		$total+=$prodotto->prezzo*$qty;
-        		
-        	
-        }
+        
+        $total=$carrello->getTotale();
  
         return view('carrello.viewCarrello',['carrello_id' => $carrello->id ,'prodottiCarrello'=>$prodottiCarrello,'total'=>$total]);
     }
@@ -94,6 +87,24 @@ class CarrelloController extends AdminController
 
         }
 
+
+
+    public function getCheckout()
+        {
+        $carrello = Carrello::where('user_id',Auth::user()->id)->first();
+ 
+        if(!$carrello)
+            {
+             return Redirect::route('carrello.show')->with('status','Il carrello è vuoto!');
+            }
+        $prodottiCarrello = $carrello->prodotti;
+        
+        $total=$carrello->getTotale();
+        
+        return view('carrello.viewCheckout',['prodottiCarrello'=>$prodottiCarrello,'total'=>$total]);
+
+
+        }
 
 
 
