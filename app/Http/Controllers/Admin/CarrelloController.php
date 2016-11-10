@@ -158,6 +158,8 @@ class CarrelloController extends AdminController
           ));
 
 
+        return 'ok';
+
     }
 
 

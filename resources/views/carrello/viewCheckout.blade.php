@@ -41,7 +41,7 @@
         </tr>
         </tbody>
     </table>
-    <form action="{{ route('checkout') }}" method="POST">
+    <form action="{{ route('checkout') }}" method="POST" id="checkout_form">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-xs-12">
@@ -52,8 +52,8 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Compra</button>
-        <script
+        <button type="submit" class="btn btn-primary" id="compra">Compra</button>
+        {{-- <script
             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="{{config('services.stripe.key')}}"
             data-amount="{{$total}}"
@@ -63,9 +63,50 @@
             data-locale="auto"
             data-zip-code="true"
             data-currency="eur">
-          </script>
-
-
+          </script> --}}
+    
+        <input type="hidden" name="stripeToken" id="stripeToken">
+        <input type="hidden" name="stripeEmail" id="stripeEmail">
     </form>
 	     
+@stop
+
+
+@section('script')
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+
+    <script type="text/javascript">
+        
+        var stripe = StripeCheckout.configure({
+          key: "{{config('services.stripe.key')}}",
+          image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+          locale: 'auto',
+          token: function(token) {
+            // You can access the token ID with `token.id`. (token.email)
+            // Get the token ID to your server-side code for use.
+          document.getElementById('stripeToken').value = token.id;
+          document.getElementById('stripeEmail').value = token.email;
+          document.getElementById('checkout_form').submit();
+
+          }
+        });
+
+        document.getElementById('compra').addEventListener('click', function(e) {
+          // Open Checkout with further options:
+          stripe.open({
+            name: 'EcommerceWeb',
+            description: '2 widgets',
+            zipCode: true,
+            currency: 'eur',
+            amount: 2000
+          });
+          e.preventDefault();
+        });
+
+        // Close Checkout on page navigation:
+        window.addEventListener('popstate', function() {
+          stripe.close();
+        });
+
+    </script>
 @stop
