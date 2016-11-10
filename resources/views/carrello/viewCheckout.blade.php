@@ -41,72 +41,227 @@
         </tr>
         </tbody>
     </table>
+
     <form action="{{ route('checkout') }}" method="POST" id="checkout_form">
         {{ csrf_field() }}
-        <div class="row">
-            <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input type="text" id="name"  class="form-control" value="{{old('name', isset($user->name) ? $user->name : null)}}" required>
-                  </div>
-            </div>
-        </div>
+        <span class="payment-errors"></span>
 
-        <button type="submit" class="btn btn-primary" id="compra">Compra</button>
-        {{-- <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="{{config('services.stripe.key')}}"
-            data-amount="{{$total}}"
-            data-name="EcommerceWeb"
-            data-description="Widget"
-            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-            data-locale="auto"
-            data-zip-code="true"
-            data-currency="eur">
-          </script> --}}
+        <div class="row row-centered">
+          <div class="col-md-10">
+          
+          <div class="page-header">
+            <h2 class="gdfg">Secure Payment Form</h2>
+          </div>
+        </div>
+        </div>
+          
+          <noscript>
+          <div class="bs-callout bs-callout-danger">
+            <h4>JavaScript is not enabled!</h4>
+            <p>This payment form requires your browser to have JavaScript enabled. Please activate JavaScript and reload this page. Check <a href="http://enable-javascript.com" target="_blank">enable-javascript.com</a> for more informations.</p>
+          </div>
+          </noscript>
     
-        <input type="hidden" name="stripeToken" id="stripeToken">
-        <input type="hidden" name="stripeEmail" id="stripeEmail">
-    </form>
-	     
+          <fieldset>
+        <!-- Form Name -->
+          <legend>Billing Details</legend>
+          
+          <!-- Street -->
+          <div class="row">
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="textinput">Street</label>
+            <div class="col-sm-6">
+              <input type="text" id="street" placeholder="Street" class="address form-control">
+            </div>
+          </div>
+          </div>
+          
+          <!-- City -->
+          <div class="row">
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="textinput">City</label>
+            <div class="col-sm-6">
+              <input type="text" id="city" placeholder="City" class="city form-control">
+            </div>
+          </div>
+          </div>
+
+          <!-- State -->
+          <div class="row">
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="textinput">State</label>
+            <div class="col-sm-6">
+              <input type="text" id="state" maxlength="65" placeholder="State" class="state form-control">
+            </div>
+          </div>
+          </div>
+          
+          <!-- Postcal Code -->
+          <div class="row">
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="textinput">Postal Code</label>
+            <div class="col-sm-6">
+              <input type="text" id="zip" data-stripe="address_zip" maxlength="9" placeholder="Postal Code" class="zip form-control">
+            </div>
+          </div>
+          </div>
+          
+          <!-- Country -->
+          <div class="row">
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="textinput">Country</label>
+            <div class="col-sm-6"> 
+              <input type="text" id="country" placeholder="Country" class="country form-control">
+              {{-- <div class="country bfh-selectbox bfh-countries" id="country" placeholder="Select Country" data-flags="true" data-filter="true"> </div> --}}
+            </div>
+          </div>
+          </div>
+          
+          <!-- Email -->
+          <div class="row">
+          <div class="form-group">
+            <label class="col-sm-4 control-label" for="textinput">Email</label>
+            <div class="col-sm-6">
+              <input type="text" id="email" maxlength="65" placeholder="Email" class="email form-control">
+            </div>
+          </div>
+          </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Card Details</legend>
+            
+            <!-- Card Holder Name -->
+            <div class="row">
+            <div class="form-group">
+              <label class="col-sm-4 control-label"  for="textinput">Card Holder's Name</label>
+              <div class="col-sm-6">
+                <input type="text" id="cardholdername" maxlength="70" placeholder="Card Holder Name" class="card-holder-name form-control">
+              </div>
+            </div>
+            </div>
+            
+            <!-- Card Number -->
+            <div class="row">
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">Card Number</label>
+              <div class="col-sm-6">
+                <input type="text" id="cardnumber" data-stripe="number" maxlength="19" placeholder="Card Number" class="card-number form-control">
+              </div>
+            </div>
+            </div>
+            
+            <!-- Expiry-->
+            <div class="row">
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">Card Expiry Date</label>
+              <div class="col-sm-6">
+                <div class="form-inline">
+                  <select id="select2" data-stripe="exp-month" class="card-expiry-month stripe-sensitive required form-control">
+                    <option value="01" selected="selected">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                  <span> / </span>
+                  <select id="select2" data-stripe="exp-year" class="card-expiry-year stripe-sensitive required form-control">
+                  </select>
+                   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+                  <script type="text/javascript">
+                    var select = $(".card-expiry-year"),
+                    year = new Date().getFullYear();
+         
+                    for (var i = 0; i < 12; i++) {
+                        select.append($("<option value='"+(i + year)+"' "+(i === 0 ? "selected" : "")+">"+(i + year)+"</option>"))
+                    }
+                    </script> 
+                </div>
+              </div>
+            </div>
+            </div>
+            
+            <!-- CVV -->
+            <div class="row">
+            <div class="form-group">
+              <label class="col-sm-4 control-label" for="textinput">CVV/CVV2</label>
+              <div class="col-sm-3">
+                <input type="text" id="cvv"  data-stripe="cvc" placeholder="CVV" maxlength="4" class="card-cvc form-control">
+              </div>
+            </div>
+            </div>
+        
+            
+            <!-- Submit -->
+            <div class="row">
+            <div class="control-group">
+              <div class="controls">
+                <center>
+                   <button type="submit" class="btn btn-primary" id="compra">Compra</button>
+                </center>
+              </div>
+            </div>
+            </div>
+
+          </fieldset>
+         
+        </form>
+
 @stop
 
 
 @section('script')
-    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 
     <script type="text/javascript">
         
-        var stripe = StripeCheckout.configure({
-          key: "{{config('services.stripe.key')}}",
-          image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-          locale: 'auto',
-          token: function(token) {
-            // You can access the token ID with `token.id`. (token.email)
-            // Get the token ID to your server-side code for use.
-          document.getElementById('stripeToken').value = token.id;
-          document.getElementById('stripeEmail').value = token.email;
-          document.getElementById('checkout_form').submit();
+       Stripe.setPublishableKey({{config('services.stripe.key')}});
 
-          }
-        });
 
-        document.getElementById('compra').addEventListener('click', function(e) {
-          // Open Checkout with further options:
-          stripe.open({
-            name: 'EcommerceWeb',
-            description: '2 widgets',
-            zipCode: true,
-            currency: 'eur',
-            amount: 2000
-          });
-          e.preventDefault();
-        });
+       $(function() {
+         var $form = $('#checkout_form');
+         $form.submit(function(event) {
+          
+           // Disable the submit button to prevent repeated clicks:
+           $form.find('.submit').prop('disabled', true);
 
-        // Close Checkout on page navigation:
-        window.addEventListener('popstate', function() {
-          stripe.close();
-        });
+           // Request a token from Stripe:
+           Stripe.card.createToken($form, stripeResponseHandler);
+
+           // Prevent the form from being submitted:
+           return false;
+         });
+       });
+
+       function stripeResponseHandler(status, response) {
+         // Grab the form:
+         var $form = $('#checkout_form');
+
+         if (response.error) { // Problem!
+
+           // Show the errors on the form:
+           $form.find('.payment-errors').text(response.error.message);
+           $form.find('.submit').prop('disabled', false); // Re-enable submission
+
+         } else { // Token was created!
+
+           // Get the token ID:
+           var token = response.id;
+
+           // Insert the token ID into the form so it gets submitted to the server:
+           $form.append($('<input type="hidden" name="stripeToken">').val(token));
+
+           // Submit the form:
+           $form.get(0).submit();
+         }
+       };
 
     </script>
 @stop
