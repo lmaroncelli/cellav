@@ -222,13 +222,13 @@
 
     <script type="text/javascript">
         
-       Stripe.setPublishableKey({{config('services.stripe.key')}});
+       Stripe.setPublishableKey("{{config('services.stripe.key')}}");
 
 
        $(function() {
          var $form = $('#checkout_form');
          $form.submit(function(event) {
-          
+
            // Disable the submit button to prevent repeated clicks:
            $form.find('.submit').prop('disabled', true);
 

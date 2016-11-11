@@ -45,4 +45,13 @@ class Carrello extends Model
 		
 		}
 
+
+	////////////////////////
+	// il totale in cents //
+	////////////////////////
+	public function getTotaleForStripe()
+		{
+		return $this->getTotale()*100;
+		}
+
 }

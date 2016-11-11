@@ -132,31 +132,69 @@ class CarrelloController extends AdminController
         Stripe::setApiKey(config('services.stripe.secret'));
 
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // nel reale salvo questo customer->id nel datase in modo da non fare sempre reinserire i dati della carta di credito 
-        // se ho il customer->id posso fare il charge !!!//ATTENZIONE QUI DEVO RICARICARE I PRODTTI PER RIFARE IL TOTALE //
-
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        $customer = Customer::create(array(
-             'email' =>  $request->get('stripeEmail'),
-             'source'  => $request->get('stripeToken')
-         ));
-
-
-
         ///////////////////////////////////////////////////////////////////
         // ATTENZIONE QUI DEVO RICARICARE I PRODTTI PER RIFARE IL TOTALE //
         ///////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////
         // NON LO PASSO VIA FORM HIDDEN, PUO' ESSERE MANIPOLATO //
         //////////////////////////////////////////////////////////
-        $charge = Charge::create(array(
-              'customer' => $customer->id,
-              'amount'   => 5000,
-              'currency' => 'eur'
-          ));
 
+        $carrello = Carrello::where('user_id',Auth::user()->id)->first();
+        
+        if(!$carrello)
+            {
+             return Redirect::route('checkout')->with('error','Il carrello dell\'utente  non esiste!');
+            }
+
+        $total=$carrello->getTotaleForStripe();
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // nel reale salvo questo customer->id nel datase in modo da non fare sempre reinserire i dati della carta di credito 
+        // se ho il customer->id posso fare il charge !!!//ATTENZIONE QUI DEVO RICARICARE I PRODTTI PER RIFARE IL TOTALE //
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+       /* try {
+            $customer = Customer::create(array(
+                 'email' =>  $request->get('stripeEmail'),
+                 'source'  => $request->get('stripeToken')
+             ));
+            
+        } catch (\Exception $e) {
+            return Redirect::route('checkout')->with('error',$e->getMessage());
+        }*/
+
+
+
+        try {
+            
+            $charge = Charge::create(array(
+                  /*'customer' => $customer->id,*/
+                  'amount'   => $total,
+                  'currency' => 'eur',
+                    'source'  => $request->get('stripeToken'),
+                  'description' => "Charge di prova"
+              ));
+            
+        } catch (\Exception $e) {
+            return Redirect::route('checkout')->with('error',$e->getMessage());
+        }
+
+
+
+
+        /////////////////////
+        // CARICO L'ORDINE //
+        /////////////////////
+
+
+
+
+        /////////////////////////
+        // ELIMINO IL CARRELLO //
+        /////////////////////////
+        $carrello->destroy();
 
         return 'ok';
 
