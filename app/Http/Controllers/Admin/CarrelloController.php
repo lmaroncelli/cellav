@@ -194,7 +194,7 @@ class CarrelloController extends AdminController
         /////////////////////////
         // ELIMINO IL CARRELLO //
         /////////////////////////
-        $carrello->destroy();
+        $carrello->delete();
 
         return 'ok';
 
