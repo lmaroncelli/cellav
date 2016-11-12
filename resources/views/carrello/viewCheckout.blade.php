@@ -63,15 +63,18 @@
           </noscript>
     
           <fieldset>
+
+
+
         <!-- Form Name -->
-          <legend>Billing Details</legend>
-          
+          <legend>Fatturazione</legend>
+           
           <!-- Street -->
           <div class="row">
           <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">Street</label>
+            <label class="col-sm-4 control-label" for="textinput">Indirizzo</label>
             <div class="col-sm-6">
-              <input type="text" id="street" placeholder="Street" class="address form-control">
+              <input type="text" id="indirizzo_fatturazione" name="indirizzo_fatturazione" placeholder="Indirizzo" class="indirizzo_fatturazione form-control">
             </div>
           </div>
           </div>
@@ -79,9 +82,9 @@
           <!-- City -->
           <div class="row">
           <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">City</label>
+            <label class="col-sm-4 control-label" for="textinput">Città</label>
             <div class="col-sm-6">
-              <input type="text" id="city" placeholder="City" class="city form-control">
+              <input type="text" id="citta_fatturazione" name="citta_fatturazione" placeholder="Città" class="citta_fatturazione form-control">
             </div>
           </div>
           </div>
@@ -89,9 +92,9 @@
           <!-- State -->
           <div class="row">
           <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">State</label>
+            <label class="col-sm-4 control-label" for="textinput">Provincia</label>
             <div class="col-sm-6">
-              <input type="text" id="state" maxlength="65" placeholder="State" class="state form-control">
+              <input type="text" id="provincia_fatturazione" name="provincia_fatturazione" maxlength="65" placeholder="Provincia" class="provincia_fatturazione form-control">
             </div>
           </div>
           </div>
@@ -99,23 +102,13 @@
           <!-- Postcal Code -->
           <div class="row">
           <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">Postal Code</label>
+            <label class="col-sm-4 control-label" for="textinput">CAP</label>
             <div class="col-sm-6">
-              <input type="text" id="zip" data-stripe="address_zip" maxlength="9" placeholder="Postal Code" class="zip form-control">
+              <input type="text" id="cap_fatturazione" name=cap_fatturazione"" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_fatturazione form-control">
             </div>
           </div>
           </div>
           
-          <!-- Country -->
-          <div class="row">
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">Country</label>
-            <div class="col-sm-6"> 
-              <input type="text" id="country" placeholder="Country" class="country form-control">
-              {{-- <div class="country bfh-selectbox bfh-countries" id="country" placeholder="Select Country" data-flags="true" data-filter="true"> </div> --}}
-            </div>
-          </div>
-          </div>
           
           <!-- Email -->
           <div class="row">

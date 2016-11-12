@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Carrello;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Ordine;
 use App\Prodotto;
 use App\ProdottoCarrello;
+use App\ProdottoOrdine;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Stripe\Charge;
 use Stripe\Customer;
@@ -19,10 +22,35 @@ class CarrelloController extends AdminController
 {
 
 
+    protected function _checkCarrello($create = false)
+        {
+        if ($create) 
+            {
+
+            $carrello = Carrello::where('user_id',Auth::user()->id)->first();
+
+            if(!$carrello)
+                {
+                $carrello =  new Carrello();
+                $carrello->user_id=Auth::user()->id;
+                $carrello->save();
+                }
+
+            } 
+        else 
+            {
+            $carrello = Carrello::where('user_id',Auth::user()->id)->first();
+            }
+        return $carrello;
+        }
+
+
+
 	public function addProdotto($prodotto_id)
 		{
 
-		$carrello = Carrello::where('user_id',Auth::user()->id)->first();
+		$carrello = $this->_checkCarrello($create = true);
+
         $prodotto = Prodotto::findOrFail($prodotto_id);
 
         $count = ProdottoCarrello::where('prodotto_id', $prodotto_id)->where('carrello_id', $carrello->id)->count();
@@ -54,13 +82,8 @@ class CarrelloController extends AdminController
 
 
 	public function showCarrello(){
-        $carrello = Carrello::where('user_id',Auth::user()->id)->first();
- 
-        if(!$carrello){
-            $carrello =  new Carrello();
-            $carrello->user_id=Auth::user()->id;
-            $carrello->save();
-        }
+
+        $carrello = $this->_checkCarrello($create = true);
  
         $prodottiCarrello = $carrello->prodotti;
         
@@ -94,7 +117,8 @@ class CarrelloController extends AdminController
 
     public function getCheckout()
         {
-        $carrello = Carrello::where('user_id',Auth::user()->id)->first();
+       
+        $carrello = $this->_checkCarrello($create = false);
  
         if(!$carrello)
             {
@@ -173,47 +197,61 @@ class CarrelloController extends AdminController
                   /*'customer' => $customer->id,*/
                   'amount'   => $total,
                   'currency' => 'eur',
-                    'source'  => $request->get('stripeToken'),
-                  'description' => "Charge di prova"
+                'source'  => $request->get('stripeToken'),
+                  'description' => "Acquisto di " . Auth::user()->email,
               ));
 
-
-            /////////////////////
-            // CARICO L'ORDINE //
-            /////////////////////
-            $ordine =  new Ordine();
-            $ordine->user_id=Auth::user()->id;
-            $ordine->save();
+            $user_id = Auth::user()->id;
 
 
-            ///////////////////////////////////
-            // CARICO I PRODOTTI DELL'ORDINE //
-            ///////////////////////////////////
-            foreach ($carrello->prodotti as $count => $prodottoCarrello) {
-                $prodottoOrdine  = new ProdottoOrdine();
-                $prodottoOrdine->prodotto_id=$prodottoCarrello->prodotto_id;
-                $prodottoOrdine->ordine_id= $ordine->id;
-                $prodottoOrdine->prezzo = $prodottoCarrello->prezzo;
-                $prodottoOrdine->numero = $prodottoCarrello->numero;
-                $prodottoOrdine->save();
-            }
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Everything inside the Closure executes within a transaction. If an exception occurs it will rollback automatically. //
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //DB::transaction(function() use ($request, $charge, $user_id) {
+
+                /////////////////////
+                // CARICO L'ORDINE //
+                /////////////////////
+                $ordine =  new Ordine();
+                $ordine->user_id=$user_id;
+                $ordine->indirizzo_fatturazione = $request->get('indirizzo_fatturazione');
+                $ordine->citta_fatturazione = $request->get('citta_fatturazione');
+                $ordine->cap_fatturazione = $request->get('cap_fatturazione');
+                $ordine->provincia_fatturazione = $request->get('provincia_fatturazione');
+                $ordine->totale = $carrello->getTotale();
+                $ordine->stripe_payment_id = $charge->id;
+                $ordine->save();
 
 
+                ///////////////////////////////////
+                // CARICO I PRODOTTI DELL'ORDINE //
+                ///////////////////////////////////
+                foreach ($carrello->prodotti as $count => $prodottoCarrello) {
+                    $prodottoOrdine  = new ProdottoOrdine();
+                    $prodottoOrdine->prodotto_id=$prodottoCarrello->prodotto_id;
+                    $prodottoOrdine->ordine_id= $ordine->id;
+                    $prodottoOrdine->prezzo = $prodottoCarrello->prezzo;
+                    $prodottoOrdine->numero = $prodottoCarrello->numero;
+                    $prodottoOrdine->save();
+                }
+
+
+            //});
             
+            /////////////////////////
+            // ELIMINO IL CARRELLO //
+            /////////////////////////
+            $carrello->delete();
+
+
             
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return Redirect::route('checkout')->with('error',$e->getMessage());
         }
 
 
 
-
-
-
-        /////////////////////////
-        // ELIMINO IL CARRELLO //
-        /////////////////////////
-        $carrello->delete();
 
         return 'ok';
 
