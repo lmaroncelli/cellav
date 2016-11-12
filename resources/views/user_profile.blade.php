@@ -1,16 +1,18 @@
 @extends('layouts.frontend')
 
-
+@section('title')
+	Ciao {{$user->email}}
+@stop
+		
 
 @section('content')
 	<div class="row">
 	  <div class="col-md-8 col-md-offset-2">
-	  		@section('title')
-					Ciao {{$user->email}}
-				@stop
-				<hr>
+
 				<h2>I tuoi ordini</h2>
 	
+				<hr/>
+				
 				@foreach ($user->ordini as $ordine)
 				
 					<div class="panel panel-default">

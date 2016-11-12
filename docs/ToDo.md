@@ -148,3 +148,26 @@ jQuery(".delete_page").click(function(e){
         }).done(function(data){
           // nothing
         });
+
+
+
+
+
+
+
+
+=============================================================================
+
+Allora:
+l'unico filtro che voglio rimanga è "senza lattosio"
+le ricette voglio mantenerle, ma voglio semplificarle, ossia non collegarci nessun prodotto, non ho bisogno di segnalare il grado di difficoltà, ecc ecc. Non mi interessano i filtri "senza questo, senza quello" nelle ricette.
+Sostanzialmente voglio che diventino semplicemente un elenco di antipasti, pane&pizza, primi piatti e così via
+Non mi interessa mantenere gli attuali commenti nè in relazione agli attuali prodotti nè in relazione alle attuali ricette. Se è un problema inserire i commenti nei prodotti e nelle ricette non si tratta di una funzionalità fondamentale, ne faccio tranquillamente a meno. Se si possono mettere commenti che appaiono solamente previa mia approvazione bene, altrimenti bene uguale e avanti senza commenti.
+Non ho capito cosa intendi quando mi chiedi se voglio mantenere pagine listing dei prodotti.
+E' normale che voglia mantenere una lista di prodotti quando si clicca sulla macrocategoria "farina" o "dolci&biscotti" (solo per fare due esempi), ma non credo sia quello che mi chiedevi.
+Dell'attuale sito mi interessa mantenere per motivi SEO solamente alcune url. Relativamente a queste url non farò infatti neanche grandi modifiche sui testi presenti.
+In generale quindi l'url rewriting è fondamentale, soprattutto per non perdere il traffico attuale.
+Relativamente alla direzione di sviluppo io creerei un sito parallelo, in una cartella schermata con noindex e nofollow, e lavorerei lì sopra.
+
+Cmq il 19 ed il 20 Novembre sono a Rimini per una fiera, se vuoi mi vesto da Wanda Nara e ci incontriamo...
+

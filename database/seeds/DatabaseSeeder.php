@@ -40,7 +40,12 @@ class DatabaseSeeder extends Seeder
         $this->call(CaratteristicheProdottiSeeder::class);
         $this->call(CategorieProdottiSeeder::class);
         
-        
+
+        //////////////////////////////////////////////////////////
+        // importare le tabelle "ricette" e "categoria_ricette" //
+        //////////////////////////////////////////////////////////
+        $this->call(ImportCategorieRicetteSeeder::class);
+        $this->call(ImportRicetteSeeder::class);
 
     }
 }
