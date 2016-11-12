@@ -31,6 +31,7 @@ class ImportRicetteSeeder extends Seeder
     		    'title' => $ric->title,
     		    'keywords' => $ric->keywords,
     		    'description' => $ric->description,
+                'visibile' => $ric->visibile,
     		    'categoria_id' => $ric->categoria,
     		    ]
     		]);

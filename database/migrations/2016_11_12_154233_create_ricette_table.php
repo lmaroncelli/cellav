@@ -24,6 +24,7 @@ class CreateRicetteTable extends Migration
             $table->string('keywords')->default('');            
             $table->text('description'); 
             $table->string('uri')->unique();
+            $table->boolean('visibile')->nullable()->default(true);
             $table->integer('categoria_id')->unsigned();
             // se cancello una categoria voglio cancellare a cascata anche tutte le relative ricette
             $table->foreign('categoria_id')->references('id')->on('tblCategorieRicette')->onDelete('cascade');
