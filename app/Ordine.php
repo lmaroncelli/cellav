@@ -9,7 +9,18 @@ class Ordine extends Model
 	protected $table = 'tblOrdini';
 
 	protected $fillable = [
-	        'user_id','totale','indirizzo',
+	        'user_id',
+	        'totale',
+	        'note',
+	        'indirizzo_fatturazione', 
+	        'citta_fatturazione', 
+	        'cap_fatturazione', 
+	        'provincia_fatturazione',
+	        'indirizzo_spedizione', 
+	        'citta_spedizione', 
+	        'cap_spedizione', 
+	        'provincia_spedizione',
+	        'stripe_payment_id',
 			];
 
 

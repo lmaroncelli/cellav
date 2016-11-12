@@ -32,4 +32,9 @@ class User extends Authenticatable
         {
         return $this->hasMany('App\Carrello','user_id','id');
         }
+
+    public function ordini()
+        {
+        return $this->hasMany('App\Ordine','user_id','id');
+        }
 }

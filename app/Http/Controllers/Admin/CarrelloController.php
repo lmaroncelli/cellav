@@ -176,17 +176,36 @@ class CarrelloController extends AdminController
                     'source'  => $request->get('stripeToken'),
                   'description' => "Charge di prova"
               ));
+
+
+            /////////////////////
+            // CARICO L'ORDINE //
+            /////////////////////
+            $ordine =  new Ordine();
+            $ordine->user_id=Auth::user()->id;
+            $ordine->save();
+
+
+            ///////////////////////////////////
+            // CARICO I PRODOTTI DELL'ORDINE //
+            ///////////////////////////////////
+            foreach ($carrello->prodotti as $count => $prodottoCarrello) {
+                $prodottoOrdine  = new ProdottoOrdine();
+                $prodottoOrdine->prodotto_id=$prodottoCarrello->prodotto_id;
+                $prodottoOrdine->ordine_id= $ordine->id;
+                $prodottoOrdine->prezzo = $prodottoCarrello->prezzo;
+                $prodottoOrdine->numero = $prodottoCarrello->numero;
+                $prodottoOrdine->save();
+            }
+
+
+            
             
         } catch (\Exception $e) {
             return Redirect::route('checkout')->with('error',$e->getMessage());
         }
 
 
-
-
-        /////////////////////
-        // CARICO L'ORDINE //
-        /////////////////////
 
 
 

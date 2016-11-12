@@ -22,6 +22,7 @@ class AddInfoToOrdine extends Migration
             $table->string('citta_spedizione')->nullable()->default('')->after('indirizzo_spedizione');
             $table->string('cap_spedizione')->nullable()->default('')->after('citta_spedizione');
             $table->string('provincia_spedizione')->nullable()->default('')->after('cap_spedizione');
+            $table->string('stripe_payment_id')->nullable()->default(null)->after('note');
         });
     }
 
@@ -34,7 +35,7 @@ class AddInfoToOrdine extends Migration
     {
         Schema::table('tblOrdini', function (Blueprint $table) {
             $table->dropColumn(['indirizzo_fatturazione', 'citta_fatturazione', 'cap_fatturazione', 'provincia_fatturazione']);
-            $table->dropColumn(['indirizzo_spedizione', 'citta_spedizione', 'cap_spedizione', 'provincia_spedizione']);
+            $table->dropColumn(['indirizzo_spedizione', 'citta_spedizione', 'cap_spedizione', 'provincia_spedizione','stripe_payment_id']);
         });
     }
 }
