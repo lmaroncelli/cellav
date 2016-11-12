@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Requests\StoreUserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class UsersController extends AdminController
@@ -98,5 +99,20 @@ class UsersController extends AdminController
     public function confirm($id)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showProfile()
+    {
+
+        $user = Auth::user();
+
+        return view('user_profile', compact('user'));
+
     }
 }

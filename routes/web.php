@@ -61,6 +61,8 @@ Route::get('checkout', ['as' => 'checkout', 'uses' => 'Admin\CarrelloController@
 Route::post('checkout', ['as' => 'checkout', 'uses' => 'Admin\CarrelloController@postCheckout']);
 
 
+Route::get('user-profile', ['as' => 'user.profile', 'uses' => 'Admin\UsersController@showProfile']);
+
 //////////////////
 // ROUTE LIBERA //
 //////////////////
