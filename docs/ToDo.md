@@ -159,9 +159,12 @@ jQuery(".delete_page").click(function(e){
 =============================================================================
 
 Allora:
-l'unico filtro che voglio rimanga è "senza lattosio"
-le ricette voglio mantenerle, ma voglio semplificarle, ossia non collegarci nessun prodotto, non ho bisogno di segnalare il grado di difficoltà, ecc ecc. Non mi interessano i filtri "senza questo, senza quello" nelle ricette.
+l'unico filtro che voglio rimanga è "senza lattosio" [OK]
+
+le ricette voglio mantenerle, ma voglio semplificarle, ossia non collegarci nessun prodotto, non ho bisogno di segnalare il grado di difficoltà, ecc ecc. Non mi interessano i filtri "senza questo, senza quello" nelle ricette. [OK]
+
 Sostanzialmente voglio che diventino semplicemente un elenco di antipasti, pane&pizza, primi piatti e così via
+
 Non mi interessa mantenere gli attuali commenti nè in relazione agli attuali prodotti nè in relazione alle attuali ricette. Se è un problema inserire i commenti nei prodotti e nelle ricette non si tratta di una funzionalità fondamentale, ne faccio tranquillamente a meno. Se si possono mettere commenti che appaiono solamente previa mia approvazione bene, altrimenti bene uguale e avanti senza commenti.
 Non ho capito cosa intendi quando mi chiedi se voglio mantenere pagine listing dei prodotti.
 E' normale che voglia mantenere una lista di prodotti quando si clicca sulla macrocategoria "farina" o "dolci&biscotti" (solo per fare due esempi), ma non credo sia quello che mi chiedevi.

@@ -41,6 +41,9 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::get('admin/ricette/{ricetta}/confirm', ['as' => 'ricette.confirm', 'uses' => 'Admin\RicetteController@confirm']);
 		Route::resource('admin/ricette', 'Admin\RicetteController');
 
+		Route::get('admin/categorie-ricette/{categoria}/confirm', ['as' => 'categorie-ricette.confirm', 'uses' => 'Admin\CategorieRicetteController@confirm']);
+		Route::resource('admin/categorie-ricette', 'Admin\CategorieRicetteController');
+
 
 });
 
@@ -69,14 +72,16 @@ Route::get('user-profile', ['as' => 'user.profile', 'uses' => 'Admin\UsersContro
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-// route to access images Laravel 5 - How to access image uploaded in storage within View? //
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-Route::get('images/{filename}', function ($filename)
+////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////// //
+// route to access images Laravel 5 - How to access image uploaded in storage within View? // //
+///////////////////////////////////////////////////////////////////////////////////////////// //
+// How to define a Laravel route with a parameter that contains a slash character             //
+////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('images/{filename_witslash}', function ($filename_witslash)
 {	
 
-    $path = storage_path() . '/app/' . $filename;
+    $path = storage_path() . '/app/' . $filename_witslash;
 
     if(!File::exists($path)) abort(404);
 
@@ -87,23 +92,8 @@ Route::get('images/{filename}', function ($filename)
     $response->header("Content-Type", $type);
 
     return $response;
-});
 
-Route::get('images/{dir}/{filename}', function ($dir, $filename)
-{	
-		
-    $path = storage_path() . '/app/' . $dir . '/' .$filename;
-
-    if(!File::exists($path)) abort(404);
-
-    $file = File::get($path);
-    $type = File::mimeType($path);
-
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
-
-    return $response;
-});
+})->where('filename_witslash', '(.*)');
 
 
 //////////////////

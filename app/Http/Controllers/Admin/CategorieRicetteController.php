@@ -7,7 +7,7 @@ use App\Ricetta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class RicetteController extends AdminController
+class CategorieRicetteController extends AdminController
 {
 
     private function _uploadFile(Request $request)
@@ -30,9 +30,9 @@ class RicetteController extends AdminController
      */
     public function index()
     {
-    $ricette = Ricetta::all();
+    $categorieRicette = CategoriaRicetta::orderBy('nome')->get();
     
-    return view('admin.ricette.index', compact('ricette'));
+    return view('admin.categorie-ricette.index', compact('categorieRicette'));
     }
 
     /**
@@ -89,10 +89,9 @@ class RicetteController extends AdminController
      */
     public function edit($id)
     {
-    $ricetta = Ricetta::find($id);
-    $categorie = CategoriaRicetta::orderBy('nome')->pluck('nome', 'id');
+    $categoria = CategoriaRicetta::find($id);
 
-    return view('admin.ricette.form', compact('ricetta','categorie')); 
+    return view('admin.categorie-ricette.form', compact('categoria')); 
     }
 
     /**

@@ -45,10 +45,22 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
+
                         &nbsp;
                         <li><a href="{{ route('users.index') }}">Utenti</a></li>
                         <li><a href="{{ route('pages.index') }}">Pagine</a></li>
                         <li><a href="{{ route('prodotti.index') }}">Prodotti</a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Ricette <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('ricette.index') }}">Elenco</a></li>
+                                <li><a href="{{ route('categorie-ricette.index') }}">Categorie</a></li>
+                            </ul>
+                        </li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
