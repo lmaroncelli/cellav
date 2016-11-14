@@ -136,6 +136,7 @@ class RicetteController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        Ricetta::destroy($id);
+        return redirect()->route('ricette.index')->with('status', 'Ricetta eliminata correttamente!');
     }
 }

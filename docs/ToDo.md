@@ -75,7 +75,7 @@ La stessa cosa farò per le caratteristiche
 ========================================================
 
 
-1. Log delle query con i 2 middleware
+1. mettere i campi SEO per title, keyword, description in tutti i form (@include seo_fields ???)
 
 
 

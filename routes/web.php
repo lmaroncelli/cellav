@@ -99,4 +99,6 @@ Route::get('images/{filename_witslash}', function ($filename_witslash)
 //////////////////
 // ROUTE LIBERA //
 //////////////////
+
 Route::get('/{slug?}', 'SiteController@make')/*->middleware('beforeDBQuery','afterDBQuery')*/;
+Route::get('/categoria/{slug?}', 'SiteController@makeCategoria')/*->middleware('beforeDBQuery','afterDBQuery')*/;

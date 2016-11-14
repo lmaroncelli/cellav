@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CategoriaRicetta;
 use App\Http\Requests;
 use App\Page;
 use App\Prodotto;
@@ -66,6 +67,34 @@ class SiteController extends Controller
 			return $prodotti;
 		}
 
+
+	private function _getCategorieRicette($page)	
+		{
+
+		$elem_arr = explode(',',$page->listingCategorieRicette);
+
+		// non ci sono id
+		if(!count($elem_arr))
+			return null;
+
+		$categorieRicette = CategoriaRicetta::with([
+
+												'ricette' => function($query){
+															$query->visibile();
+													},
+													
+													])
+													->whereIn('id',$elem_arr)
+													->get();
+
+		return $categorieRicette;
+
+		}
+
+
+
+
+
 	public function make($slug = "")
 	{
 		if (empty($slug)) 
@@ -74,13 +103,43 @@ class SiteController extends Controller
 			} 
 		else 
 			{
-			
+
 			$page = Page::where('uri',$slug)->first();
+			$categorieRicette = null;
 
 			if ($page->listing) 
 				$prodotti = self::_createPageListing($page);
 			
-			return view('site',compact('page','prodotti'));
+			if ($page->listingCategorieRicette)
+				$categorieRicette = self::_getCategorieRicette($page);
+
+			return view('site',compact('page','prodotti', 'categorieRicette'));
+			
+			}
+				
+	}
+
+
+	public function makeCategoria($slug = "")
+	{
+		if (empty($slug)) 
+			{
+			echo "nessuna categoria associata!!";
+			} 
+		else 
+			{
+
+			$categoriaRicette = CategoriaRicetta::with([
+
+					'ricette' => function($query){
+								$query->visibile();
+						},
+						
+						])
+						->where('uri',$slug)->first();
+
+			return view('site',compact('categoriaRicette'));
+			
 			}
 				
 	}

@@ -34,4 +34,11 @@ class Ricetta extends Model
 			return $this->belongsTo('App\CategoriaRicetta','categoria_id','id');
 		}
 
+
+
+	public function scopeVisibile($query)
+		{
+			return $query->where('visibile', 1);	
+		}
+
 }

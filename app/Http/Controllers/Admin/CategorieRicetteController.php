@@ -12,14 +12,14 @@ class CategorieRicetteController extends AdminController
 
     private function _uploadFile(Request $request)
         {
-            if (is_null($request->file('foto'))) 
+            if (is_null($request->file('img'))) 
                 return null;
 
-            $file = $request->file('foto');
+            $file = $request->file('img');
 
             $ext = $file->clientExtension();
 
-            return $file->storeAs('ricette','foto_ricetta_'.$request->get('uri').'.'.$ext);            
+            return $file->storeAs('ricette','foto_cat_'.$request->get('uri').'.'.$ext);            
                 
         }
 
@@ -40,12 +40,10 @@ class CategorieRicetteController extends AdminController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Ricetta $ricetta)
+    public function create(CategoriaRicetta $categoria)
     {
         
-        $categorie = CategoriaRicetta::orderBy('nome')->pluck('nome', 'id');
-        
-        return view('admin.ricette.form', compact('ricetta','categorie'));
+        return view('admin.categorie-ricette.form', compact('categoria'));
     }
 
     /**
@@ -57,16 +55,16 @@ class CategorieRicetteController extends AdminController
     public function store(Request $request)
     {
 
-    $ricetta = Ricetta::create($request->all());
+    $categoria = CategoriaRicetta::create($request->all());
 
 
     if (!is_null($this->_uploadFile($request)))
-        $ricetta->foto = $this->_uploadFile($request);
+        $ricetta->img = $this->_uploadFile($request);
 
 
-    $ricetta->save();    
+    $categoria->save();    
 
-    return redirect()->route('ricette.index')->with('status', 'Ricetta creata correttamente!');
+    return redirect()->route('categorie-ricette.index')->with('status', 'Ricetta creata correttamente!');
     
     }
 
@@ -104,11 +102,11 @@ class CategorieRicetteController extends AdminController
     public function update(Request $request, $id)
     {
 
-    $ricetta = Ricetta::find($id);
+    $categoria = CategoriaRicetta::find($id);
     
-    $foto_vecchia = $ricetta->foto;
+    $foto_vecchia = $categoria->img;
 
-    $ricetta->fill($request->all());
+    $categoria->fill($request->all());
 
     if ( !is_null($this->_uploadFile($request)) || $request->has('elimina_immagine') )
         {
@@ -118,12 +116,12 @@ class CategorieRicetteController extends AdminController
         Storage::delete([$foto_vecchia]);
             }
 
-        $ricetta->foto = $this->_uploadFile($request);
+        $categoria->img = $this->_uploadFile($request);
         }
 
-    $ricetta->save();   
+    $categoria->save();   
 
-    return redirect()->route('ricette.index')->with('status', 'Ricetta modificata correttamente!');
+    return redirect()->route('categorie-ricette.index')->with('status', 'Categoria modificata correttamente!');
     
     }
 
@@ -135,6 +133,7 @@ class CategorieRicetteController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        CategoriaRicetta::destroy($id);
+        return redirect()->route('categorie-ricette.index')->with('status', 'Categoria eliminata correttamente!');
     }
 }

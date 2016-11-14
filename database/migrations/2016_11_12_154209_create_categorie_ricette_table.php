@@ -17,7 +17,7 @@ class CreateCategorieRicetteTable extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->string('uri')->unique();
-            $table->string('img')->default('');
+            $table->string('img')->nullable()->default('');
             $table->string('title')->default('');
             $table->string('keywords')->default('');            
             $table->text('description'); 

@@ -70,6 +70,20 @@
   	    @endforeach
   	</div>
   	</div>
+
+  	<hr />
+
+  	<div class="form-group">
+  	<label for="categorieRicette">Listing categorie ricette:</label>
+  	<div class="checkbox">
+  	    @foreach ($categorieRicette as $key => $nome)
+  	    <label>
+  	      <input type="checkbox" id="{{$nome}}" name="categorieRicette[]" value="{{$key}}" aria-label="{{$nome}}" @if ( old($nome)==1 || in_array($key, $categorieRicette_associate) ) checked @endif> 
+  	      {{$nome}}
+  	    </label>
+  	    @endforeach
+  	</div>
+  	</div>
 		
 		<button type="submit" class="btn btn-primary">{{ $page->exists ? 'Modifica' : 'Salva'}}</button>
 

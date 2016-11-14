@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Caratteristica;
 use App\Categoria;
+use App\CategoriaRicetta;
 use App\Http\Requests;
 use App\Page;
 use Illuminate\Http\Request;
@@ -69,9 +70,13 @@ class PagesController extends AdminController
     {
         $caratteristiche = Caratteristica::pluck('nome', 'id');
         $categorie = Categoria::pluck('nome', 'id');
+        $categorieRicette = CategoriaRicetta::pluck('nome', 'id');
+
         $categorie_associate = [];
         $caratteristiche_associate = [];
-        return view('admin.pages.form', compact('page','caratteristiche','categorie','caratteristiche_associate','categorie_associate'));
+        $categorieRicette_associate = [];
+
+        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate','categorieRicette_associate'));
     }
 
     /**
@@ -93,6 +98,10 @@ class PagesController extends AdminController
         $categorie = $request->get('categorie');        
         if (!is_null($categorie))
             $page->listingCategorie = implode(',',$categorie);
+
+        $categorieRicette = $request->get('categorieRicette');        
+        if (!is_null($categorieRicette))
+            $page->listingCategorieRicette = implode(',',$categorieRicette);
         
 
         $page->save();
@@ -125,8 +134,11 @@ class PagesController extends AdminController
         
         $caratteristiche = Caratteristica::pluck('nome', 'id');
         $categorie = Categoria::pluck('nome', 'id');
+        $categorieRicette = CategoriaRicetta::pluck('nome', 'id');
+
         $categorie_associate = [];
         $caratteristiche_associate = [];
+        $categorieRicette_associate = [];
 
         if (!is_null($page->listingCategorie)) 
             $categorie_associate = explode(',',$page->listingCategorie);
@@ -134,7 +146,10 @@ class PagesController extends AdminController
         if (!is_null($page->listingCaratteristiche)) 
             $caratteristiche_associate = explode(',',$page->listingCaratteristiche);
 
-        return view('admin.pages.form', compact('page','caratteristiche','categorie','caratteristiche_associate','categorie_associate'));
+        if (!is_null($page->listingCategorieRicette)) 
+            $categorieRicette_associate = explode(',',$page->listingCategorieRicette);
+
+        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate', 'categorieRicette_associate'));
 
     }
 
@@ -153,7 +168,7 @@ class PagesController extends AdminController
 
         $page = Page::find($id);
         $page->fill(['content' => $content]);
-        $page->fill($request->except('content','listingCaratteristiche', 'listingCategorie'));
+        $page->fill($request->except('content','listingCaratteristiche', 'listingCategorie', 'listingCategorieRicette'));
 
         // caratteristiche e categorie
         $caratteristiche = $request->get('caratteristiche');
@@ -173,6 +188,16 @@ class PagesController extends AdminController
 
         $page->fill(['listingCategorie' => $listingCategorie]);
 
+
+        $categorieRicette = $request->get('categorieRicette');        
+        if (!is_null($categorieRicette))
+            $listingCategorieRicette = implode(',',$categorieRicette);
+        else
+            $listingCategorieRicette = null;
+
+        $page->fill(['listingCategorieRicette' => $listingCategorieRicette]);
+
+
         $page->save();
         return redirect()->route('pages.index')->with('status', 'Pagina modificata correttamente!');
 
@@ -186,7 +211,8 @@ class PagesController extends AdminController
      */
     public function destroy($id)
     {
-        //
+        Page::destroy($id);
+        return redirect()->route('pages.index')->with('status', 'Pagina eliminata correttamente!');
     }
 
 
