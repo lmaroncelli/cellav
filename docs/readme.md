@@ -541,3 +541,24 @@ And if a customer has saved multiple credit cards, you should loop over it:
 foreach ($customer->sources->data as $card) {
     print_r($card->id);
 }
+
+
+
+
+
+
+
+
+===================================================================
+===================================================================
+
+Ristrutturazione/riprogettazione del sito con:
+
+Utilizzo di un frmework all'avanguardia con conseguente accantonamento delle tecnologie obsolete e miglioramenti in termini di sicurezza e performance.
+
+Creazione di un CMS per la gestione delle pagine statiche a cui si abbina una sorta di configuratore per includere parti dinamiche con possibilità di filtri.
+
+Creazione di un carrello per memorizzare i prodotti scelti dall'utente con la possibilità di eseguire il checkout con Stripe: in questo caso viene salvato su Stripe il cliente con il proprio profilo di pagamento in modo da poter richiamare questi dati quando il medesimo cliente rientra sul sito senza doverli reinserie ogni volta (i dati meno sensibili come indirizzi e nominativi vengono salvati sul sito, ma ugualmente riproposti): in questo modo si rendono più veloci ed intuitivi gli acquisti successivi al primo con ovvi benefici per il merchant.
+
+
+
