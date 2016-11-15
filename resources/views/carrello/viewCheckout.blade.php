@@ -115,7 +115,7 @@
           <div class="form-group">
             <label class="col-sm-4 control-label" for="textinput">Email</label>
             <div class="col-sm-6">
-              <input type="text" id="email" maxlength="65" placeholder="Email" class="email form-control">
+              <input type="text" id="email" maxlength="65" placeholder="Email" value="{{auth()->user()->email}}" class="email form-control">
             </div>
           </div>
           </div>
