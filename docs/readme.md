@@ -504,3 +504,40 @@ STRIPE
 
 user: lmaroncelli@gmail.com
 pwd: <solita>610?
+
+
+
+
+// When creating a customer
+$customer = new Customer;
+$customer->name = 'John Smith';
+$customer->email = 'jsmith@example.com';
+
+$stripe_customer = Stripe_Customer::create(array(
+  "description" => $customer->name,
+  "email" => $customer->email
+));
+
+$customer->stripe_id = $stripe_customer->id;  // Keep this! We'll use it again!
+$customer->save();
+
+
+// When creating a charge
+Stripe_Charge::create(array(
+  "amount" => 2999,
+  "currency" => "usd",
+  "customer" => Auth::user()->stripe_id,      // Assign it to the customer
+  "description" => "Payment for Invoice 4321"
+));
+
+
+Get card id from Stripe API
+
+A customer can have multiple cards, so $customer->sources->data is an array (as you should be able to tell from the square brackets around the value of this property). Therefore, you need to index it.
+
+print_r($customer->sources->data[0]->id);
+And if a customer has saved multiple credit cards, you should loop over it:
+
+foreach ($customer->sources->data as $card) {
+    print_r($card->id);
+}
