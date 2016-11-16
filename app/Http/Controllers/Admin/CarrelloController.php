@@ -125,11 +125,34 @@ class CarrelloController extends AdminController
             {
              return Redirect::route('carrello.show')->with('status','Il carrello è vuoto!');
             }
+
         $prodottiCarrello = $carrello->prodotti;
         
         $total=$carrello->getTotale();
         
-        return view('carrello.viewCheckout',['prodottiCarrello'=>$prodottiCarrello,'total'=>$total]);
+
+        // verifico se l'utente è un customer stripe
+        $user_id = Auth::user()->id;
+        $user = User::findOrFail($user_id);
+
+        if (!is_null($user->stripe_id) && $user->stripe_id != '') 
+            {
+            try 
+                {
+                Stripe::setApiKey(config('services.stripe.secret'));
+                $customer = Customer::retrieve($user->stripe_id);
+                } 
+            catch (\Exception $e) 
+                {
+                return Redirect::route('carrello.show')->with('error',$e->getMessage());
+                }
+            }
+        else 
+            {
+            $customer = null;
+            }   
+
+        return view('carrello.viewCheckout',['prodottiCarrello'=>$prodottiCarrello,'total'=>$total, 'customer' => $customer]);
 
 
         }
