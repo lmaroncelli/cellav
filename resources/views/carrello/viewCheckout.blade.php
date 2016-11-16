@@ -215,7 +215,13 @@
 
     <script type="text/javascript">
         
-       Stripe.setPublishableKey("{{config('services.stripe.key')}}");
+
+        try {
+            Stripe.setPublishableKey("{{config('services.stripe.key')}}");
+        }
+        catch(err) {
+            alert('ATTEZIONE: '+err.message);
+        }
 
 
        $(function() {

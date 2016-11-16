@@ -9,6 +9,7 @@ use App\Ordine;
 use App\Prodotto;
 use App\ProdottoCarrello;
 use App\ProdottoOrdine;
+use App\User;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -178,30 +179,34 @@ class CarrelloController extends AdminController
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        $user_id = Auth::user()->id;
 
-       /* try {
+
+       try {
             $customer = Customer::create(array(
                  'email' =>  $request->get('stripeEmail'),
                  'source'  => $request->get('stripeToken')
              ));
+
+            $user = User::findOrFail($user_id);
+            $user->stripe_id = $customer->id;
+            $user->save();
             
         } catch (\Exception $e) {
             return Redirect::route('checkout')->with('error',$e->getMessage());
-        }*/
+        }
 
 
 
         try {
             
             $charge = Charge::create(array(
-                  /*'customer' => $customer->id,*/
+                  'customer' => $customer->id,
                   'amount'   => $total,
                   'currency' => 'eur',
-                'source'  => $request->get('stripeToken'),
                   'description' => "Acquisto di " . Auth::user()->email,
               ));
 
-            $user_id = Auth::user()->id;
 
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
