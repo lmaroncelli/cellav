@@ -77,7 +77,11 @@ La stessa cosa farò per le caratteristiche
 
 1. mettere i campi SEO per title, keyword, description in tutti i form (@include seo_fields ???)
 2. manca scheda Prodotto e scheda Ricetta
-
+Pagamento con Contrassegno
+Si definisce contrassegno il pagamento effettuato direttamente allo spedizioniere che ti consegna la tua spesa. All’arrivo del corriere espresso prepara quindi la cifra esatta in contanti.
+Poi firmerai a lui il modulo di ricezione del pacco. Dopo aver cliccato sul tasto “acquista” troverai una pagina riassuntiva del tuo ordine. Inoltre ne riceverai una copia via mail.
+Il giorno in cui partirà la spedizione ti contatteremo telefonicamente per avvisarti dell’avvenuta spedizione.
+Il pagamento in contrassegno prevede un costo aggiuntivo a quello di spedizione: 6 euro iva inclusa. È esattamente il costo che Celiachiamo sostiene per il servizio che lo spedizioniere fornisce (ritiro del denaro presso di te e accredito dello stesso sul nostro conto corrente bancario).
 
 
 
@@ -177,3 +181,32 @@ Relativamente alla direzione di sviluppo io creerei un sito parallelo, in una ca
 
 Cmq il 19 ed il 20 Novembre sono a Rimini per una fiera, se vuoi mi vesto da Wanda Nara e ci incontriamo...
 
+
+
+
+===============================================================================================================
+
+Pagamento con Contrassegno
+Si definisce contrassegno il pagamento effettuato direttamente allo spedizioniere che ti consegna la tua spesa. All’arrivo del corriere espresso prepara quindi la cifra esatta in contanti.
+Poi firmerai a lui il modulo di ricezione del pacco. Dopo aver cliccato sul tasto “acquista” troverai una pagina riassuntiva del tuo ordine. Inoltre ne riceverai una copia via mail.
+Il giorno in cui partirà la spedizione ti contatteremo telefonicamente per avvisarti dell’avvenuta spedizione.
+Il pagamento in contrassegno prevede un costo aggiuntivo a quello di spedizione: 6 euro iva inclusa. È esattamente il costo che Celiachiamo sostiene per il servizio che lo spedizioniere fornisce (ritiro del denaro presso di te e accredito dello stesso sul nostro conto corrente bancario).
+
+
+Pagamento con Bonifico
+Scegliendo questa modalità di pagamento una volta cliccato sul tasto “acquista” troverai una pagina riassuntiva con già precompilati i nostri dati bancari. Potrai stamparla e consegnarla allo sportello della tua banca oppure effettuare personalmente il bonifico se disponi di un conto on line. Riceverai anche via mail la stessa pagina informativa.
+
+Ti chiediamo di indicare come valuta beneficiario la stessa data del giorno in cui effettui il bonifico, in modo da velocizzare la spedizione della tua spesa.
+
+
+Carta di credito via FAX
+Scegliendo questa modalità di pagamento una volta cliccato sul tasto “acquista” troverai una pagina riassuntiva del tuo ordine. Te ne sarà inoltre inviata una copia via e-mail. Stampala e compila i campi relativi alla tua carta di credito. Inviaci poi via fax al numero 06/62277277 la pagina compilata.
+Noi effettueremo su connessione sicura con la banca la transazione e ti avviseremo tramite sms (o tramite telefono se ci fornisci un recapito fisso) una volta completato il processo.
+Ti garantiamo l’immediata distruzione dei tuoi dati una volta completata la transazione.
+
+
+Pagamento con Carta di Credito via Numero Verde
+Se vuoi puoi contattarci tramite il nostro numero verde 800128020 e completare il processo di acquisto tramite carta di credito con un nostro operatore.
+Dopo aver cliccato sul tasto “acquista” troverai una pagina riassuntiva del tuo ordine e le istruzioni su quali dati comunicare al nostro operatore.
+Per farci visualizzare il tuo ordine è indispensabile che tu compili i dati di spedizione (e di fatturazione se necessiti di fattura). Cliccando sul tasto “acquista” riceverai anche una e-mail riassuntiva del tuo acquisto, in modo che potrai chiamare il nostro numero verde quando ti è più comodo.
+Ti garantiamo che non registreremo in alcun modo i dati della tua carta di credito. La transazione avverrà su connessione sicura con la banca mentre siamo al telefono con te.
