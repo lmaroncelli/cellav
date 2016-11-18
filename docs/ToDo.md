@@ -156,6 +156,77 @@ jQuery(".delete_page").click(function(e){
 
 
 
+//helper class
+
+
+in appa creo al direcrory libs e qui creo la classe, che restituisce degli output differenti in base al valore della dispo del prodotto
+(lo potrei usare per visualizzare il prezzo offerta barrato ??)
+
+
+
+
+<?php
+
+class Availability {
+
+  public static function display($availability) {
+    if ($availability == 0) {
+      echo "Out of Stock";
+    } else if ($availability == 1) {
+      echo "In Stock";
+    }
+  }
+
+  public static function displayClass($availability) {
+    if ($availability == 0) {
+      echo "outofstock";
+    } else if ($availability == 1) {
+      echo "instock";
+    }
+  }
+}
+
+
+
+
+A questo punto Laravel deve fare un autoload di questa classe per poterla usare nelle nostre viste !!!!!
+
+
+  
+Custom Classes in Laravel 5, the Easy Way
+
+This answer is applicable to general custom classes within Laravel. For a more Blade-specific answer, see Custom Blade Directives in Laravel 5.
+
+Step 1: Create your Helpers (or other custom class) file and give it a matching namespace. Write your class and method:
+
+<?php // Code within app\Helpers\Helper.php
+
+namespace App\Helpers;
+
+class Helper
+{
+    public static function shout(string $string)
+    {
+        return strtoupper($string);
+    }
+}
+Step 2: Create an alias:
+
+<?php // Code within config/app.php
+
+    'aliases' => [
+     ...
+        'Helper' => 'App\Helpers\Helper::class',
+     ...
+Step 3: Use it in your Blade template:
+
+<!-- Code within resources/views/template.blade.php -->
+
+{!! Helper::shout('this is how to use autoloading correctly!!') !!}
+
+
+
+
 
 
 

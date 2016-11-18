@@ -41,183 +41,257 @@
         </tr>
         </tbody>
     </table>
-
-    <form action="{{ route('checkout') }}" method="POST" id="checkout_form">
-        {{ csrf_field() }}
-        <span class="payment-errors"></span>
-
-        <div class="row row-centered">
-          <div class="col-md-10">
-          
-          <div class="page-header">
-            <h2 class="gdfg">Secure Payment Form</h2>
-          </div>
-        </div>
-        </div>
-          
-          <noscript>
-          <div class="bs-callout bs-callout-danger">
-            <h4>JavaScript is not enabled!</h4>
-            <p>This payment form requires your browser to have JavaScript enabled. Please activate JavaScript and reload this page. Check <a href="http://enable-javascript.com" target="_blank">enable-javascript.com</a> for more informations.</p>
-          </div>
-          </noscript>
     
-          <fieldset>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Acquista</div>
+                <div class="panel-body">
+                <form action="{{ route('checkout') }}" method="POST" id="checkout_form" class="form-horizontal">
+                    {{ csrf_field() }}
+                    <span class="payment-errors"></span>
 
-
-
-        <!-- Form Name -->
-          <legend>Fatturazione</legend>
-           
-          <!-- Street -->
-          <div class="row">
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">Indirizzo</label>
-            <div class="col-sm-6">
-              <input type="text" id="indirizzo_fatturazione" name="indirizzo_fatturazione" placeholder="Indirizzo" class="indirizzo_fatturazione form-control">
-            </div>
-          </div>
-          </div>
-          
-          <!-- City -->
-          <div class="row">
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">Città</label>
-            <div class="col-sm-6">
-              <input type="text" id="citta_fatturazione" name="citta_fatturazione" placeholder="Città" class="citta_fatturazione form-control">
-            </div>
-          </div>
-          </div>
-
-          <!-- State -->
-          <div class="row">
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">Provincia</label>
-            <div class="col-sm-6">
-              <input type="text" id="provincia_fatturazione" name="provincia_fatturazione" maxlength="65" placeholder="Provincia" class="provincia_fatturazione form-control">
-            </div>
-          </div>
-          </div>
-          
-          <!-- Postcal Code -->
-          <div class="row">
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">CAP</label>
-            <div class="col-sm-6">
-              <input type="text" id="cap_fatturazione" name=cap_fatturazione"" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_fatturazione form-control">
-            </div>
-          </div>
-          </div>
-          
-          
-          <!-- Email -->
-          <div class="row">
-          <div class="form-group">
-            <label class="col-sm-4 control-label" for="textinput">Email</label>
-            <div class="col-sm-6">
-              <input type="text" id="email" maxlength="65" placeholder="Email" value="{{auth()->user()->email}}" class="email form-control">
-            </div>
-          </div>
-          </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>Card Details</legend>
-            
-            @if (is_null($customer))
-              <!-- Card Holder Name -->
-                <div class="row">
-                <div class="form-group">
-                  <label class="col-sm-4 control-label"  for="textinput">Card Holder's Name</label>
-                  <div class="col-sm-6">
-                    <input type="text" id="cardholdername" maxlength="70" placeholder="Card Holder Name" class="card-holder-name form-control">
-                  </div>
-                </div>
-                </div>
-                
-                <!-- Card Number -->
-                <div class="row">
-                <div class="form-group">
-                  <label class="col-sm-4 control-label" for="textinput">Card Number</label>
-                  <div class="col-sm-6">
-                    <input type="text" id="cardnumber" data-stripe="number" maxlength="19" placeholder="Card Number" class="card-number form-control">
-                  </div>
-                </div>
-                </div>
-                
-                <!-- Expiry-->
-                <div class="row">
-                <div class="form-group">
-                  <label class="col-sm-4 control-label" for="textinput">Card Expiry Date</label>
-                  <div class="col-sm-6">
-                    <div class="form-inline">
-                      <select id="select2" data-stripe="exp-month" class="card-expiry-month stripe-sensitive required form-control">
-                        <option value="01" selected="selected">01</option>
-                        <option value="02">02</option>
-                        <option value="03">03</option>
-                        <option value="04">04</option>
-                        <option value="05">05</option>
-                        <option value="06">06</option>
-                        <option value="07">07</option>
-                        <option value="08">08</option>
-                        <option value="09">09</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                      </select>
-                      <span> / </span>
-                      <select id="select2" data-stripe="exp-year" class="card-expiry-year stripe-sensitive required form-control">
-                      </select>
-                       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-                      <script type="text/javascript">
-                        var select = $(".card-expiry-year"),
-                        year = new Date().getFullYear();
-             
-                        for (var i = 0; i < 12; i++) {
-                            select.append($("<option value='"+(i + year)+"' "+(i === 0 ? "selected" : "")+">"+(i + year)+"</option>"))
-                        }
-                        </script> 
+                    <div class="row row-centered">
+                      <div class="col-md-10">
+                      
+                      <div class="page-header">
+                        <h2 class="gdfg">Controlla e completa l'ordine</h2>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                </div>
+                    </div>
+                      
+                      <noscript>
+                      <div class="bs-callout bs-callout-danger">
+                        <h4>JavaScript is not enabled!</h4>
+                        <p>This payment form requires your browser to have JavaScript enabled. Please activate JavaScript and reload this page. Check <a href="http://enable-javascript.com" target="_blank">enable-javascript.com</a> for more informations.</p>
+                      </div>
+                      </noscript>
                 
-                <!-- CVV -->
-                <div class="row">
-                <div class="form-group">
-                  <label class="col-sm-4 control-label" for="textinput">CVV/CVV2</label>
-                  <div class="col-sm-3">
-                    <input type="text" id="cvv"  data-stripe="cvc" placeholder="CVV" maxlength="4" class="card-cvc form-control">
+                      <fieldset>
+
+                    <div class="panel panel-primary">
+                    <div class="panel-heading">Spedizione</div>
+                    <div class="panel-body">
+                    
+                      <!-- Street -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">Indirizzo</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="indirizzo_spedizione" name="indirizzo_spedizione" placeholder="Indirizzo" class="indirizzo_spedizione form-control">
+                        </div>
+                      </div>
+                      </div>
+                      
+                      <!-- City -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">Città</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="citta_spedizione" name="citta_spedizione" placeholder="Città" class="citta_spedizione form-control">
+                        </div>
+                      </div>
+                      </div>
+
+                      <!-- State -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">Provincia</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="provincia_spedizione" name="provincia_spedizione" maxlength="65" placeholder="Provincia" class="provincia_spedizione form-control">
+                        </div>
+                      </div>
+                      </div>
+                      
+                      <!-- Postcal Code -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">CAP</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="cap_spedizione" name=cap_spedizione"" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_spedizione form-control">
+                        </div>
+                      </div>
+                      </div>
+
+                      </div>
+                      </div>
+
+
+
+                      <hr>
+                      <hr>
+                      
+                      <div class="panel panel-danger">
+                      <div class="panel-heading">Fatturazione</div>
+                      <div class="panel-body">
+
+                      <!-- Street -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">Indirizzo</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="indirizzo_fatturazione" name="indirizzo_fatturazione" placeholder="Indirizzo" class="indirizzo_fatturazione form-control">
+                        </div>
+                      </div>
+                      </div>
+                      
+                      <!-- City -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">Città</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="citta_fatturazione" name="citta_fatturazione" placeholder="Città" class="citta_fatturazione form-control">
+                        </div>
+                      </div>
+                      </div>
+
+                      <!-- State -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">Provincia</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="provincia_fatturazione" name="provincia_fatturazione" maxlength="65" placeholder="Provincia" class="provincia_fatturazione form-control">
+                        </div>
+                      </div>
+                      </div>
+                      
+                      <!-- Postcal Code -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">CAP</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="cap_fatturazione" name=cap_fatturazione"" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_fatturazione form-control">
+                        </div>
+                      </div>
+                      </div>
+                      
+                      </div>
+                      </div>
+
+
+                      
+                      
+                      <!-- Email -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">Email</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="email" maxlength="65" placeholder="Email" value="{{auth()->user()->email}}" class="email form-control">
+                        </div>
+                      </div>
+                      </div>
+                      </fieldset>
+
+                      <fieldset>
+                        
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">Medoto di pagamento</h3>
+                        </div>
+                        <div class="panel-body">
+
+                        @if (is_null($customer))
+
+                          <!-- Card Holder Name -->
+                            <div class="row">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label"  for="textinput">Card Holder's Name</label>
+                              <div class="col-sm-6">
+                                <input type="text" id="cardholdername" maxlength="70" placeholder="Card Holder Name" class="card-holder-name form-control">
+                              </div>
+                            </div>
+                            </div>
+                            
+                            <!-- Card Number -->
+                            <div class="row">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label" for="textinput">Card Number</label>
+                              <div class="col-sm-6">
+                                <input type="text" id="cardnumber" data-stripe="number" maxlength="19" placeholder="Card Number" class="card-number form-control">
+                              </div>
+                            </div>
+                            </div>
+                            
+                            <!-- Expiry-->
+                            <div class="row">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label" for="textinput">Card Expiry Date</label>
+                              <div class="col-sm-6">
+                                <div class="form-inline">
+                                  <select id="select2" data-stripe="exp-month" class="card-expiry-month stripe-sensitive required form-control">
+                                    <option value="01" selected="selected">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                  </select>
+                                  <span> / </span>
+                                  <select id="select2" data-stripe="exp-year" class="card-expiry-year stripe-sensitive required form-control">
+                                  </select>
+                                   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+                                  <script type="text/javascript">
+                                    var select = $(".card-expiry-year"),
+                                    year = new Date().getFullYear();
+                         
+                                    for (var i = 0; i < 12; i++) {
+                                        select.append($("<option value='"+(i + year)+"' "+(i === 0 ? "selected" : "")+">"+(i + year)+"</option>"))
+                                    }
+                                    </script> 
+                                </div>
+                              </div>
+                            </div>
+                            </div>
+                            
+                            <!-- CVV -->
+                            <div class="row">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label" for="textinput">CVV/CVV2</label>
+                              <div class="col-sm-3">
+                                <input type="text" id="cvv"  data-stripe="cvc" placeholder="CVV" maxlength="4" class="card-cvc form-control">
+                              </div>
+                            </div>
+                            </div>
+                        
+                        @else
+
+                          <?php $card = $customer->sources->data[0]; ?>
+                         
+                        
+                              {{$card->brand}} termina con {{$card->last4}}<br>
+                              in scadenza il {{$card->exp_month}}/{{$card->exp_year}}
+                            
+                        @endif
+                        
+                        </div>
+                      </div>
+                    
+                        
+                        <!-- Submit -->
+                        <div class="row">
+                        <div class="control-group">
+                          <div class="controls">
+                            <center>
+                               <button type="submit" class="btn btn-primary" id="compra">Compra</button>
+                            </center>
+                          </div>
+                        </div>
+                        </div>
+
+                      </fieldset>
+                     
+                    </form>
                   </div>
-                </div>
-                </div>
-            @else
-              {{-- false expr --}}
-              <?php $card = $customer->sources->data[0]; ?>
-              Sei il possessore della carta
-              <ul>
-                <li>{{$card->brand}} - {{$card->country}}</li>
-                <li>************{{$card->last4}}</li>
-                <li>scadenza il {{$card->exp_month}}/{{$card->exp_year}}</li>
-              </ul>
-            @endif
-            
-        
-            
-            <!-- Submit -->
-            <div class="row">
-            <div class="control-group">
-              <div class="controls">
-                <center>
-                   <button type="submit" class="btn btn-primary" id="compra">Compra</button>
-                </center>
               </div>
             </div>
-            </div>
-
-          </fieldset>
-         
-        </form>
+        </div>
+    </div>
 
 @stop
 
