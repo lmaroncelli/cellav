@@ -152,7 +152,7 @@ class CarrelloController extends AdminController
             $customer = null;
             }   
 
-        return view('carrello.viewCheckout',['prodottiCarrello'=>$prodottiCarrello,'total'=>$total, 'customer' => $customer]);
+        return view('carrello.viewCheckout',['prodottiCarrello'=>$prodottiCarrello,'total'=>$total, 'customer' => $customer, 'user' => $user]);
 
 
         }

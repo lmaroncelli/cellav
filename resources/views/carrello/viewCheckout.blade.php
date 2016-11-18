@@ -73,56 +73,67 @@
                     <div class="panel-heading">Spedizione</div>
                     <div class="panel-body">
                       
-                      <!-- Nome -->
-                      <div class="row">
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" for="textinput">Nome</label>
-                        <div class="col-sm-6">
-                          <input type="text" id="nome_spedizione" name="nome_spedizione" placeholder="Nome" class="nome_spedizione form-control">
-                        </div>
-                      </div>
-                      </div>
+                      @if (!is_null($user->indirizzo_spedizione) && $user->indirizzo_spedizione != '')
+                        
+                        {{$user->nome_spedizione}}<br>
+                        {{$user->indirizzo_spedizione}}
+                        {{$user->cap_spedizione}} - {{$user->citta_spedizione}} ({{$user->provincia_spedizione}})
 
-                      <!-- Street -->
-                      <div class="row">
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" for="textinput">Indirizzo</label>
-                        <div class="col-sm-6">
-                          <input type="text" id="indirizzo_spedizione" name="indirizzo_spedizione" placeholder="Indirizzo" class="indirizzo_spedizione form-control">
-                        </div>
-                      </div>
-                      </div>
-                      
-                      <!-- City -->
-                      <div class="row">
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" for="textinput">Città</label>
-                        <div class="col-sm-6">
-                          <input type="text" id="citta_spedizione" name="citta_spedizione" placeholder="Città" class="citta_spedizione form-control">
-                        </div>
-                      </div>
-                      </div>
+                        <span class="label label-primary" style="float: right;">modifica</span>
 
-                      <!-- State -->
-                      <div class="row">
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" for="textinput">Provincia</label>
-                        <div class="col-sm-6">
-                          <input type="text" id="provincia_spedizione" name="provincia_spedizione" maxlength="65" placeholder="Provincia" class="provincia_spedizione form-control">
+                      @else
+                        
+                        <!-- Nome -->
+                        <div class="row">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label" for="textinput">Nome</label>
+                          <div class="col-sm-6">
+                            <input type="text" id="nome_spedizione" name="nome_spedizione" placeholder="Nome" class="nome_spedizione form-control">
+                          </div>
                         </div>
-                      </div>
-                      </div>
-                      
-                      <!-- Postcal Code -->
-                      <div class="row">
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" for="textinput">CAP</label>
-                        <div class="col-sm-6">
-                          <input type="text" id="cap_spedizione" name="cap_spedizione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_spedizione form-control">
                         </div>
-                      </div>
-                      </div>
 
+                        <!-- Street -->
+                        <div class="row">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label" for="textinput">Indirizzo</label>
+                          <div class="col-sm-6">
+                            <input type="text" id="indirizzo_spedizione" name="indirizzo_spedizione" placeholder="Indirizzo" class="indirizzo_spedizione form-control">
+                          </div>
+                        </div>
+                        </div>
+                        
+                        <!-- City -->
+                        <div class="row">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label" for="textinput">Città</label>
+                          <div class="col-sm-6">
+                            <input type="text" id="citta_spedizione" name="citta_spedizione" placeholder="Città" class="citta_spedizione form-control">
+                          </div>
+                        </div>
+                        </div>
+
+                        <!-- State -->
+                        <div class="row">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label" for="textinput">Provincia</label>
+                          <div class="col-sm-6">
+                            <input type="text" id="provincia_spedizione" name="provincia_spedizione" maxlength="65" placeholder="Provincia" class="provincia_spedizione form-control">
+                          </div>
+                        </div>
+                        </div>
+                        
+                        <!-- Postcal Code -->
+                        <div class="row">
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label" for="textinput">CAP</label>
+                          <div class="col-sm-6">
+                            <input type="text" id="cap_spedizione" name="cap_spedizione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_spedizione form-control">
+                          </div>
+                        </div>
+                        </div>
+
+                      @endif
                       </div>
                       </div>
 
