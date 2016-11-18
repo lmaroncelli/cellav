@@ -73,13 +73,16 @@
                     <div class="panel-heading">Spedizione</div>
                     <div class="panel-body">
                       
-                      @if (!is_null($user->indirizzo_spedizione) && $user->indirizzo_spedizione != '')
+                      @if ( !is_null($user->indirizzo_spedizione) && 
+                            $user->indirizzo_spedizione != '' && 
+                            is_null($edit_spedizione)
+                          )
                         
-                        {{$user->nome_spedizione}}<br>
-                        {{$user->indirizzo_spedizione}}
-                        {{$user->cap_spedizione}} - {{$user->citta_spedizione}} ({{$user->provincia_spedizione}})
+                          {{$user->nome_spedizione}}<br>
+                          {{$user->indirizzo_spedizione}}
+                          {{$user->cap_spedizione}} - {{$user->citta_spedizione}} ({{$user->provincia_spedizione}})
 
-                        <span class="label label-primary" style="float: right;">modifica</span>
+                          <a href="{{ url('checkout') }}?edit_spedizione"><span class="label label-primary" style="float: right;">modifica</span></a>
 
                       @else
                         
@@ -88,7 +91,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">Nome</label>
                           <div class="col-sm-6">
-                            <input type="text" id="nome_spedizione" name="nome_spedizione" placeholder="Nome" class="nome_spedizione form-control">
+                            <input type="text" id="nome_spedizione" name="nome_spedizione" placeholder="Nome" class="nome_spedizione form-control" value="{{$user->nome_spedizione}}">
                           </div>
                         </div>
                         </div>
@@ -98,7 +101,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">Indirizzo</label>
                           <div class="col-sm-6">
-                            <input type="text" id="indirizzo_spedizione" name="indirizzo_spedizione" placeholder="Indirizzo" class="indirizzo_spedizione form-control">
+                            <input type="text" id="indirizzo_spedizione" name="indirizzo_spedizione" placeholder="Indirizzo" class="indirizzo_spedizione form-control" value="{{$user->indirizzo_spedizione}}">
                           </div>
                         </div>
                         </div>
@@ -108,7 +111,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">Città</label>
                           <div class="col-sm-6">
-                            <input type="text" id="citta_spedizione" name="citta_spedizione" placeholder="Città" class="citta_spedizione form-control">
+                            <input type="text" id="citta_spedizione" name="citta_spedizione" placeholder="Città" class="citta_spedizione form-control" value="{{$user->citta_spedizione}}">
                           </div>
                         </div>
                         </div>
@@ -118,7 +121,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">Provincia</label>
                           <div class="col-sm-6">
-                            <input type="text" id="provincia_spedizione" name="provincia_spedizione" maxlength="65" placeholder="Provincia" class="provincia_spedizione form-control">
+                            <input type="text" id="provincia_spedizione" name="provincia_spedizione" maxlength="65" placeholder="Provincia" class="provincia_spedizione form-control" value="{{$user->provincia_spedizione}}">
                           </div>
                         </div>
                         </div>
@@ -128,7 +131,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">CAP</label>
                           <div class="col-sm-6">
-                            <input type="text" id="cap_spedizione" name="cap_spedizione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_spedizione form-control">
+                            <input type="text" id="cap_spedizione" name="cap_spedizione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_spedizione form-control" value="{{$user->cap_spedizione}}">
                           </div>
                         </div>
                         </div>
@@ -221,7 +224,7 @@
                         </div>
                         <div class="panel-body">
 
-                        @if (is_null($customer))
+                        @if (is_null($customer) || !is_null($edit_pagamento))
 
                           <!-- Card Holder Name -->
                             <div class="row">
@@ -299,6 +302,8 @@
                               in scadenza il {{$card->exp_month}}/{{$card->exp_year}}
 
                               <input type="hidden" name="customer_exists" value="1">
+
+                              <a href="{{ url('checkout') }}?edit_pagamento"><span class="label label-primary" style="float: right;">modifica</span></a>
                             
                         @endif
                         

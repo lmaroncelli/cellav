@@ -116,7 +116,7 @@ class CarrelloController extends AdminController
 
 
 
-    public function getCheckout()
+    public function getCheckout(Request $request)
         {
        
         $carrello = $this->_checkCarrello($create = false);
@@ -135,12 +135,35 @@ class CarrelloController extends AdminController
         $user_id = Auth::user()->id;
         $user = User::findOrFail($user_id);
 
+
+         $edit_pagamento =  $request->query('edit_pagamento');
+
+         if(!is_null($edit_pagamento))
+            {
+            //////////////////////////////////////////////////////////
+            // ELIMINO L'ASSOCIAZIONE CON IL customer stripe !!!    //
+            //////////////////////////////////////////////////////////
+            $user->stripe_id = null;
+            $user->save();
+            }
+
         if (!is_null($user->stripe_id) && $user->stripe_id != '') 
             {
             try 
                 {
                 Stripe::setApiKey(config('services.stripe.secret'));
                 $customer = Customer::retrieve($user->stripe_id);
+
+                // se l'utente è associato ad un customer stripe che non ha metodi di pagamenti validi lo DISSOCIO!!
+                if(empty($customer->sources->data))
+                    {
+                    $user->stripe_id = null;
+                    $user->save();    
+                    return Redirect::route('checkout');    
+                    }
+
+
+
                 } 
             catch (\Exception $e) 
                 {
@@ -152,7 +175,21 @@ class CarrelloController extends AdminController
             $customer = null;
             }   
 
-        return view('carrello.viewCheckout',['prodottiCarrello'=>$prodottiCarrello,'total'=>$total, 'customer' => $customer, 'user' => $user]);
+
+
+        /////////////////////////////////////////////////
+        // voglio modificare l'indirizzo di spedizione //
+        /////////////////////////////////////////////////
+        
+        // restituisce il valore se la passo via query string, null altrimenti
+        $edit_spedizione = $request->query('edit_spedizione');
+
+       
+        
+
+
+        
+        return view('carrello.viewCheckout',['prodottiCarrello'=>$prodottiCarrello,'total'=>$total, 'customer' => $customer, 'user' => $user, 'edit_spedizione' => $edit_spedizione, 'edit_pagamento' => $edit_pagamento]);
 
 
         }
@@ -217,6 +254,7 @@ class CarrelloController extends AdminController
 
             try 
                 {
+
                 $customer = Customer::create(array(
                      'email' =>  $request->get('stripeEmail'),
                      'source'  => $request->get('stripeToken')
