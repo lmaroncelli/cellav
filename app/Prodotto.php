@@ -37,6 +37,7 @@ class Prodotto extends Model
 		'scheda',
 		'ingredienti',
 		'uri',
+    'indirizzo_fatturazione', 'citta_fatturazione', 'cap_fatturazione', 'provincia_fatturazione','indirizzo_spedizione', 'citta_spedizione', 'cap_spedizione', 'provincia_spedizione'
 	];
 
 

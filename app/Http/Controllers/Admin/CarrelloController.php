@@ -203,28 +203,45 @@ class CarrelloController extends AdminController
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         $user_id = Auth::user()->id;
+        $user = User::findOrFail($user_id);
 
 
-       try {
-            $customer = Customer::create(array(
-                 'email' =>  $request->get('stripeEmail'),
-                 'source'  => $request->get('stripeToken')
-             ));
+        if($request->has('customer_exists') && $request->get('customer_exists') == 1) 
+            {   
 
-            $user = User::findOrFail($user_id);
-            $user->stripe_id = $customer->id;
-            $user->save();
-            
-        } catch (\Exception $e) {
-            return Redirect::route('checkout')->with('error',$e->getMessage());
-        }
+            $customer_id = $user->stripe_id;
+
+            }
+        else
+            {
+
+            try 
+                {
+                $customer = Customer::create(array(
+                     'email' =>  $request->get('stripeEmail'),
+                     'source'  => $request->get('stripeToken')
+                 ));
+
+                $customer_id = $customer->id;
+
+                $user->stripe_id = $customer_id;
+                $user->save();
+                
+                } 
+            catch (\Exception $e) 
+                {
+                return Redirect::route('checkout')->with('error',$e->getMessage());
+                }
+
+            }
+
 
 
 
         try {
             
             $charge = Charge::create(array(
-                  'customer' => $customer->id,
+                  'customer' => $customer_id,
                   'amount'   => $total,
                   'currency' => 'eur',
                   'description' => "Acquisto di " . Auth::user()->email,
@@ -242,10 +259,13 @@ class CarrelloController extends AdminController
                 /////////////////////
                 $ordine =  new Ordine();
                 $ordine->user_id=$user_id;
-                $ordine->indirizzo_fatturazione = $request->get('indirizzo_fatturazione');
-                $ordine->citta_fatturazione = $request->get('citta_fatturazione');
-                $ordine->cap_fatturazione = $request->get('cap_fatturazione');
-                $ordine->provincia_fatturazione = $request->get('provincia_fatturazione');
+
+                $ordine->nome_spedizione = $request->get('nome_spedizione');
+                $ordine->indirizzo_spedizione = $request->get('indirizzo_spedizione');
+                $ordine->citta_spedizione = $request->get('citta_spedizione');
+                $ordine->cap_spedizione = $request->get('cap_spedizione');
+                $ordine->provincia_spedizione = $request->get('provincia_fatturazione');
+                
                 $ordine->totale = $carrello->getTotale();
                 $ordine->stripe_payment_id = $charge->id;
                 $ordine->save();
@@ -279,6 +299,16 @@ class CarrelloController extends AdminController
         }
 
 
+        ////////////////////////////////////////////
+        // SALVO I DATI DI SPEDIZIONE NELL'UTENTE //
+        ////////////////////////////////////////////
+        
+        $user->nome_spedizione = $request->get('nome_spedizione');
+        $user->indirizzo_spedizione = $request->get('indirizzo_spedizione');
+        $user->citta_spedizione = $request->get('citta_spedizione');
+        $user->cap_spedizione = $request->get('cap_spedizione');
+        $user->provincia_spedizione = $request->get('provincia_spedizione');
+        $user->save();        
 
 
         return 'ok';

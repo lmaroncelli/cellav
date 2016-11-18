@@ -72,7 +72,17 @@
                     <div class="panel panel-primary">
                     <div class="panel-heading">Spedizione</div>
                     <div class="panel-body">
-                    
+                      
+                      <!-- Nome -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">Nome</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="nome_spedizione" name="nome_spedizione" placeholder="Nome" class="nome_spedizione form-control">
+                        </div>
+                      </div>
+                      </div>
+
                       <!-- Street -->
                       <div class="row">
                       <div class="form-group">
@@ -108,7 +118,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="textinput">CAP</label>
                         <div class="col-sm-6">
-                          <input type="text" id="cap_spedizione" name=cap_spedizione"" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_spedizione form-control">
+                          <input type="text" id="cap_spedizione" name="cap_spedizione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_spedizione form-control">
                         </div>
                       </div>
                       </div>
@@ -124,6 +134,16 @@
                       <div class="panel panel-danger">
                       <div class="panel-heading">Fatturazione</div>
                       <div class="panel-body">
+
+                      <!-- Nome -->
+                      <div class="row">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label" for="textinput">Nome</label>
+                        <div class="col-sm-6">
+                          <input type="text" id="nome_fatturazione" name="nome_fatturazione" placeholder="Nome" class="nome_fatturazione form-control">
+                        </div>
+                      </div>
+                      </div>
 
                       <!-- Street -->
                       <div class="row">
@@ -160,7 +180,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="textinput">CAP</label>
                         <div class="col-sm-6">
-                          <input type="text" id="cap_fatturazione" name=cap_fatturazione"" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_fatturazione form-control">
+                          <input type="text" id="cap_fatturazione" name="cap_fatturazione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_fatturazione form-control">
                         </div>
                       </div>
                       </div>
@@ -266,6 +286,8 @@
                         
                               {{$card->brand}} termina con {{$card->last4}}<br>
                               in scadenza il {{$card->exp_month}}/{{$card->exp_year}}
+
+                              <input type="hidden" name="customer_exists" value="1">
                             
                         @endif
                         
@@ -295,6 +317,7 @@
 
 @stop
 
+@if (is_null($customer))
 
 @section('script')
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
@@ -350,3 +373,5 @@
 
     </script>
 @stop
+
+@endif

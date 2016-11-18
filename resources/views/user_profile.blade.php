@@ -13,9 +13,10 @@
 	
 				<hr/>
 				
-				@foreach ($user->ordini as $ordine)
+				@foreach ($user->ordini()->orderBy('created_at','desc')->get() as $ordine)
 				
 					<div class="panel panel-default">
+					  <div class="panel-heading">Ordine #{{$ordine->id}} del {{$ordine->created_at}}</div>
 					  <div class="panel-body">
 					    <ul class="list-group">
 					    	@foreach ($ordine->prodotti as $prodottoOrdine)
