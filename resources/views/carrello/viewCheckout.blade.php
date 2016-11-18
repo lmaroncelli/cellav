@@ -77,7 +77,14 @@
                             $user->indirizzo_spedizione != '' && 
                             is_null($edit_spedizione)
                           )
-                        
+
+                          {{-- passo indirizzo nei campi hidden --}}
+                          <input type="hidden" name="nome_spedizione" value="{{$user->nome_spedizione}}">
+                          <input type="hidden" name="indirizzo_spedizione" value="{{$user->indirizzo_spedizione}}">
+                          <input type="hidden" name="citta_spedizione" value="{{$user->citta_spedizione}}">
+                          <input type="hidden" name="provincia_spedizione" value="{{$user->provincia_spedizione}}">
+                          <input type="hidden" name="cap_spedizione" value="{{$user->cap_spedizione}}">
+
                           {{$user->nome_spedizione}}<br>
                           {{$user->indirizzo_spedizione}}
                           {{$user->cap_spedizione}} - {{$user->citta_spedizione}} ({{$user->provincia_spedizione}})
