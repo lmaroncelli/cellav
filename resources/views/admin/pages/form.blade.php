@@ -20,6 +20,19 @@
 		
 		{{ csrf_field() }}
 		
+		
+		<div class="form-group">
+		<label for="caratteristiche">In menu</label>
+		<div class="checkbox">
+  	  <label>
+  	    <input type="checkbox" id="inMenu" name="inMenu" value="1" aria-label="Offerta" @if (old('inMenu')==1 || (isset($page->inMenu) && $page->inMenu == 1) ) checked @endif>
+  	   </label>
+  	</div>
+  	</div>
+		
+		<hr/>
+		<hr/>
+	
 		<div class="form-group">
 	    	<label for="titolo">Titolo</label>
 	    	<input type="text" class="form-control" id="titolo" placeholder="Titolo" name="title" value="{{old('title', isset($page->title) ? $page->title : null)}}">

@@ -56,15 +56,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">SOLID.</a>
+          <a class="navbar-brand" href="{{ url('/') }}">HOME.</a>
         </div>
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ url('/pane-pizza-senza-glutine') }}">HOME</a></li>
+            
+            {{-- Menu dinamico --}}
+            {!! Helper::menu() !!}
+            
+            {{-- Menu Utente Loggato oppure No --}}
             @if (Auth::guest())
                 <li><a href="{{ url('/login') }}">Login</a></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
             @else
+              
               @if (Auth::user()->carrelli->count() > 0)
                 <li><a href="{{ route('carrello.show') }}">
                     <i class="material-icons">carrello</i><span class="badge green">{{Auth::user()->carrelli()->first()->prodotti()->count()}}</span>  
@@ -94,6 +99,7 @@
                 </ul>
               </li>
             @endif
+            {{-- FINE Menu utente --}}
 
           </ul>
         </div><!--/.nav-collapse -->

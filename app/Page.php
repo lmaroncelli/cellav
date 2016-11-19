@@ -10,7 +10,7 @@ class Page extends Model
 	protected $table = 'tblPages';
 
     protected $fillable = [
-        'title','uri','content','listing','listingCaratteristiche', 'listingCategorie'
+        'title','uri','content','listing','listingCaratteristiche', 'listingCategorie', 'inMenu'
     ];
 
 

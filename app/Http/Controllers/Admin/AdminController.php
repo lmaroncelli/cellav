@@ -33,7 +33,7 @@ class AdminController extends BaseController
     public function index()
     {
     		if (Auth::user()->ruolo == 'admin') {
-        	return view('home');
+        	return view('admin.home');
     		} else {
     			return redirect('/');
     		}

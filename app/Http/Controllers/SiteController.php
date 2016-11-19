@@ -99,7 +99,7 @@ class SiteController extends Controller
 	{
 		if (empty($slug)) 
 			{
-			echo "home";
+			return view('home');
 			} 
 		else 
 			{
