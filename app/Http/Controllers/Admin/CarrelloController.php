@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Carrello;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\PostCheckoutRequest;
 use App\Ordine;
 use App\Prodotto;
 use App\ProdottoCarrello;
@@ -195,7 +196,7 @@ class CarrelloController extends AdminController
         }
 
 
-    public function postCheckout(Request $request)
+    public function postCheckout(PostCheckoutRequest $request)
     {
         //dd($request->all());
         /*

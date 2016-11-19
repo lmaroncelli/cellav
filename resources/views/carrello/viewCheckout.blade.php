@@ -98,7 +98,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">Nome</label>
                           <div class="col-sm-6">
-                            <input type="text" id="nome_spedizione" name="nome_spedizione" placeholder="Nome" class="nome_spedizione form-control" value="{{$user->nome_spedizione}}">
+                            <input type="text" id="nome_spedizione" name="nome_spedizione" placeholder="Nome" class="nome_spedizione form-control" value="{{old('nome_spedizione', isset($user->nome_spedizione) ? $user->nome_spedizione : null)}}">
                           </div>
                         </div>
                         </div>
@@ -108,7 +108,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">Indirizzo</label>
                           <div class="col-sm-6">
-                            <input type="text" id="indirizzo_spedizione" name="indirizzo_spedizione" placeholder="Indirizzo" class="indirizzo_spedizione form-control" value="{{$user->indirizzo_spedizione}}">
+                            <input type="text" id="indirizzo_spedizione" name="indirizzo_spedizione" placeholder="Indirizzo" class="indirizzo_spedizione form-control" value="{{old('indirizzo_spedizione', isset($user->indirizzo_spedizione) ? $user->indirizzo_spedizione : null)}}">
                           </div>
                         </div>
                         </div>
@@ -118,7 +118,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">Città</label>
                           <div class="col-sm-6">
-                            <input type="text" id="citta_spedizione" name="citta_spedizione" placeholder="Città" class="citta_spedizione form-control" value="{{$user->citta_spedizione}}">
+                            <input type="text" id="citta_spedizione" name="citta_spedizione" placeholder="Città" class="citta_spedizione form-control" value="{{old('citta_spedizione', isset($user->citta_spedizione) ? $user->citta_spedizione : null)}}">
                           </div>
                         </div>
                         </div>
@@ -128,7 +128,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">Provincia</label>
                           <div class="col-sm-6">
-                            <input type="text" id="provincia_spedizione" name="provincia_spedizione" maxlength="65" placeholder="Provincia" class="provincia_spedizione form-control" value="{{$user->provincia_spedizione}}">
+                            <input type="text" id="provincia_spedizione" name="provincia_spedizione" maxlength="65" placeholder="Provincia" class="provincia_spedizione form-control" value="{{old('provincia_spedizione', isset($user->provincia_spedizione) ? $user->provincia_spedizione : null)}}">
                           </div>
                         </div>
                         </div>
@@ -138,7 +138,7 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label" for="textinput">CAP</label>
                           <div class="col-sm-6">
-                            <input type="text" id="cap_spedizione" name="cap_spedizione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_spedizione form-control" value="{{$user->cap_spedizione}}">
+                            <input type="text" id="cap_spedizione" name="cap_spedizione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_spedizione form-control" value="{{old('cap_spedizione', isset($user->cap_spedizione) ? $user->cap_spedizione : null)}}">
                           </div>
                         </div>
                         </div>
@@ -161,7 +161,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="textinput">Nome</label>
                         <div class="col-sm-6">
-                          <input type="text" id="nome_fatturazione" name="nome_fatturazione" placeholder="Nome" class="nome_fatturazione form-control">
+                          <input type="text" id="nome_fatturazione" name="nome_fatturazione" placeholder="Nome" class="nome_fatturazione form-control" value="{{old('nome_fatturazione', isset($user->nome_fatturazione) ? $user->nome_fatturazione : null)}}">
                         </div>
                       </div>
                       </div>
@@ -171,7 +171,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="textinput">Indirizzo</label>
                         <div class="col-sm-6">
-                          <input type="text" id="indirizzo_fatturazione" name="indirizzo_fatturazione" placeholder="Indirizzo" class="indirizzo_fatturazione form-control">
+                          <input type="text" id="indirizzo_fatturazione" name="indirizzo_fatturazione" placeholder="Indirizzo" class="indirizzo_fatturazione form-control" value="{{old('indirizzo_fatturazione', isset($user->indirizzo_fatturazione) ? $user->indirizzo_fatturazione : null)}}">
                         </div>
                       </div>
                       </div>
@@ -181,7 +181,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="textinput">Città</label>
                         <div class="col-sm-6">
-                          <input type="text" id="citta_fatturazione" name="citta_fatturazione" placeholder="Città" class="citta_fatturazione form-control">
+                          <input type="text" id="citta_fatturazione" name="citta_fatturazione" placeholder="Città" class="citta_fatturazione form-control" value="{{old('citta_fatturazione', isset($user->citta_fatturazione) ? $user->citta_fatturazione : null)}}">
                         </div>
                       </div>
                       </div>
@@ -191,7 +191,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="textinput">Provincia</label>
                         <div class="col-sm-6">
-                          <input type="text" id="provincia_fatturazione" name="provincia_fatturazione" maxlength="65" placeholder="Provincia" class="provincia_fatturazione form-control">
+                          <input type="text" id="provincia_fatturazione" name="provincia_fatturazione" maxlength="65" placeholder="Provincia" class="provincia_fatturazione form-control" value="{{old('provincia_fatturazione', isset($user->provincia_fatturazione) ? $user->provincia_fatturazione : null)}}">
                         </div>
                       </div>
                       </div>
@@ -201,7 +201,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="textinput">CAP</label>
                         <div class="col-sm-6">
-                          <input type="text" id="cap_fatturazione" name="cap_fatturazione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_fatturazione form-control">
+                          <input type="text" id="cap_fatturazione" name="cap_fatturazione" data-stripe="address_zip" maxlength="9" placeholder="CAP" class="cap_fatturazione form-control" value="{{old('cap_fatturazione', isset($user->cap_fatturazione) ? $user->cap_fatturazione : null)}}">
                         </div>
                       </div>
                       </div>
@@ -217,7 +217,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="textinput">Email</label>
                         <div class="col-sm-6">
-                          <input type="text" id="email" maxlength="65" placeholder="Email" value="{{auth()->user()->email}}" class="email form-control">
+                          <input type="text" id="email" name="email" maxlength="65" placeholder="Email" value="{{old('email', isset(auth()->user()->email) ? auth()->user()->email : null)}}" class="email form-control">
                         </div>
                       </div>
                       </div>

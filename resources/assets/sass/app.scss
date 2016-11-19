@@ -7,3 +7,13 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+
+
+.alert{
+ ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}

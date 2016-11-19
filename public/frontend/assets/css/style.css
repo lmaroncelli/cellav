@@ -458,3 +458,10 @@ csmall2 {
 	padding-right: 15px;
 	font-size: 18px;
 }
+
+
+/* messaggi di errore */
+
+div.alert ul {
+	list-style: none;
+}
