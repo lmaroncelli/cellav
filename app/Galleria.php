@@ -10,7 +10,7 @@ class Galleria extends Model
 	protected $table = 'tblGallerie';
 
 	protected $fillable = [
-	        'nome',
+	        'titolo',
 			];
 
 

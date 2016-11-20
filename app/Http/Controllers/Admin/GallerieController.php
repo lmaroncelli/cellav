@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Galleria;
 use App\Http\Controllers\Controller;
+use App\ImmagineGalleria;
 use Illuminate\Http\Request;
 
 class GallerieController extends Controller
@@ -11,11 +12,16 @@ class GallerieController extends Controller
 
 
     public function uploadFile(Request $request)
-    {
+    {    
+        $galleria_id = $request->get('galleria_id');
+
         $image = $request->file('file');
         $imageName = time().$image->getClientOriginalName();
         
-        $image->storeAs('galleria',$imageName);
+        $path = $image->storeAs('galleria',$imageName);
+
+        $immagineGalleria = ImmagineGalleria::create(['galleria_id' => $galleria_id ,'nome' => $path]);
+
 
         return response()->json(['success'=>$imageName]);
     }
@@ -49,9 +55,9 @@ class GallerieController extends Controller
      */
     public function store(Request $request)
     {
-
         $galleria = Galleria::create($request->all());
 
+        return view('admin.gallerie.form', compact('galleria'));
     }
 
     /**
@@ -73,7 +79,8 @@ class GallerieController extends Controller
      */
     public function edit($id)
     {
-        //
+    $galleria = galleria::find($id);
+    return view('admin.gallerie.form', compact('galleria'));
     }
 
     /**

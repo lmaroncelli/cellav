@@ -17,8 +17,8 @@ class CreateImmaginiGalleria extends Migration
             $table->increments('id');
             $table->integer('galleria_id')->unsigned();
             $table->string('nome');
-            $table->string('titolo')->defalut('');
-            $table->text('descrizione');
+            $table->string('titolo')->default('');
+            $table->text('descrizione')->nullable()->default(null);
             $table->foreign('galleria_id')->references('id')->on('tblGallerie')->onDelete('cascade');
             $table->timestamps();
         });

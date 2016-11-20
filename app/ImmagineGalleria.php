@@ -15,6 +15,7 @@ class ImmagineGalleria extends Model
  					'nome',
 	        'titolo',
 	        'descrizione',
+	        'galleria_id'
 	    
 			];
 

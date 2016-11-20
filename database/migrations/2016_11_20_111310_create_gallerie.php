@@ -15,7 +15,7 @@ class CreateGallerie extends Migration
     {
         Schema::create('tblGallerie', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome');
+            $table->string('titolo')->default('');
             $table->timestamps();
         });
     }
