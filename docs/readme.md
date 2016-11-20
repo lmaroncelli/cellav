@@ -548,6 +548,14 @@ foreach ($customer->sources->data as $card) {
 
 
 
+*Dropzone.js Multi upload image*
+
+Dalla documentazione https://www.npmjs.com/package/dropzone
+
+npm install dropzone
+
+
+
 
 ===================================================================
 ===================================================================
