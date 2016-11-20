@@ -8,6 +8,18 @@ use Illuminate\Http\Request;
 
 class GallerieController extends Controller
 {
+
+
+    public function uploadFile(Request $request)
+    {
+        $image = $request->file('file');
+        $imageName = time().$image->getClientOriginalName();
+        
+        $image->storeAs('galleria',$imageName);
+
+        return response()->json(['success'=>$imageName]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +49,9 @@ class GallerieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $galleria = Galleria::create($request->all());
+
     }
 
     /**

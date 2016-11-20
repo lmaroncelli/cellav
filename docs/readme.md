@@ -552,7 +552,96 @@ foreach ($customer->sources->data as $card) {
 
 Dalla documentazione https://www.npmjs.com/package/dropzone
 
-npm install dropzone
+npm install dropzone --save
+
+ha creato la cartella dropzone in node_modules e con l'opzione --save ha scritto la dipendenza nel file package.json
+
+
+
+nel file resources/assets/bootstrap.js includo dopzone, con:
+
+
+require('dropzone');
+
+
+
+poi nel file gulp.js aggiungo i suoi js e css
+
+elixir(mix => {
+    mix.sass('app.scss')
+       .webpack('app.js')
+       .combine(['public/js/app.js', 'node_modules/cd-summernote/index.js'],'public/js/app.js')
+       .copy('node_modules/dropzone/dist/dropzone.js','public/js/dropzone.js')
+       .copy('node_modules/dropzone/dist/basic.css','public/css/dropzone/basic.css')
+       .copy('node_modules/dropzone/dist/dropzone.css','public/css/dropzone/dropzone.css')
+       .less('index.less','public/css/supernote.css','node_modules/cd-summernote')
+       .copy('node_modules/bootstrap-sass/assets/fonts', 'public/fonts')
+       .copy('node_modules/cd-summernote/fonts', 'public/css/fonts');
+});
+
+
+in modo da avere i file nella directory public e poterli linkare !!!
+
+
+luigi@lenovo /var/www/html/celiachiamo $ gulp
+[15:24:51] Using gulpfile /var/www/html/celiachiamo/gulpfile.js
+[15:24:51] Starting 'all'...
+[15:24:51] Starting 'sass'...
+[15:24:55] Finished 'sass' after 3.73 s
+[15:24:55] Starting 'webpack'...
+[15:25:03] 
+[15:25:04] Finished 'webpack' after 8.44 s
+[15:25:04] Starting 'combine'...
+[15:25:04] Finished 'combine' after 186 ms
+[15:25:04] Starting 'copy'...
+[15:25:04] Finished 'copy' after 803 ms
+[15:25:04] Starting 'copy'...
+[15:25:05] Finished 'copy' after 61 ms
+[15:25:05] Starting 'copy'...
+[15:25:05] Finished 'copy' after 50 ms
+[15:25:05] Starting 'less'...
+[15:25:07] Finished 'less' after 1.96 s
+[15:25:07] Starting 'copy'...
+[15:25:07] Finished 'copy' after 376 ms
+[15:25:07] Starting 'copy'...
+[15:25:07] Finished 'copy' after 121 ms
+[15:25:07] Finished 'all' after 16 s
+[15:25:07] Starting 'default'...
+┌───────────────┬───────────────────────────────┬───────────────────────────────────────────────┬──────────────────────────────────┐
+│ Task          │ Summary                       │ Source Files                                  │ Destination                      │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────────────┤
+│ mix.sass()    │ 1. Compiling Sass             │ resources/assets/sass/app.scss                │ public/css/app.css               │
+│               │ 2. Autoprefixing CSS          │                                               │                                  │
+│               │ 3. Concatenating Files        │                                               │                                  │
+│               │ 4. Writing Source Maps        │                                               │                                  │
+│               │ 5. Saving to Destination      │                                               │                                  │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────────────┤
+│ mix.webpack() │ 1. Transforming ES2015 to ES5 │ resources/assets/js/app.js                    │ public/js/app.js                 │
+│               │ 2. Writing Source Maps        │                                               │                                  │
+│               │ 3. Saving to Destination      │                                               │                                  │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────────────┤
+│ mix.combine() │ 1. Concatenating Files        │ public/js/app.js                              │ public/js/app.js                 │
+│               │ 2. Saving to Destination      │ node_modules/cd-summernote/index.js           │                                  │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────────────┤
+│ mix.copy()    │ 1. Saving to Destination      │ node_modules/dropzone/dist/dropzone.js        │ public/js/dropzone.js            │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────────────┤
+│ mix.copy()    │ 1. Saving to Destination      │ node_modules/dropzone/dist/basic.css          │ public/css/dropzone/basic.css    │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────────────┤
+│ mix.copy()    │ 1. Saving to Destination      │ node_modules/dropzone/dist/dropzone.css       │ public/css/dropzone/dropzone.css │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────────────┤
+│ mix.less()    │ 1. Compiling Less             │ node_modules/cd-summernote/index.less         │ public/css/supernote.css         │
+│               │ 2. Autoprefixing CSS          │                                               │                                  │
+│               │ 3. Concatenating Files        │                                               │                                  │
+│               │ 4. Writing Source Maps        │                                               │                                  │
+│               │ 5. Saving to Destination      │                                               │                                  │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────────────┤
+│ mix.copy()    │ 1. Saving to Destination      │ node_modules/bootstrap-sass/assets/fonts/**/* │ public/fonts                     │
+├───────────────┼───────────────────────────────┼───────────────────────────────────────────────┼──────────────────────────────────┤
+│ mix.copy()    │ 1. Saving to Destination      │ node_modules/cd-summernote/fonts/**/*         │ public/css/fonts                 │
+└───────────────┴───────────────────────────────┴───────────────────────────────────────────────┴──────────────────────────────────┘
+[15:25:07] Finished 'default' after 12 ms
+
+
 
 
 
