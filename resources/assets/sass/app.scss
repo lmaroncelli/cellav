@@ -9,7 +9,7 @@
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 
-
+/*  messaggio di errore  */
 .alert{
  ul {
     margin: 0;
@@ -17,3 +17,26 @@
     list-style: none;
   }
 }
+
+
+
+/*  elenco delle immagini della galleria al momento di caricarne altre */
+
+div.container_galleria {
+	margin: 20px; 0;
+	padding: 10px;
+}
+
+
+ul.galleria
+{
+list-style: none;
+margin:0 15px;
+}
+
+ul.galleria li {
+	float: left;
+	margin: 10px 20px;
+}
+
+

@@ -46,6 +46,7 @@ Route::group(['middleware' => ['admin']], function () {
 
 
 		
+		Route::get('admin/gallery/carica/{id}', ['as' => 'gallerie.carica', 'uses' => 'Admin\GallerieController@carica']);
 		Route::post('admin/gallery/uploadFile', ['as' => 'gallerie.upload', 'uses' => 'Admin\GallerieController@uploadFile']);
 		Route::get('admin/gallerie/{galleria}/confirm', ['as' => 'gallerie.confirm', 'uses' => 'Admin\GallerieController@confirm']);
 		Route::resource('admin/gallerie', 'Admin\GallerieController');

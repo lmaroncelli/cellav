@@ -226,6 +226,62 @@ Step 3: Use it in your Blade template:
 
 
 
+=================================================================================
+DROPZONE UPLOAD IMAGE
+=================================================================================
+
+
+  public function uploadImage(Request $request)
+  {
+
+    $hotel_id = $this->getHotelId();
+    $cliente = Hotel::find($hotel_id);
+    
+    $this->removeCache();
+    $immagine = $this->_getResizedImages($cliente, $request);
+
+    if (is_array($immagine)) {
+      $error_msg = $immagine['msg'];
+      return response()->json($error_msg, 400);
+    }
+    else {
+      DB::transaction(function() use ($hotel_id, $immagine)
+        {
+          $pos = ImmagineGallery::where('hotel_id', $hotel_id)->max('position');
+
+          if (is_null($pos)) {
+            $pos = 0;
+            $listing = 1;
+          } else {
+            $listing = 0;
+          }
+
+          $pos++;
+
+          ImmagineGallery::create(['hotel_id' => $hotel_id, 'foto' => $immagine, 'position' => $pos, 'listing_app' => $listing]);
+
+        });
+
+      return response()->json('OK', 200);
+    }
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

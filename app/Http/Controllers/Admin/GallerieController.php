@@ -79,8 +79,23 @@ class GallerieController extends Controller
      */
     public function edit($id)
     {
-    $galleria = galleria::find($id);
+    $galleria = Galleria::find($id);
     return view('admin.gallerie.form', compact('galleria'));
+    }
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function carica($id)
+    {
+    $galleria = Galleria::with(['immagini'])->find($id);
+
+    return view('admin.gallerie.formUpload', compact('galleria'));
     }
 
     /**
@@ -92,7 +107,13 @@ class GallerieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $galleria = Galleria::find($id);
+
+        $galleria->fill($request->all());
+    
+        $galleria->save();   
+
+        return redirect()->route('gallerie.index')->with('status', 'Galleria modificata correttamente!');
     }
 
     /**

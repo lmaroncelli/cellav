@@ -11,6 +11,7 @@
        <thead>
            <tr>
                <th>Nome</th>
+               <th>Carica</th>
                <th>Edit</th> 
                <th>Delete</th> 
            </tr>
@@ -20,9 +21,9 @@
 	           @foreach ($gallerie as $count => $galleria)
 	               <tr>
                      <td>{{$galleria->titolo}}</td>
-	                   <td>{{$galleria->visibile}}</td>
+                     <td><a href="{{ route('gallerie.carica',$galleria->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
                      <td><a href="{{ route('gallerie.edit',$galleria->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
-	                   <td><a href="{{ route('gallerie.confirm',$galleria->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+	                 <td><a href="{{ route('gallerie.confirm',$galleria->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
 	               </tr>
 	           @endforeach
 			@else
