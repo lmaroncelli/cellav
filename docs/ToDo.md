@@ -272,10 +272,184 @@ DROPZONE UPLOAD IMAGE
 
 
 
+  =================================================================================
+  =================================================================================
+  =================================================================================
+
+scrivo i risultati con i valori negli attributi data  e con la stessa classe
+
+<div class="risultati_ricerca">
+  <article data-id="593" data-url="/hotel/beach-hotel-apollo/" data-categoria="4" data-prezzo="54.00" data-lat="44.291372" data-lon="12.348535" class="draw_item_cliente_vetrina_listing blocco-listing blocco-listing-item-2  vetrina  ">
+    
+  </article>
+  <article data-id="736" data-url="/hotel/club-family-hotel-ariston/" data-categoria="4" data-prezzo="69.00" data-lat="44.276225" data-lon="12.352693" class="draw_item_cliente_vetrina_listing blocco-listing blocco-listing-item-2  vetrina  "> 
+
+  </article>
+
+  <article data-id="635" data-url="/hotel/club-family-hotel-rio/" data-categoria="4" data-prezzo="69.00" data-lat="44.275895" data-lon="12.351809" class="draw_item_cliente_vetrina_listing blocco-listing blocco-listing-item-2  vetrina  "> 
+  
+  </article>
+</div>
 
 
 
 
+con una funzione js leggo tutti gli elementi looppando sulla classe
+
+$(function() {  
+  
+  var array_blocco_listing = [];
+  
+  // Utility
+  
+  function elementi () {
+          
+      $(".blocco-listing").each(function (i) {
+        
+        var object_item = {
+        
+          nome    : $(this).find(".blocco-listing-title").text(),
+          qualita   : $(this).data("categoria"),
+          prezzo    : $(this).data("prezzo"),
+          oggetto   : $(this)
+          
+        };
+        
+        array_blocco_listing.push(object_item);
+        
+      });
+      
+    
+    return array_blocco_listing;
+    
+  }
+
+
+
+
+
+// Ordinamento
+    
+    $("#order").change( function () {
+      
+      var order = $("#order").val();
+      var lista_elementi = elementi();
+      
+      window.addLoadingPage();
+      
+      if (order == "nome") {
+      
+        lista_elementi.sort(function(a, b){
+          
+            if(a.nome < b.nome) return -1;
+            if(a.nome > b.nome) return 1;
+            return 0;
+            
+        })
+        
+      } else if ( order == 'categoria_desc') {
+        
+        lista_elementi.sort(function(a, b){
+          
+            if(a.qualita < b.qualita) return -1;
+            if(a.qualita > b.qualita) return 1;
+            return 0;
+            
+        });
+        
+      } else if ( order == 'prezzo_min') {
+        
+        lista_elementi.sort(function(a, b){
+          
+            if(a.prezzo < b.prezzo) return -1;
+            if(a.prezzo > b.prezzo) return 1;
+            return 0;
+        });
+        
+      }
+      
+      $(".risultati_ricerca").empty();
+      
+      $.each(lista_elementi, function (i, val) {
+        
+        $(".risultati_ricerca").append( $(val.oggetto) ); 
+        
+      });
+      
+      assegnaClick();
+      window.removeLoadingPage();
+      
+    });
+
+
+    $("#apertura").change( function () {
+      
+      $(".risultati_ricerca .no_risultati_ricerca").remove();
+      
+      var apertura = $("#apertura").val();
+      var count = $(".blocco-listing").length;
+      var c = 0;
+      
+      window.addLoadingPage();
+            
+      if (apertura == "0") {
+        
+        $(".blocco-listing").show();
+        c = count;
+          
+      } else if (apertura == "annuale") {
+                
+        $(".blocco-listing").each(function (i) {
+          
+          var me = $(this);
+          
+          if (me.data("annuale") == 1) {
+            me.show(); c++;
+          } else {
+            me.hide();
+          }
+          
+        });
+        
+      } else if ( apertura == "aperto_capodanno") {
+        
+        $(".blocco-listing").each(function (i) {
+          
+          var me = $(this);
+          
+          if (me.data("capodanno") == 1) {
+            me.show(); c++;
+          } else {
+            me.hide();
+          }
+
+          
+        });
+        
+      } else if ( apertura =="aperto_pasqua") {
+        
+        $(".blocco-listing").each(function (i) {
+          
+          var me = $(this);
+          
+          if (me.data("pasqua") == 1) {
+            me.show(); c++;
+          } else{
+            me.hide();
+          }
+          
+        });
+        
+      }
+      
+      console.log(c);
+      
+      if (c == 0)
+        $(".risultati_ricerca").append( $($nessun_hotel) );
+      
+      window.removeLoadingPage();
+      
+    });
 
 
 
