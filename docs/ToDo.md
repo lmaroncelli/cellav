@@ -82,7 +82,9 @@ Si definisce contrassegno il pagamento effettuato direttamente allo spedizionier
 Poi firmerai a lui il modulo di ricezione del pacco. Dopo aver cliccato sul tasto “acquista” troverai una pagina riassuntiva del tuo ordine. Inoltre ne riceverai una copia via mail.
 Il giorno in cui partirà la spedizione ti contatteremo telefonicamente per avvisarti dell’avvenuta spedizione.
 Il pagamento in contrassegno prevede un costo aggiuntivo a quello di spedizione: 6 euro iva inclusa. È esattamente il costo che Celiachiamo sostiene per il servizio che lo spedizioniere fornisce (ritiro del denaro presso di te e accredito dello stesso sul nostro conto corrente bancario).
-
+3. mettere gli indici in tutte le foreignkey
+  table->integer('tag_id')->unsigned()->index();
+4. nelle tabelle del blog NON CI SONO le foreignKey onDelete('cascade') !!!
 
 
 
