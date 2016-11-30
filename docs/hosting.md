@@ -30,6 +30,23 @@ There is no right and wrong when it comes to hosting. Instead, it simply depends
 
 However, since dedicated servers are almost always more expensive it’s generally a good idea to start with a VPS until your company is generating enough revenue to support the cost of a dedicated server.
 
+==============================================================================================================================================================================
+
+There are two flavors of VPS offered, and you need to be clear on which service you use. 
+
+The first gives you a true virtual machine (meaning you can run anything you want and are basically root) and 
+the second gives you a dedicated hosting control panel (like cPanel), but you share the core Web server configuration with other users on the machine.
+
+VPS services are also shared. 
+
+Going back to the "virtual" part, you might get a VPS that offers you a virtual machine image, onto which will likely be installed a Linux distro. 
+After that, in many VM-based VPSs, you're on your own. ====> You need to load your own LAMP stack (Linux, Apache, MySQL, PHP or Perl) and set up your own server management. For those who want to spend less money but want full control over their environment, this is a good choice.
+
+
+
+
+
+
 
 
 
