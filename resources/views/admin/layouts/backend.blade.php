@@ -62,6 +62,16 @@
                                 <li><a href="{{ route('categorie-ricette.index') }}">Categorie</a></li>
                             </ul>
                         </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Blog <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('articoli.index') }}">Articoli</a></li>
+                                <li><a href="{{ route('categorie-articoli.index') }}">Categorie</a></li>
+                            </ul>
+                        </li>
                         
                     </ul>
 

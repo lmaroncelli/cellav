@@ -53,6 +53,10 @@ Route::group(['middleware' => ['admin']], function () {
 
 
 
+		Route::resource('admin/articoli', 'Admin\ArticoliController');
+		Route::resource('admin/categorie-articoli', 'Admin\CategorieArticoliController');
+
+
 
 });
 
