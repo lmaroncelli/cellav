@@ -111,3 +111,12 @@ Route::get('images/{filename_witslash}', function ($filename_witslash)
 
 Route::get('/{slug?}', 'SiteController@make')/*->middleware('beforeDBQuery','afterDBQuery')*/;
 Route::get('/categoria/{slug?}', 'SiteController@makeCategoria')/*->middleware('beforeDBQuery','afterDBQuery')*/;
+
+
+//////////
+// blog //
+//////////
+
+Route::get('blog/show/{id}', array('as' => 'blog/show', 'uses' => 'BlogController@show'));
+
+Route::get('blog/{query_id?}/{s_cat_id?}', array('as' => 'blog', 'uses' => 'BlogController@index'));
