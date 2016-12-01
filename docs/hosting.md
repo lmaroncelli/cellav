@@ -4,6 +4,41 @@
 **wpSEO**
 
 
+
+Paolo Dolci
+--
+
+
+50-70 euro/anno (php)
+
+20 euro/mese sistemista sempre per te!!
+
+
+
+
+vps (2 processori + 8 GB RAM) 
+
+accesso shell 
+
+
+
+risorse da hosting + features in più (ssh)
+
+
+
+utenti contemporanei
+n. di visite 15k/mese
+
+elenco analitico delle cose da installare
+
+
+
+git 
+
+
+
+
+
 **SiteGround**
 
 
