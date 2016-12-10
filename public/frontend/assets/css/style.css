@@ -12,13 +12,18 @@
 
 body { 
 	padding-top: 50px;
-	background: #ffffff; 
+	/*background: #ffffff;*/ 
+	background: #ccc; 
 	margin: 0; 
 	height: 100%; 
 	color: #384452;
 	font-family: 'Lato', sans-serif;
 	font-weight: 400;
 	}
+
+body .starter-template {
+	background: #ffffff;
+}
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: 'Raleway', sans-serif;

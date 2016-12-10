@@ -61,13 +61,49 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">CELIACHIAMO</a>
+          <a class="navbar-brand" href="{{ url('/') }}">CELIACHIAMO</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            {{-- Menu dinamico --}}
+            {!! Helper::menu() !!}
+            
+            {{-- Menu Utente Loggato oppure No --}}
+            @if (Auth::guest())
+                <li><a href="{{ url('/login') }}">Login</a></li>
+                <li><a href="{{ url('/register') }}">Register</a></li>
+            @else
+              
+              @if (Auth::user()->carrelli->count() > 0)
+                <li><a href="{{ route('carrello.show') }}">
+                    <i class="material-icons">carrello</i><span class="badge green">{{Auth::user()->carrelli()->first()->prodotti()->count()}}</span>  
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </a>
+                </li>
+              @endif
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="{{ route('user.profile') }}">
+                      profile
+                    </a>
+                  </li>
+                  <li>
+                      <a href="{{ url('/logout') }}"
+                          onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                          Logout
+                      </a>
+
+                      <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                          {{ csrf_field() }}
+                      </form>
+                  </li>
+                </ul>
+              </li>
+            @endif
+            {{-- FINE Menu utente --}}
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -76,6 +112,7 @@
     <div class="container">
 
       <div class="starter-template">
+        @include('slider')
         <h1>Bootstrap starter template</h1>
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
 
