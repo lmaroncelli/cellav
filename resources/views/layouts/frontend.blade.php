@@ -24,9 +24,6 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ url('frontend/assets/css/bootstrap.css') }}" rel="stylesheet">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="{{ url('frontend/assets/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="{{ url('frontend/assets/css/style.css') }}" rel="stylesheet">
      <link href="{{ url('frontend/assets/css/font-awesome.min.css') }}" rel="stylesheet">
@@ -112,10 +109,6 @@
     <div class="container">
 
       <div class="starter-template">
-        
-        @include('home.slider')
-
-        @include('home.negozi')
 
         <h1>Bootstrap starter template</h1>
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
@@ -134,8 +127,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ url('frontend/assets/js/bootstrap.min.js') }}"><\/script>')</script>
     <script src={{ url('frontend/assets/js/bootstrap.min.js') }}></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src={{ url('frontend/assets/js/ie10-viewport-bug-workaround.js') }}></script>
 
     @yield('script')
   </body>
