@@ -58,6 +58,17 @@ Route::group(['middleware' => ['admin']], function () {
 
 
 
+
+		/* HOME PAGE */
+
+		Route::get('admin/homepage', ['as' => 'homepage.edit', 'uses' => 'Admin\HomePageController@edit']);
+		Route::post('admin/homepage', ['as' => 'homepage.save', 'uses' => 'Admin\HomePageController@update']);
+
+		Route::post('admin/homepage/uploadSlideHeader', ['as' => 'homepage.uploaduploadSlideHeader', 'uses' => 'Admin\HomePageController@uploadSlideHeader']);
+		
+
+
+
 });
 
 //////////////////////////////////////////////////

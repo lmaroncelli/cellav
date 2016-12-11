@@ -6,6 +6,7 @@ use App\CategoriaRicetta;
 use App\Http\Requests;
 use App\Page;
 use App\Prodotto;
+use App\Slide;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -99,7 +100,24 @@ class SiteController extends Controller
 	{
 		if (empty($slug)) 
 			{
-			return view('home');
+			$slide_header = Slide::with(['immagini'])->titolo('hp_slide_header')->first();
+			
+			$first_header_image = null;
+			$header_images = [];
+
+			foreach ($slide_header->immagini as $count => $immagine) 
+				{
+				if ($count == 0) 
+					{
+					$first_header_image =  url('images/'.$immagine->nome);
+					} 
+				else 
+					{
+					$header_images[] = url('images/'.$immagine->nome);
+					}
+				}
+
+			return view('home',compact('first_header_image','header_images'));
 			} 
 		else 
 			{

@@ -16,7 +16,9 @@
 
 @section('content')
 	
-	@include('home.slider')
+	@if (!is_null($first_header_image))
+		@include('home.slider')
+	@endif
 
   @include('home.negozi')
 

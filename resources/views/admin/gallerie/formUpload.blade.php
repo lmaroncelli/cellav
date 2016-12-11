@@ -22,7 +22,7 @@
     @endif
     <hr>
     <div class="row">
-    <form  method="POST" action="{{ route('gallerie.upload') }}" class="dropzone"  enctype="multipart/form-data" id="formUpload">
+    <form  method="POST" action="{{ route('homepage.uploaduploadSlideHeader') }}" class="dropzone"  enctype="multipart/form-data" id="formUpload">
       {{ csrf_field() }}
       <input type="hidden" name="galleria_id" value="{{$galleria->id}}">
     </form>
