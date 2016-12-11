@@ -35,7 +35,10 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-		  $('.bxslider').bxSlider();
+		  $('.bxslider').bxSlider({
+		  	adaptiveHeight: true,
+		  	 mode: 'fade'
+		  });
 		});
 	</script>
 @stop
