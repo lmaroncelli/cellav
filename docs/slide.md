@@ -29,7 +29,7 @@ le categorie di prodotti (pane e pizza, dolci, farine, freschi e artigianali, pa
 i corsi sono delle entità da mettere in relazione con i negozi ? (cioè è possibile creare un nuovo corso con desc e video ed associalo ad un negozio ? relazione 1 - n ?)
 
 
-i prodotti da acquistare in ogni negozio come sono scelti, c'è una relazione tra negozio e prodotti ?
+i prodotti da acquistare in ogni pagina negozio come sono scelti, c'è una relazione tra negozio e prodotti ?
 Oppure tutti vendono tutti ? Quindi in ogni pagina di negozio con che criterio scelgo i prodotti da mettere per la vendita ? n a caso ?
 
 
