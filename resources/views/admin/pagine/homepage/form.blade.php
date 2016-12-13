@@ -34,8 +34,72 @@
     </div>
 
     <hr>
-    <hr>
-  <a class="btn btn-primary" href="{{ route('gallerie.index') }}">Torna all'elenco</a>
+    
+    <form  method="POST" action="{{ route('homepage.save') }}" enctype="multipart/form-data">
+    {{ csrf_field() }}    
+    <div class="row">
+
+      <h2>Negozi</h2></div>
+     
+      <div id="exTab2"> 
+
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <a  href="#1" data-toggle="tab">LAB</a>
+        </li>
+        <li><a href="#2" data-toggle="tab">CIPRO</a>
+        </li>
+        <li><a href="#3" data-toggle="tab">TIBURTINA</a>
+        </li>
+      </ul>
+
+      <div class="tab-content ">
+        <div class="tab-pane active" id="1">
+          <h3>Inserisci i dati per il widget "Celiachiamo LAB"</h3>
+          <p>
+            <div class="form-group">
+              <label for="titolo">Immagine</label>
+              <input type="file" class="form-control" id="img" name="img_lab">
+            </div>
+            <div class="form-group">
+              <label for="titolo">Descrizione</label>
+              <textarea class="form-control" rows="3" name="desc_lab"></textarea>
+            </div>
+          </p>
+        </div>
+        <div class="tab-pane" id="2">
+         <h3>Inserisci i dati per il widget "Celiachiamo CIPRO"</h3>
+         <p>
+            <div class="form-group">
+              <label for="titolo">Immagine</label>
+              <input type="file" class="form-control" id="img" name="img_cipro">
+            </div>
+            <div class="form-group">
+              <label for="titolo">Descrizione</label>
+              <textarea class="form-control" rows="3" name="desc_cipro"></textarea>
+            </div>
+          </p>
+        </div>
+        <div class="tab-pane" id="3">
+          <h3>Inserisci i dati per il widget "Celiachiamo TIBURTINA"</h3>
+          <p>
+             <div class="form-group">
+               <label for="titolo">Immagine</label>
+               <input type="file" class="form-control" id="img" name="img_tiburtina">
+             </div>
+             <div class="form-group">
+               <label for="titolo">Descrizione</label>
+               <textarea class="form-control" rows="3" name="desc_tiburtina"></textarea>
+             </div>
+           </p>
+        </div>
+      </div>
+     
+  </div> {{-- end row --}}
+    
+  <button type="submit" class="btn btn-primary">Modifica</button>
+
+  </form>
 
 
 
