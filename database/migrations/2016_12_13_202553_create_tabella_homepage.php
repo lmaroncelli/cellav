@@ -23,8 +23,8 @@ class CreateTabellaHomepage extends Migration
             $table->string('listingCaratteristiche')->nullable()->default(null);
             $table->integer('header_slide_id')->unsigned();
             $table->foreign('header_slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
-            $table->string('img_lab')->nullable()->default('');
-            $table->text('desc_lab');
+            $table->string('img_magliana')->nullable()->default('');
+            $table->text('desc_magliana');
             $table->string('img_cipro')->nullable()->default('');
             $table->text('desc_cipro');
             $table->string('img_tiburtina')->nullable()->default('');

@@ -17,7 +17,7 @@
       <div class=container_galleria>  
       <ul class="galleria">
       @foreach ($slide_header->immagini as $immagine)
-          <li><img src="{{ url('images/'.$immagine->nome) }}" width="150" height="100"></li>    
+          <li><img src="{{ url('images/'.$immagine->nome) }}" width="120" height="46"></li>    
       @endforeach
       </ul>
       </div>
@@ -45,7 +45,7 @@
 
       <ul class="nav nav-tabs">
         <li class="active">
-          <a  href="#1" data-toggle="tab">LAB</a>
+          <a  href="#1" data-toggle="tab">MAGLIANA</a>
         </li>
         <li><a href="#2" data-toggle="tab">CIPRO</a>
         </li>
@@ -55,41 +55,60 @@
 
       <div class="tab-content ">
         <div class="tab-pane active" id="1">
-          <h3>Inserisci i dati per il widget "Celiachiamo LAB"</h3>
+          <h3>Inserisci i dati per il widget "Celiachiamo MAGLIANA"</h3>
           <p>
-            <div class="form-group">
-              <label for="titolo">Immagine</label>
-              <input type="file" class="form-control" id="img" name="img_lab">
-            </div>
+            @if (is_null($homepage->img_magliana) || $homepage->img_magliana == '')
+              <div class="form-group">
+                <label for="titolo">Immagine</label>
+                <input type="file" class="form-control" id="img" name="img_magliana">
+              </div>
+            @else
+              <img src="{{ url('images/'.$homepage->img_magliana) }}" width="100" height="50">
+            @endif
+
             <div class="form-group">
               <label for="titolo">Descrizione</label>
-              <textarea class="form-control" rows="3" name="desc_lab"></textarea>
+              <textarea class="form-control" rows="3" name="desc_magliana">
+{{old('desc_magliana', isset($homepage->desc_magliana) ? $homepage->desc_magliana : null)}}
+              </textarea>
             </div>
           </p>
         </div>
         <div class="tab-pane" id="2">
          <h3>Inserisci i dati per il widget "Celiachiamo CIPRO"</h3>
          <p>
-            <div class="form-group">
-              <label for="titolo">Immagine</label>
-              <input type="file" class="form-control" id="img" name="img_cipro">
-            </div>
+            @if (is_null($homepage->img_cipro) || $homepage->img_cipro == '')
+              <div class="form-group">
+                <label for="titolo">Immagine</label>
+                <input type="file" class="form-control" id="img" name="img_cipro">
+              </div>
+            @else
+              <img src="{{ url('images/'.$homepage->img_cipro) }}" width="100" height="50">
+            @endif
             <div class="form-group">
               <label for="titolo">Descrizione</label>
-              <textarea class="form-control" rows="3" name="desc_cipro"></textarea>
+              <textarea class="form-control" rows="3" name="desc_cipro">
+{{old('desc_cipro', isset($homepage->desc_cipro) ? $homepage->desc_cipro : null)}}
+              </textarea>
             </div>
           </p>
         </div>
         <div class="tab-pane" id="3">
           <h3>Inserisci i dati per il widget "Celiachiamo TIBURTINA"</h3>
           <p>
+            @if (is_null($homepage->img_tiburtina) || $homepage->img_tiburtina == '')
              <div class="form-group">
                <label for="titolo">Immagine</label>
                <input type="file" class="form-control" id="img" name="img_tiburtina">
              </div>
+            @else
+              <img src="{{ url('images/'.$homepage->img_tiburtina) }}" width="100" height="50">
+            @endif
              <div class="form-group">
                <label for="titolo">Descrizione</label>
-               <textarea class="form-control" rows="3" name="desc_tiburtina"></textarea>
+               <textarea class="form-control" rows="3" name="desc_tiburtina">
+{{old('desc_tiburtina', isset($homepage->desc_tiburtina) ? $homepage->desc_tiburtina : null)}}
+               </textarea>
              </div>
            </p>
         </div>

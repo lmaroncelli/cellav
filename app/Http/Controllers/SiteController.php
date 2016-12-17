@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CategoriaRicetta;
+use App\HomePage;
 use App\Http\Requests;
 use App\Page;
 use App\Prodotto;
@@ -100,6 +101,8 @@ class SiteController extends Controller
 	{
 		if (empty($slug)) 
 			{
+			$homepage = HomePage::first();
+
 			$slide_header = Slide::with(['immagini'])->titolo('hp_slide_header')->first();
 			
 			$first_header_image = null;
@@ -117,7 +120,7 @@ class SiteController extends Controller
 					}
 				}
 
-			return view('home',compact('first_header_image','header_images'));
+			return view('home',compact('first_header_image','header_images','homepage'));
 			} 
 		else 
 			{

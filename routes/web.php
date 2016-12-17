@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::group(['middleware' => ['admin']], function () {
 		
-		Route::get('/pannello', 'Admin\AdminController@index');
+		Route::get('/pannello', ['as' => 'pannello', 'uses' => 'Admin\AdminController@index']);
   
 		Route::get('admin/users/{user}/confirm', ['as' => 'users.confirm', 'uses' => 'Admin\UsersController@confirm']);
 
