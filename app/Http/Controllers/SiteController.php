@@ -113,14 +113,16 @@ class SiteController extends Controller
 				if ($count == 0) 
 					{
 					$first_header_image =  url('images/'.$immagine->nome);
+					$first_desc_image =  $immagine->descrizione;
 					} 
 				else 
 					{
 					$header_images[] = url('images/'.$immagine->nome);
+					$desc_images[] = $immagine->descrizione;
 					}
 				}
 
-			return view('home',compact('first_header_image','header_images','homepage'));
+			return view('home',compact('first_header_image','header_images','first_desc_image','desc_images','homepage'));
 			} 
 		else 
 			{

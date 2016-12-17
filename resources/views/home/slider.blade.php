@@ -120,10 +120,16 @@
         <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
             <div data-p="225.00">
                 <img data-u="image" src="{{$first_header_image}}" />
+                 @if (!is_null($first_desc_image) || $first_desc_image != '')
+                    <div style="position:absolute;top:380px;left:20px;width:480px;height:120px;z-index:0;font-size:30px;color:#ffffff;line-height:38px;">{{$first_desc_image}}</div>
+                 @endif
             </div>
-            @foreach ($header_images as $image)
+            @foreach ($header_images as $count => $image)
                 <div data-p="225.00" style="display: none;">
                     <img data-u="image" src="{{$image}}" />
+                    @if (!is_null($desc_images[$count]) || $desc_images[$count] != '')
+                        <div style="position:absolute;top:380px;left:20px;width:480px;height:120px;z-index:0;font-size:30px;color:#ffffff;line-height:38px;">{{$desc_images[$count]}}</div>
+                    @endif
                 </div>
             @endforeach
             

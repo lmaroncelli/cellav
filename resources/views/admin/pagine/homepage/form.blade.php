@@ -13,15 +13,29 @@
     <h2>Slide header</h2>
     
     @if ($slide_header->immagini->count())
+      <form  method="POST" action="{{ route('homepage.modifySlideHeader') }}">
+      
+      <input type="hidden" name="slide_id" value="{{$slide_header->id}}">
+      
       <div class="row">
-      <div class=container_galleria>  
-      <ul class="galleria">
-      @foreach ($slide_header->immagini as $immagine)
-          <li><img src="{{ url('images/'.$immagine->nome) }}" width="120" height="46"></li>    
-      @endforeach
-      </ul>
+        {{ csrf_field() }}
+        <div class=container_galleria>  
+        <ul class="galleria">
+        @foreach ($slide_header->immagini as $immagine)
+            <li>
+            <img src="{{ url('images/'.$immagine->nome) }}" width="200" height="104">
+<textarea class="form-control" rows="3" name="descrizione_{{$immagine->id}}">{{old('descrizione_'.$immagine->descrizione, isset($immagine->descrizione) ? $immagine->descrizione : null)}}</textarea>
+            </li>    
+        @endforeach
+        </ul>
+        </div>
       </div>
+      
+      <div class="row">
+        <button type="submit" class="btn btn-primary">Modifica descrizioni</button>
       </div>
+      
+      </form>
     @endif
     
     <div class="row">

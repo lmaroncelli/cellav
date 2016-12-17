@@ -102,4 +102,19 @@ class HomePageController extends Controller
 
         return response()->json(['success'=>$imageName]);
     }
+
+
+    /* POST chiamato per modificare le descrizioni delle immagine slideheader */
+    public function modifySlideHeader(Request $request)
+      {
+      foreach ($this->slide_header->immagini as $imageSlide) 
+        {
+        if ($request->get('descrizione_'.$imageSlide->id) != '') 
+          {
+          $imageSlide->descrizione = $request->get('descrizione_'.$imageSlide->id);
+          $imageSlide->save();
+          }
+        }
+      return redirect()->route('homepage.edit')->with('status', 'Homepage aggiornata correttamente!');
+      }
 }
