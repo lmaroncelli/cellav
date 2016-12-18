@@ -39,7 +39,7 @@
     @endif
     
     <div class="row">
-      <form  method="POST" action="{{ route('homepage.uploaduploadSlideHeader') }}" class="dropzone"  enctype="multipart/form-data" id="formUpload">
+      <form  method="POST" action="{{ route('homepage.uploadSlideHeader') }}" class="dropzone"  enctype="multipart/form-data" id="formUploadSlideHeader">
         {{ csrf_field() }}
         <input type="hidden" name="slide_id" value="{{$slide_header->id}}">
       </form>
@@ -130,10 +130,21 @@
      
   </div> {{-- end row --}}
     
-  <button type="submit" class="btn btn-primary">Modifica</button>
+  <button type="submit" class="btn btn-primary">Modifica negozi</button>
 
   </form>
+  
 
+  <hr>
+
+  <div class="row">
+    <form  method="POST" action="{{ route('homepage.uploadSlideProdttiFreschi') }}" class="dropzone"  enctype="multipart/form-data" id="formUploadSlideProdttiFreschi">
+      {{ csrf_field() }}
+      <input type="hidden" name="slide_id" value="{{$slide_header->id}}">
+    </form>
+    
+    <div id="preview-template" style="display: block;"></div>
+  </div>
 
 
 @stop
@@ -146,7 +157,20 @@
     @section('script')
       <script type="text/javascript">
 
-            Dropzone.options.formUpload = {
+            Dropzone.options.formUploadSlideHeader = {
+              paramName: "file", // The name that will be used to transfer the file
+              maxFilesize: 2, // MB
+              acceptedFiles: ".jpeg,.jpg,.png,.gif",
+              //previewTemplate: document.getElementById('preview-template').innerHTML,
+              accept: function(file, done) {
+                if (file.name == "xxx.jpg") {
+                  done("Naha, you don't.");
+                }
+                else { done(); }
+              }
+            };
+
+             Dropzone.options.formUploadSlideProdttiFreschi = {
               paramName: "file", // The name that will be used to transfer the file
               maxFilesize: 2, // MB
               acceptedFiles: ".jpeg,.jpg,.png,.gif",

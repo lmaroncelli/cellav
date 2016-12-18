@@ -104,6 +104,25 @@ class HomePageController extends Controller
     }
 
 
+
+
+    
+    public function uploadSlideProdttiFreschi(Request $request)
+    {    
+        $slide_header = $this->slide_header;
+
+        $image = $request->file('file');
+        $imageName = time().$image->getClientOriginalName();
+        
+        $path = $image->storeAs('homepage/slideHeader',$imageName);
+
+        $immagineSlide = ImmagineSlide::create(['slide_id' => $slide_header->id ,'nome' => $path]);
+
+
+        return response()->json(['success'=>$imageName]);
+    }
+
+
     /* POST chiamato per modificare le descrizioni delle immagine slideheader */
     public function modifySlideHeader(Request $request)
       {
