@@ -104,6 +104,7 @@ class SiteController extends Controller
 			$homepage = HomePage::first();
 
 			$slide_header = Slide::with(['immagini'])->titolo('hp_slide_header')->first();
+			$slide_freschi = Slide::with(['immagini'])->where('id',$homepage->prodotti_freschi_slide_id)->first();
 			
 			$first_header_image = null;
 			$header_images = [];
@@ -122,7 +123,7 @@ class SiteController extends Controller
 					}
 				}
 
-			return view('home',compact('first_header_image','header_images','first_desc_image','desc_images','homepage'));
+			return view('home',compact('first_header_image','header_images','first_desc_image','desc_images', 'slide_freschi', 'homepage'));
 			} 
 		else 
 			{

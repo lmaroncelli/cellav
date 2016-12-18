@@ -3,8 +3,9 @@
    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
            <ul class="bxslider">
-						  <li><img src="{{ url('frontend/assets/img/bxslider/slide1.png') }}" /></li>
-						  <li><img src="{{ url('frontend/assets/img/bxslider/slide2.png') }}" /></li>			  
+              @foreach ($slide_freschi->immagini as $count => $immagine)
+						    <li><img src="{{ url('images/'.$immagine->nome) }}" /></li>                
+              @endforeach
 						</ul>
        </div>
    </div>

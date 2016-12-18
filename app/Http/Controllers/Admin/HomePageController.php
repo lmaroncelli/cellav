@@ -8,13 +8,20 @@ use App\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\HomePage;
+use Illuminate\Support\Facades\Storage;
 
 class HomePageController extends Controller
 {
 
     function __construct()
-      {
+      {   
+          $homepage = HomePage::first();
           $this->slide_header = Slide::with(['immagini'])->titolo('hp_slide_header')->first();
+
+          $this->slide_freschi = Slide::with(['immagini'])->where('id',$homepage->prodotti_freschi_slide_id)->first();
+
+          $this->slide_confezionati = Slide::with(['immagini'])->where('id',$homepage->prodotti_confezionati_slide_id)->first();
+
       }
 
 
@@ -41,8 +48,9 @@ class HomePageController extends Controller
     public function edit()
       {
       $slide_header = $this->slide_header;
+      $slide_freschi = $this->slide_freschi;
       $homepage = HomePage::first();
-      return view('admin.pagine.homepage.form', compact('slide_header','homepage'));
+      return view('admin.pagine.homepage.form', compact('slide_header','slide_freschi','homepage'));
       }
 
     /**
@@ -109,14 +117,14 @@ class HomePageController extends Controller
     
     public function uploadSlideProdttiFreschi(Request $request)
     {    
-        $slide_header = $this->slide_header;
+        $slide_freschi = $this->slide_freschi;
 
         $image = $request->file('file');
         $imageName = time().$image->getClientOriginalName();
         
-        $path = $image->storeAs('homepage/slideHeader',$imageName);
+        $path = $image->storeAs('homepage/slideProdotti',$imageName);
 
-        $immagineSlide = ImmagineSlide::create(['slide_id' => $slide_header->id ,'nome' => $path]);
+        $immagineSlide = ImmagineSlide::create(['slide_id' => $slide_freschi->id ,'nome' => $path]);
 
 
         return response()->json(['success'=>$imageName]);
@@ -135,5 +143,21 @@ class HomePageController extends Controller
           }
         }
       return redirect()->route('homepage.edit')->with('status', 'Homepage aggiornata correttamente!');
+      }
+
+
+
+    public function deleteSliderImageAjax(Request $request)
+      {
+        $id = $request->get('id');
+        $slide = ImmagineSlide::find($id);
+        $foto_vecchia = $slide->nome;
+        if(!is_null($foto_vecchia) && $foto_vecchia != '')
+          {
+        Storage::delete([$foto_vecchia]);
+          }
+        ImmagineSlide::destroy($id);
+
+        echo "ok";
       }
 }

@@ -13,7 +13,8 @@ require('bootstrap-sass');
 
 require('cd-summernote');
 
-require('dropzone');
+// NON QUI, l'ho già caricato in gulpfile.js
+// require('dropzone');
 
 
 /**
