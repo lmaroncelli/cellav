@@ -16,6 +16,9 @@ class HomePageController extends Controller
     function __construct()
       {   
           $homepage = HomePage::first();
+          
+          $this->homepage = $homepage;
+
           $this->slide_header = Slide::with(['immagini'])->titolo('hp_slide_header')->first();
 
           $this->slide_freschi = Slide::with(['immagini'])->where('id',$homepage->prodotti_freschi_slide_id)->first();
@@ -160,4 +163,24 @@ class HomePageController extends Controller
 
         echo "ok";
       }
+
+    
+    public function deleteNegozioImageAjax(Request $request)
+      {
+        $colname = $request->get('colname');
+
+        $homepage = $this->homepage;
+
+        if(!is_null($homepage->$colname) && $homepage->$colname != '')
+          {
+        Storage::delete([$homepage->$colname]);
+          }
+       
+        $homepage->$colname = null;
+
+        $homepage->save();        
+
+        echo "ok";
+      }
+
 }

@@ -70,6 +70,10 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::post('admin/homepage/modifySlideHeader', ['as' => 'homepage.modifySlideHeader', 'uses' => 'Admin\HomePageController@modifySlideHeader']);
 
 		Route::post('admin/homepage/deleteSliderImage', ['as' => 'homepage.deleteSliderImage', 'uses' => 'Admin\HomePageController@deleteSliderImageAjax']);
+
+		Route::post('admin/homepage/deleteNegozioImage', ['as' => 'homepage.deleteNegozioImage', 'uses' => 'Admin\HomePageController@deleteNegozioImageAjax']);
+
+		
 		
 
 		Route::post('admin/homepage/uploadSlideProdttiFreschi', ['as' => 'homepage.uploadSlideProdttiFreschi', 'uses' => 'Admin\HomePageController@uploadSlideProdttiFreschi']);

@@ -33,7 +33,7 @@
           </div>        
             
           <div class="col-md-1">
-            <button type="button" class="btn btn-default delete_image" data-id="{{$immagine->id}}">
+            <button type="button" class="btn btn-default delete_image_header" data-id="{{$immagine->id}}">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
           </div>
@@ -59,8 +59,20 @@
         {{ csrf_field() }}
         <input type="hidden" name="slide_id" value="{{$slide_header->id}}">
       </form>
-      
-      <div id="preview-template" style="display: block;"></div>
+    
+
+      <div class="dz-preview dz-file-preview"  id="preview-template-silde-header" style="display: none;">
+        <div class="dz-details">
+          <div class="dz-filename"><span data-dz-name></span></div>
+          <div class="dz-size" data-dz-size></div>
+          <img data-dz-thumbnail />
+        </div>
+        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+        <div class="dz-success-mark"><span>✔</span></div>
+        <div class="dz-error-mark"><span>✘</span></div>
+        <div class="dz-error-message"><span data-dz-errormessage></span></div>
+      </div>
+
     </div>
 
     <hr>
@@ -68,117 +80,151 @@
     <div class="row">
       <h2>Negozi</h2>
     </div>
-     
-    <form  method="POST" action="{{ route('homepage.save') }}" enctype="multipart/form-data">
-    {{ csrf_field() }}    
     
-      <div id="exTab2"> 
-
-      <ul class="nav nav-tabs">
-        <li class="active">
-          <a  href="#1" data-toggle="tab">MAGLIANA</a>
-        </li>
-        <li><a href="#2" data-toggle="tab">CIPRO</a>
-        </li>
-        <li><a href="#3" data-toggle="tab">TIBURTINA</a>
-        </li>
-      </ul>
-
-      <div class="tab-content ">
-        <div class="tab-pane active" id="1">
-          <h3>Inserisci i dati per il widget "Celiachiamo MAGLIANA"</h3>
-          <p>
-            @if (is_null($homepage->img_magliana) || $homepage->img_magliana == '')
-              <div class="form-group">
-                <label for="titolo">Immagine</label>
-                <input type="file" class="form-control" id="img" name="img_magliana">
-              </div>
-            @else
-              <img src="{{ url('images/'.$homepage->img_magliana) }}" width="100" height="50">
-            @endif
-
-            <div class="form-group">
-              <label for="titolo">Descrizione</label>
-              <textarea class="form-control" rows="3" name="desc_magliana">
-{{old('desc_magliana', isset($homepage->desc_magliana) ? $homepage->desc_magliana : null)}}
-              </textarea>
-            </div>
-          </p>
-        </div>
-        <div class="tab-pane" id="2">
-         <h3>Inserisci i dati per il widget "Celiachiamo CIPRO"</h3>
-         <p>
-            @if (is_null($homepage->img_cipro) || $homepage->img_cipro == '')
-              <div class="form-group">
-                <label for="titolo">Immagine</label>
-                <input type="file" class="form-control" id="img" name="img_cipro">
-              </div>
-            @else
-              <img src="{{ url('images/'.$homepage->img_cipro) }}" width="100" height="50">
-            @endif
-            <div class="form-group">
-              <label for="titolo">Descrizione</label>
-              <textarea class="form-control" rows="3" name="desc_cipro">
-{{old('desc_cipro', isset($homepage->desc_cipro) ? $homepage->desc_cipro : null)}}
-              </textarea>
-            </div>
-          </p>
-        </div>
-        <div class="tab-pane" id="3">
-          <h3>Inserisci i dati per il widget "Celiachiamo TIBURTINA"</h3>
-          <p>
-            @if (is_null($homepage->img_tiburtina) || $homepage->img_tiburtina == '')
-             <div class="form-group">
-               <label for="titolo">Immagine</label>
-               <input type="file" class="form-control" id="img" name="img_tiburtina">
-             </div>
-            @else
-              <img src="{{ url('images/'.$homepage->img_tiburtina) }}" width="100" height="50">
-            @endif
-             <div class="form-group">
-               <label for="titolo">Descrizione</label>
-               <textarea class="form-control" rows="3" name="desc_tiburtina">
-{{old('desc_tiburtina', isset($homepage->desc_tiburtina) ? $homepage->desc_tiburtina : null)}}
-               </textarea>
-             </div>
-           </p>
-        </div>
-      </div>
-     
-  </div> {{-- end row --}}
+  
+    <div class="row">
+      <div class="col-md-12">
+        
     
-  <button type="submit" class="btn btn-primary">Modifica negozi</button>
+        <form  method="POST" action="{{ route('homepage.save') }}" enctype="multipart/form-data">
+        {{ csrf_field() }}    
+        
+        <div id="exTab2"> 
 
-  </form>
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a  href="#1" data-toggle="tab">MAGLIANA</a>
+            </li>
+            <li><a href="#2" data-toggle="tab">CIPRO</a>
+            </li>
+            <li><a href="#3" data-toggle="tab">TIBURTINA</a>
+            </li>
+          </ul>
+
+          <div class="tab-content ">
+            <div class="tab-pane active" id="1">
+              <h3>Inserisci i dati per il widget "Celiachiamo MAGLIANA"</h3>
+              <p>
+                @if (is_null($homepage->img_magliana) || $homepage->img_magliana == '')
+                  <div class="form-group">
+                    <label for="titolo">Immagine</label>
+                    <input type="file" class="form-control" id="img" name="img_magliana">
+                  </div>
+                @else
+                  <img src="{{ url('images/'.$homepage->img_magliana) }}" width="100" height="50">
+                  <button type="button" class="btn btn-default delete_image_negozio" data-colname="img_magliana">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button>
+                @endif
+
+                <div class="form-group">
+                  <label for="titolo">Descrizione</label>
+                  <textarea class="form-control" rows="3" name="desc_magliana">{{old('desc_magliana', isset($homepage->desc_magliana) ? $homepage->desc_magliana : null)}}</textarea>
+                </div>
+              </p>
+            </div>
+            <div class="tab-pane" id="2">
+             <h3>Inserisci i dati per il widget "Celiachiamo CIPRO"</h3>
+             <p>
+                @if (is_null($homepage->img_cipro) || $homepage->img_cipro == '')
+                  <div class="form-group">
+                    <label for="titolo">Immagine</label>
+                    <input type="file" class="form-control" id="img" name="img_cipro">
+                  </div>
+                @else
+                  <img src="{{ url('images/'.$homepage->img_cipro) }}" width="100" height="50">
+                  <button type="button" class="btn btn-default delete_image_negozio" data-colname="img_cipro">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button>
+                @endif
+                <div class="form-group">
+                  <label for="titolo">Descrizione</label>
+                  <textarea class="form-control" rows="3" name="desc_cipro">{{old('desc_cipro', isset($homepage->desc_cipro) ? $homepage->desc_cipro : null)}}</textarea>
+                </div>
+              </p>
+            </div>
+            <div class="tab-pane" id="3">
+              <h3>Inserisci i dati per il widget "Celiachiamo TIBURTINA"</h3>
+              <p>
+                @if (is_null($homepage->img_tiburtina) || $homepage->img_tiburtina == '')
+                 <div class="form-group">
+                   <label for="titolo">Immagine</label>
+                   <input type="file" class="form-control" id="img" name="img_tiburtina">
+                 </div>
+                @else
+                  <img src="{{ url('images/'.$homepage->img_tiburtina) }}" width="100" height="50">
+                  <button type="button" class="btn btn-default delete_image_negozio" data-colname="img_tiburtina">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button>
+                @endif
+                 <div class="form-group">
+                   <label for="titolo">Descrizione</label>
+                   <textarea class="form-control" rows="3" name="desc_tiburtina">{{old('desc_tiburtina', isset($homepage->desc_tiburtina) ? $homepage->desc_tiburtina : null)}}</textarea>
+                 </div>
+               </p>
+            </div>
+          </div>
+         
+      </div> {{-- end exTab2 --}}
+        
+      <button type="submit" class="btn btn-primary">Modifica negozi</button>
+
+      </form>
+
+    </div>
+  </div>
   
   <hr>
   
-  <div class="row">
-    <h2>Prodotti freschi</h2>
-  </div>
-    
-  <div class="row">
-    <div class=container_galleria>  
-    @if ($slide_freschi->immagini->count())
-      <ul class="galleria">
-      @foreach ($slide_freschi->immagini as $immagine)
-          <li>
-          <img src="{{ url('images/'.$immagine->nome) }}" width="125" height="100">
-          </li>    
-      @endforeach
-      </ul>
-    @else
-      <p>Nessuna immagine caricata ancora</p>
-    @endif
+  <div class="sldeProdotti">
+
+    <div class="row">
+      <h2>Prodotti freschi</h2>
     </div>
-    <form  method="POST" action="{{ route('homepage.uploadSlideProdttiFreschi') }}" class="dropzone"  enctype="multipart/form-data" id="formUploadSlideProdttiFreschi">
-      {{ csrf_field() }}
-      <input type="hidden" name="slide_id" value="{{$slide_header->id}}">
-    </form>
-    
-    <div id="preview-template" style="display: block;"></div>
+      
+    @if ($slide_freschi->immagini->count())
+      @foreach ($slide_freschi->immagini as $immagine)
+        <div class="row">
+            <div class="col-md-3"> 
+              <img src="{{ url('images/'.$immagine->nome) }}" width="125" height="100">
+            </div>
+            <div class="col-md-1">
+              <button type="button" class="btn btn-default delete_image_header" data-id="{{$immagine->id}}">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
+          </div>    
+        @endforeach
+      @else
+        <p>Nessuna immagine caricata ancora</p>
+      @endif
+
+  </div>
+  
+  <div class="row margin">
+    <div class="col-md-12"> 
+      <form  method="POST" action="{{ route('homepage.uploadSlideProdttiFreschi') }}" class="dropzone"  enctype="multipart/form-data" id="formUploadSlideProdttiFreschi">
+        {{ csrf_field() }}
+        <input type="hidden" name="slide_id" value="{{$slide_header->id}}">
+      </form>
+    </div>
   </div>
 
+  <div class="row margin">
+    <div class="col-md-12">
+      <div class="dz-preview dz-file-preview"  id="preview-template-silde-freschi" style="display: none;">
+        <div class="dz-details">
+          <div class="dz-filename"><span data-dz-name></span></div>
+          <div class="dz-size" data-dz-size></div>
+          <img data-dz-thumbnail />
+        </div>
+        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+        <div class="dz-success-mark"><span>✔</span></div>
+        <div class="dz-error-mark"><span>✘</span></div>
+        <div class="dz-error-message"><span data-dz-errormessage></span></div>
+      </div>
+    </div>
+  </div>
 
 @stop
 
@@ -198,7 +244,9 @@
 
 
             $( document ).ready(function() {
-                $("button.delete_image").click(function(e){
+
+                // eliminazione immagini header
+                $("button.delete_image_header").click(function(e){
                   if (confirm('Sei sicuro di voler eliminare l\'immagine?')) {
                     var id = jQuery(this).data('id');
                     var data = {
@@ -215,6 +263,31 @@
                     });
                   };
                 });
+
+
+                // eliminazione immagini negozi
+
+                $("button.delete_image_negozio").click(function(e){
+                  if (confirm('Sei sicuro di voler eliminare l\'immagine?')) {
+                    var colname = jQuery(this).data('colname');
+                    var data = {
+                                "_token": "{{ csrf_token() }}",
+                                colname:colname,
+                                };
+                    $.ajax({ url: "{{route('homepage.deleteNegozioImage')}}",
+                             data: data,
+                             type: 'post',
+                             success: function(output) 
+                              {
+                              window.location.reload(true);
+                              }
+                    });
+                  };
+                });
+
+
+
+
             });
 
 
@@ -224,12 +297,20 @@
               paramName: "file", // The name that will be used to transfer the file
               maxFilesize: 2, // MB
               acceptedFiles: ".jpeg,.jpg,.png,.gif",
-              //previewTemplate: document.getElementById('preview-template').innerHTML,
+              dictDefaultMessage: "Clicca o trascina qui i file da caricare nella header slide",
+              //previewTemplate: document.getElementById('preview-template-silde-header').innerHTML,
               accept: function(file, done) {
                 if (file.name == "xxx.jpg") {
                   done("Naha, you don't.");
                 }
                 else { done(); }
+              },
+              init: function () {
+                this.on("complete", function (file) {
+                  if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                    setTimeout(function(){ location.reload(); }, 1000);
+                  }
+                });
               }
             };
 
@@ -237,12 +318,20 @@
               paramName: "file", // The name that will be used to transfer the file
               maxFilesize: 2, // MB
               acceptedFiles: ".jpeg,.jpg,.png,.gif",
-              //previewTemplate: document.getElementById('preview-template').innerHTML,
+              dictDefaultMessage: "Clicca o trascina qui i file da caricare nella slide prdotti freschi",
+              //previewTemplate: document.getElementById('preview-template-silde-freschi').innerHTML,
               accept: function(file, done) {
                 if (file.name == "xxx.jpg") {
                   done("Naha, you don't.");
                 }
                 else { done(); }
+              },
+              init: function () {
+                this.on("complete", function (file) {
+                  if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                    setTimeout(function(){ location.reload(); }, 1000);
+                  }
+                });
               }
             };
     </script>

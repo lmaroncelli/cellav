@@ -30,13 +30,24 @@
 }
 
 
-.sldeHeader .glyphicon-remove {
+.sldeHeader .glyphicon-remove, .sldeProdotti .glyphicon-remove{
 	color:red;
 }
 
-.sldeHeader .col-md-1 {
+.sldeHeader .col-md-1, .sldeProdotti .col-md-1 {
 	margin-top: 20px;
 }
+
+
+button.delete_image_negozio .glyphicon-remove {
+	color:red;
+}
+
+
+.row.margin {
+	margin:15px 0;
+}
+
 
 
 /*  elenco delle immagini della galleria al momento di caricarne altre */
