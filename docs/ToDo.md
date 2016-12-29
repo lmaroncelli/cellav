@@ -93,6 +93,13 @@ perché lo includo nel app.js con il gulpfile e poi lo richiamo anche dentro la 
 @stop
 MA se tolgo questa chiamata da un altro errore
 
+6. La creazione della entry per la pagina homepage e per la slide relativa deve essere messa in un seeder associato alle migration relative
+2016_12_11_163032_create_slide_table
+2016_12_11_163114_create_immagini_slide_table
+2016_12_13_202553_create_tabella_homepage
+2016_12_18_123312_add_slider_id_to_homepage
+
+
 
 
 ========================================================
