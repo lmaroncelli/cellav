@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
+    <meta name="description" content="@yield('seo_description')">
     <meta name="author" content="">
    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -16,10 +16,12 @@
       @if (isset($page))
         {{$page->title}}
       @else
-        @yield('title')
+        @yield('seo_title')
       @endif
     </title>
 
+
+    
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url('frontend/assets/css/bootstrap.css') }}" rel="stylesheet">
@@ -109,7 +111,7 @@
     <div class="container">
 
       <div class="starter-template">
-
+        <h1>@yield('title')</h1>
         @include('admin.show_errors')
         @yield('content')
 

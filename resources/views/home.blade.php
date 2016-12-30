@@ -1,10 +1,8 @@
 @extends('layouts.frontend')
 
-@section('title')
+@section('seo_title'){!!$homepage->seo_title!!}@stop
+@section('seo_description'){!!$homepage->seo_description!!}@stop
 
-	homepage
-
-@stop
 
 @section('css')
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -12,6 +10,10 @@
 
 	<link href="{{ url('frontend/assets/css/jquery.bxslider.css') }}" rel="stylesheet">
 
+@stop
+
+@section('title')
+	Celiachiamo.com
 @stop
 
 @section('content')
@@ -22,9 +24,13 @@
 
   @include('home.negozi')
 
-  @include('home.prodotti_freschi')
+	@if (!is_null($slide_freschi))
+  		@include('home.prodotti_freschi')
+	@endif
 
-	Che bella home page !!!
+	<div>
+	{{$homepage->content}}	
+	</div>
 
 @stop
 
