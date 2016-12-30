@@ -21,16 +21,22 @@ class CreateTabellaHomepage extends Migration
             $table->boolean('listing')->default(false);
             $table->string('listingCategorie')->nullable()->default(null);
             $table->string('listingCaratteristiche')->nullable()->default(null);
-            $table->integer('header_slide_id')->unsigned();
+            $table->integer('header_slide_id')->unsigned()->nullable()->default(null);
             $table->foreign('header_slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
             $table->string('img_magliana')->nullable()->default('');
-            $table->text('desc_magliana');
+            $table->text('desc_magliana')->nullable()->default(null);
             $table->string('img_cipro')->nullable()->default('');
-            $table->text('desc_cipro');
+            $table->text('desc_cipro')->nullable()->default(null);
             $table->string('img_tiburtina')->nullable()->default('');
-            $table->text('desc_tiburtina');
+            $table->text('desc_tiburtina')->nullable()->default(null);
             $table->timestamps();
         });
+
+        /* Creo la entry per la homepage */
+        Artisan::call( 'db:seed', [
+            '--class' => 'CreateHomePageSeeder',
+            '--force' => true
+        ]);
     }
 
     /**
@@ -39,7 +45,12 @@ class CreateTabellaHomepage extends Migration
      * @return void
      */
     public function down()
-    {
+    {   
+        // Your foreign keys is named table_fields_foreign
+        Schema::table('tblHomePages', function(Blueprint $table) {
+            $table->dropForeign('tblHomePages_header_slide_id_foreign');
+        });
+        
         Schema::dropIfExists('tblHomePages');
     }
 }

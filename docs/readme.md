@@ -645,6 +645,78 @@ luigi@lenovo /var/www/html/celiachiamo $ gulp
 
 
 
+*Migration rollback e foreign keys*
+
+Quando creo una tabella o modifico una tabella aggiungendo un FK, se faccio rollback per eliminarla viene generato un errore del tipo
+General error: 1553 Cannot drop index ...
+E' necessario inserire nella function down() il codice per eliminare il constraint
+
+es:
+
+public function up()
+    {
+        Schema::create('tblHomePages', function (Blueprint $table) {
+            $table->increments('id');
+            ...
+            $table->integer('header_slide_id')->unsigned();
+            $table->foreign('header_slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
+            ...
+
+Siccome le FK create da Laravel sono del tipo "table_fields_foreign"
+
+ public function down()
+    {   
+        // Your foreign keys is named table_fields_foreign
+        Schema::table('tblHomePages', function(Blueprint $table) {
+            $table->dropForeign('tblHomePages_header_slide_id_foreign');
+        });
+        
+        Schema::dropIfExists('tblHomePages');
+    }
+
+OPPURE
+
+public function up()
+{
+    Schema::table('tblHomePages', function (Blueprint $table) {
+       ...... 
+        $table->foreign('prodotti_freschi_slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
+        $table->foreign('prodotti_confezionati_slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
+    ...
+
+
+public function down()
+{
+    Schema::table('tblHomePages', function (Blueprint $table) {
+
+        // Your foreign keys is named table_fields_foreign
+        Schema::table('tblHomePages', function(Blueprint $table) {
+            $table->dropForeign('tblHomePages_prodotti_freschi_slide_id_foreign');
+            $table->dropForeign('tblHomePages_prodotti_confezionati_slide_id_foreign');
+        });
+        
+        $table->dropColumn('prodotti_freschi_slide_id');
+        $table->dropColumn('prodotti_confezionati_slide_id');
+        ....
+
+
+
+
+*Creare un seed attaccato alla migration*
+public function up()
+  {
+     Schema::create('tblHomePages', function (Blueprint $table) {
+                $table->increments('id');
+                ......
+      }
+
+      Artisan::call( 'db:seed', [
+          '--class' => 'CreateHomePageSeeder',
+          '--force' => true
+      ]);
+  }
+
+
 
 ===================================================================
 ===================================================================

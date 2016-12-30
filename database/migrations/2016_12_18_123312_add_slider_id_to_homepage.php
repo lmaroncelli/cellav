@@ -30,8 +30,15 @@ class AddSliderIdToHomepage extends Migration
     public function down()
     {
         Schema::table('tblHomePages', function (Blueprint $table) {
-             $table->dropColumn('prodotti_freschi_slide_id');
-             $table->dropColumn('prodotti_confezionati_slide_id');
+
+            // Your foreign keys is named table_fields_foreign
+            Schema::table('tblHomePages', function(Blueprint $table) {
+                $table->dropForeign('tblHomePages_prodotti_freschi_slide_id_foreign');
+                $table->dropForeign('tblHomePages_prodotti_confezionati_slide_id_foreign');
+            });
+            
+            $table->dropColumn('prodotti_freschi_slide_id');
+            $table->dropColumn('prodotti_confezionati_slide_id');
         });
     }
 }

@@ -18,6 +18,12 @@ class CreateSlideTable extends Migration
             $table->string('titolo')->default('');
             $table->timestamps();
         });
+
+        /* Creo la entry per la slide header della homepage (che viene cercata col nome hp_slide_header) */
+        Artisan::call( 'db:seed', [
+            '--class' => 'CreateHomePageSlideHeaderSeeder',
+            '--force' => true
+        ]);
     }
 
     /**
