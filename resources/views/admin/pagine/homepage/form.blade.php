@@ -33,7 +33,7 @@
           </div>        
             
           <div class="col-md-1">
-            <button type="button" class="btn btn-default delete_image_header" data-id="{{$immagine->id}}">
+            <button type="button" class="btn btn-default delete_image_slide" data-id="{{$immagine->id}}">
               <span class="glyphicon glyphicon-remove"></span>
             </button>
           </div>
@@ -176,6 +176,8 @@
   
   <hr>
   
+
+  {{-- PRODOTTI FRESCHI SLIDE --}}
   <div class="sldeProdotti">
 
     <div class="row">
@@ -189,7 +191,7 @@
               <img src="{{ url('images/'.$immagine->nome) }}" width="125" height="100">
             </div>
             <div class="col-md-1">
-              <button type="button" class="btn btn-default delete_image_header" data-id="{{$immagine->id}}">
+              <button type="button" class="btn btn-default delete_image_slide" data-id="{{$immagine->id}}">
                 <span class="glyphicon glyphicon-remove"></span>
               </button>
             </div>
@@ -205,7 +207,7 @@
     <div class="col-md-12"> 
       <form  method="POST" action="{{ route('homepage.uploadSlideProdttiFreschi') }}" class="dropzone"  enctype="multipart/form-data" id="formUploadSlideProdttiFreschi">
         {{ csrf_field() }}
-        <input type="hidden" name="slide_id" value="{{$slide_header->id}}">
+        <input type="hidden" name="slide_id" value="{{$slide_freschi->id}}">
       </form>
     </div>
   </div>
@@ -225,6 +227,62 @@
       </div>
     </div>
   </div>
+
+  <hr>
+
+
+  {{-- PRODOTTI CONFEZIONATI SLIDE --}}
+  <div class="sldeProdotti">
+
+    <div class="row">
+      <h2>Prodotti confezionati</h2>
+    </div>
+      
+    @if ($slide_confezionati->immagini->count())
+      @foreach ($slide_confezionati->immagini as $immagine)
+        <div class="row">
+            <div class="col-md-3"> 
+              <img src="{{ url('images/'.$immagine->nome) }}" width="125" height="100">
+            </div>
+            <div class="col-md-1">
+              <button type="button" class="btn btn-default delete_image_slide" data-id="{{$immagine->id}}">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
+          </div>    
+        @endforeach
+      @else
+        <p>Nessuna immagine caricata ancora</p>
+      @endif
+
+  </div>
+
+  <div class="row margin">
+    <div class="col-md-12"> 
+      <form  method="POST" action="{{ route('homepage.uploadSlideProdttiConfezionati') }}" class="dropzone"  enctype="multipart/form-data" id="formUploadSlideProdttiConfezionati">
+        {{ csrf_field() }}
+        <input type="hidden" name="slide_id" value="{{$slide_confezionati->id}}">
+      </form>
+    </div>
+  </div>
+
+  <div class="row margin">
+    <div class="col-md-12">
+      <div class="dz-preview dz-file-preview"  id="preview-template-silde-freschi" style="display: none;">
+        <div class="dz-details">
+          <div class="dz-filename"><span data-dz-name></span></div>
+          <div class="dz-size" data-dz-size></div>
+          <img data-dz-thumbnail />
+        </div>
+        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+        <div class="dz-success-mark"><span>✔</span></div>
+        <div class="dz-error-mark"><span>✘</span></div>
+        <div class="dz-error-message"><span data-dz-errormessage></span></div>
+      </div>
+    </div>
+  </div>
+
+
 
 @stop
 
@@ -246,7 +304,7 @@
             $( document ).ready(function() {
 
                 // eliminazione immagini header
-                $("button.delete_image_header").click(function(e){
+                $("button.delete_image_slide").click(function(e){
                   if (confirm('Sei sicuro di voler eliminare l\'immagine?')) {
                     var id = jQuery(this).data('id');
                     var data = {
@@ -319,6 +377,27 @@
               maxFilesize: 2, // MB
               acceptedFiles: ".jpeg,.jpg,.png,.gif",
               dictDefaultMessage: "Clicca o trascina qui i file da caricare nella slide prdotti freschi",
+              //previewTemplate: document.getElementById('preview-template-silde-freschi').innerHTML,
+              accept: function(file, done) {
+                if (file.name == "xxx.jpg") {
+                  done("Naha, you don't.");
+                }
+                else { done(); }
+              },
+              init: function () {
+                this.on("complete", function (file) {
+                  if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                    setTimeout(function(){ location.reload(); }, 1000);
+                  }
+                });
+              }
+            };
+
+             Dropzone.options.formUploadSlideProdttiConfezionati = {
+              paramName: "file", // The name that will be used to transfer the file
+              maxFilesize: 2, // MB
+              acceptedFiles: ".jpeg,.jpg,.png,.gif",
+              dictDefaultMessage: "Clicca o trascina qui i file da caricare nella slide prdotti confezionati",
               //previewTemplate: document.getElementById('preview-template-silde-freschi').innerHTML,
               accept: function(file, done) {
                 if (file.name == "xxx.jpg") {

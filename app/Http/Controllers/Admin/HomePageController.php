@@ -52,8 +52,9 @@ class HomePageController extends Controller
       {
       $slide_header = $this->slide_header;
       $slide_freschi = $this->slide_freschi;
+      $slide_confezionati = $this->slide_confezionati;
       $homepage = HomePage::first();
-      return view('admin.pagine.homepage.form', compact('slide_header','slide_freschi','homepage'));
+      return view('admin.pagine.homepage.form', compact('slide_header','slide_freschi','slide_confezionati','homepage'));
       }
 
     /**
@@ -95,6 +96,30 @@ class HomePageController extends Controller
       return redirect()->route('pannello')->with('status', 'Homepage aggiornata correttamente!');
     }
 
+
+
+    /**
+     * [_uploadSlide fa l'upload delle immagini con dropzone di tutte le slide della home - header, freschi e confezionati; per ognuna cambia solo l'id della slide e la folder dove salvare le immagini]
+     * @param  integer $id     [id della slide]
+     * @param  string  $folder [folder dove salvare le immagini]
+     * @return [type]          [description]
+     */
+    private function _uploadSlide(Request $request, $id = 0, $folder = 'homepage/slideProdotti')
+    {
+      $image = $request->file('file');
+
+      $imageName = time().$image->getClientOriginalName();
+      
+      $path = $image->storeAs($folder,$imageName);
+
+      $immagineSlide = ImmagineSlide::create(['slide_id' => $id ,'nome' => $path]);
+
+
+      return response()->json(['success'=>$imageName]);
+    }
+
+
+
     
     /*
     post chiamato dal caricamento di ogni immagine tramite Dropzone
@@ -103,15 +128,11 @@ class HomePageController extends Controller
     {    
         $slide_header = $this->slide_header;
 
-        $image = $request->file('file');
-        $imageName = time().$image->getClientOriginalName();
-        
-        $path = $image->storeAs('homepage/slideHeader',$imageName);
+        $slider_id = $slide_header->id;
 
-        $immagineSlide = ImmagineSlide::create(['slide_id' => $slide_header->id ,'nome' => $path]);
+        $folder = 'homepage/slideHeader';
 
-
-        return response()->json(['success'=>$imageName]);
+        return $this->_uploadSlide($request, $slider_id, $folder);
     }
 
 
@@ -122,16 +143,21 @@ class HomePageController extends Controller
     {    
         $slide_freschi = $this->slide_freschi;
 
-        $image = $request->file('file');
-        $imageName = time().$image->getClientOriginalName();
-        
-        $path = $image->storeAs('homepage/slideProdotti',$imageName);
+        $slider_id = $slide_freschi->id;
 
-        $immagineSlide = ImmagineSlide::create(['slide_id' => $slide_freschi->id ,'nome' => $path]);
-
-
-        return response()->json(['success'=>$imageName]);
+        return $this->_uploadSlide($request, $slider_id);
     }
+
+    public function uploadSlideProdttiConfezionati(Request $request)
+    {    
+        $slide_confezionati = $this->slide_confezionati;
+
+        $slider_id = $slide_confezionati->id;
+
+        return $this->_uploadSlide($request, $slider_id);
+    }
+
+
 
 
     /* POST chiamato per modificare le descrizioni delle immagine slideheader */

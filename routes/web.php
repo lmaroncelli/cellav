@@ -78,6 +78,10 @@ Route::group(['middleware' => ['admin']], function () {
 
 		Route::post('admin/homepage/uploadSlideProdttiFreschi', ['as' => 'homepage.uploadSlideProdttiFreschi', 'uses' => 'Admin\HomePageController@uploadSlideProdttiFreschi']);
 
+		Route::post('admin/homepage/uploadSlideProdttiConfezionati', ['as' => 'homepage.uploadSlideProdttiConfezionati', 'uses' => 'Admin\HomePageController@uploadSlideProdttiConfezionati']);
+
+
+
 		
 
 

@@ -27,6 +27,12 @@
 	@if (!is_null($slide_freschi))
   		@include('home.prodotti_freschi')
 	@endif
+	
+	@if (!is_null($slide_confezionati))
+  		@include('home.prodotti_confezionati')
+	@endif
+
+	
 
 	<div>
 	{{$homepage->content}}	
