@@ -85,19 +85,6 @@ Il pagamento in contrassegno prevede un costo aggiuntivo a quello di spedizione:
 3. mettere gli indici in tutte le foreignkey
   table->integer('tag_id')->unsigned()->index();
 4. nelle tabelle del blog NON CI SONO le foreignKey onDelete('cascade') !!!
-5. nella pagine in cui uso dropzone c'è l'errore
-Uncaught Error: Dropzone already attached.
-perché lo includo nel app.js con il gulpfile e poi lo richiamo anche dentro la pagina 
-@section('script_head')
-  <script src="/js/dropzone.js"></script>
-@stop
-MA se tolgo questa chiamata da un altro errore
-
-6. La creazione della entry per la pagina homepage e per la slide relativa deve essere messa in un seeder associato alle migration relative
-2016_12_11_163032_create_slide_table
-2016_12_11_163114_create_immagini_slide_table
-2016_12_13_202553_create_tabella_homepage
-2016_12_18_123312_add_slider_id_to_homepage
 
 
 
