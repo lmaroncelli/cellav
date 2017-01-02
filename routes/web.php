@@ -119,22 +119,49 @@ Route::get('user-profile', ['as' => 'user.profile', 'uses' => 'Admin\UsersContro
 ///////////////////////////////////////////////////////////////////////////////////////////// //
 // How to define a Laravel route with a parameter that contains a slash character             //
 ////////////////////////////////////////////////////////////////////////////////////////////////
-Route::get('images/{filename_witslash}', function ($filename_witslash)
+
+// se l'immagine è vuota e punta a http://homestead.app/images/
+Route::get('images/', function ()
 {	
+    	$path = public_path() . '/frontend/assets/img/image-not-found.jpg';
+			$file = File::get($path);
+			$type = File::mimeType($path);
 
-    $path = storage_path() . '/app/' . $filename_witslash;
-
-    if(!File::exists($path)) abort(404);
-
-    $file = File::get($path);
-    $type = File::mimeType($path);
-
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
+			$response = Response::make($file, 200);
+			$response->header("Content-Type", $type);
+		
 
     return $response;
 
-})->where('filename_witslash', '(.*)');
+});
+
+Route::get('images/{filename_withslash}', function ($filename_withslash)
+{	
+    $path = storage_path() . '/app/' . $filename_withslash;
+
+    // se l'immagine è sbagliata
+    if(!File::exists($path)) 
+    	{
+    	$path = public_path() . '/frontend/assets/img/image-not-found.jpg';
+			$file = File::get($path);
+			$type = File::mimeType($path);
+
+			$response = Response::make($file, 200);
+			$response->header("Content-Type", $type);
+			} 
+		else 
+			{
+	    $file = File::get($path);
+	    $type = File::mimeType($path);
+
+	    $response = Response::make($file, 200);
+	    $response->header("Content-Type", $type);
+			}
+
+
+    return $response;
+
+})->where('filename_withslash', '(.*)');
 
 
 //////////////////

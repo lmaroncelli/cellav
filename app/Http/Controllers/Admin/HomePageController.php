@@ -21,9 +21,9 @@ class HomePageController extends Controller
 
           $this->slide_header = Slide::with(['immagini'])->titolo('hp_slide_header')->first();
 
-          $this->slide_freschi = Slide::with(['immagini'])->where('id',$homepage->prodotti_freschi_slide_id)->first();
+          $this->slide_freschi = Slide::with(['immagini'])->titolo('hp_slide_freschi')->first();
 
-          $this->slide_confezionati = Slide::with(['immagini'])->where('id',$homepage->prodotti_confezionati_slide_id)->first();
+          $this->slide_confezionati = Slide::with(['immagini'])->titolo('hp_slide_confezionati')->first();
 
       }
 
@@ -53,6 +53,7 @@ class HomePageController extends Controller
       $slide_header = $this->slide_header;
       $slide_freschi = $this->slide_freschi;
       $slide_confezionati = $this->slide_confezionati;
+      
       $homepage = HomePage::first();
       return view('admin.pagine.homepage.form', compact('slide_header','slide_freschi','slide_confezionati','homepage'));
       }
