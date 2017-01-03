@@ -234,6 +234,12 @@ Vorrei questo per ogni categoria della gallery (in totale sono 6 categorie).
 Cosa visualizza l'utente quando clicca?
 Quello che vedi in "wireframe pagina statica", uno degli screen presenti su invision.
 
+simile alla gallery dei prodotti che mi hai descritto (foto piccola, foto grande, link alla pagina) ho trovato:
+
+- http://jssor.com/demos/content-slider.slider
+
+
+questa potrebbe andare secondo te?
 
 
 4. nei mockaup, nei widget in cui da una parte c'è la slide di foto per i prodotti freschi o confezionati, dall'altra parta c'è titolo, descrizione, pulsante visualizza e "video": questo video deve essere messo embedded qui oppure è un link alla pagina statica di spiegazione (lo stesso link che c'è sul pulsante ...); quindi quelle 2 frecce saranno 2 immagini che mi passerà la grafica ? 
