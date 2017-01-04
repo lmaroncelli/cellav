@@ -20,6 +20,12 @@ class Slide extends Model
 		}
 
 
+	public function widget()
+		{
+			return $this->belongsTo('App\SlideProdottiWidget','slide_id','id');
+		}
+
+
 	public function scopeTitolo($query, $titolo)
 	   {
 	       return $query->where('titolo', $titolo);

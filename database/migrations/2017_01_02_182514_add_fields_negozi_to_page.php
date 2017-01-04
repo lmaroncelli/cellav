@@ -20,7 +20,7 @@ class AddFieldsNegoziToPage extends Migration
             $table->foreign('header_slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
             $table->integer('prodotti_freschi_slide_id')->unsigned()->nullable()->default(null)->after('header_slide_id');
             $table->integer('prodotti_confezionati_slide_id')->unsigned()->nullable()->default(null)->after('prodotti_freschi_slide_id');
-            $table->string('gm_nome')->default('')->after('desc_tiburtina');
+            $table->string('gm_nome')->default('')->after('prodotti_confezionati_slide_id');
             $table->string('gm_indirizzo')->default('')->after('gm_nome');
             $table->string('gm_lat',10)->default('')->after('gm_indirizzo');
             $table->string('gm_long',10)->default('')->after('gm_lat');

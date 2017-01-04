@@ -11,7 +11,7 @@ ci sarà una pagina di amministrazione per gestire questi widget della home.
 ==========================================================
 il widget "slide prodotti" avrà:
 
-- titolo (es: "widget prodotti confezionati Magliana")
+- nome (es: "widget prodotti confezionati Magliana")
 
 PARTE 1
 - slide con immagini (come home page)

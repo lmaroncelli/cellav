@@ -82,8 +82,9 @@ Route::group(['middleware' => ['admin']], function () {
 
 
 
-		
-
+		/* WIDGET SLIDE PRODOTTI */
+	  Route::get('admin/slide-prodotti-widget/{page}/confirm', ['as' => 'slide-prodotti-widget.confirm', 'uses' => 'Admin\SlideProdottiWidgetController@confirm']);
+		Route::resource('admin/slide-prodotti-widget', 'Admin\SlideProdottiWidgetController');
 
 
 });
