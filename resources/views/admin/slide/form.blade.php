@@ -10,9 +10,28 @@
 @stop
 
 @section('content')
+
+      @if ($slide->exists)
+        <form  method="POST" action="{{ route('slide.update', $slide->id) }}">
+        {{ method_field('PUT') }}
+      @else
+        <form  method="POST" action="{{ route('slide.store') }}">
+      @endif
+        
+        {{ csrf_field() }}
+        
+
+        <div class="form-group">
+          <label for="nome">Titolo</label>
+          <input type="text" class="form-control" id="nome" placeholder="slide prodotti confezionati Magliana" name="titolo" value="{{old('titolo', isset($slide->titolo) ? $slide->titolo : null)}}">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">{{ $slide->exists ? 'Modifica' : 'Salva'}}</button>
+
+      </form>
     
     <div class="slde">    
-  
+    
         @if ($slide->immagini->count())
           <form  method="POST" action="{{ route('slide.modifySlide') }}">
           {{ csrf_field() }}
