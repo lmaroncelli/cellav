@@ -7,10 +7,11 @@ use App\Categoria;
 use App\CategoriaRicetta;
 use App\Http\Requests;
 use App\Page;
-use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use App\Slide;
 use App\SlideProdottoWidget;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class PagesController extends AdminController
 {
@@ -79,12 +80,13 @@ class PagesController extends AdminController
         $categorieRicette_associate = [];
 
 
-        $slideHeader = Slide::pluck('titolo', 'id');
+        $slideHeader =  Slide::pluck('titolo', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
         
-        $widgetProdotti = SlideProdottoWidget::pluck('nome', 'id');
+        $widgetProdottiFreschi = SlideProdottoWidget::pluck('nome', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
+        $widgetProdottiConfezionati = SlideProdottoWidget::pluck('nome', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
 
 
-        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate','categorieRicette_associate','slideHeader','widgetProdotti'));
+        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate','categorieRicette_associate','slideHeader','widgetProdottiFreschi','widgetProdottiConfezionati'));
     }
 
     /**
@@ -157,7 +159,13 @@ class PagesController extends AdminController
         if (!is_null($page->listingCategorieRicette)) 
             $categorieRicette_associate = explode(',',$page->listingCategorieRicette);
 
-        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate', 'categorieRicette_associate'));
+
+        $slideHeader = Slide::pluck('titolo', 'id');
+        
+        $widgetProdottiFreschi = SlideProdottoWidget::pluck('nome', 'id');
+        $widgetProdottiConfezionati = SlideProdottoWidget::pluck('nome', 'id');
+
+        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate', 'categorieRicette_associate','slideHeader','widgetProdottiFreschi','widgetProdottiConfezionati'));
 
     }
 

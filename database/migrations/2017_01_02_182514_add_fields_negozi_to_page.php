@@ -14,8 +14,8 @@ class AddFieldsNegoziToPage extends Migration
     public function up()
     {
         Schema::table('tblPages', function (Blueprint $table) {
-            $table->string('seo_title')->after('id');
-            $table->text('seo_description')->after('seo_title');
+            $table->string('seo_title')->after('id')->default('');
+            $table->text('seo_description')->after('seo_title')->nullable()->default(null);
             $table->integer('header_slide_id')->unsigned()->nullable()->default(null)->after('listingCategorieRicette');
             $table->foreign('header_slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
             $table->string('gm_nome')->default('')->after('header_slide_id');

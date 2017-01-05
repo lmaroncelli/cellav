@@ -25,7 +25,7 @@ PARTE 2
 ci dovrà essere un modo per scegliere se ci sono prima (a sx) le slide o la descrizione
 
 ==========================================================
-il widget "i confezionati Tiburtina" avrà:
+lo slide "i confezionati Tiburtina" avrà:
 
 - titolo
 - slide con immagini (5 alla volta)
@@ -34,7 +34,7 @@ il widget "i confezionati Tiburtina" avrà:
 
 
 ==========================================================
-il widget "header" avrà:
+lo slide "header" avrà:
 
 - titolo
 - slide header come homepage
@@ -87,7 +87,7 @@ serve per HOMEPAGE e SERVIZI MAGLIANA (catering servizi a domicilio, corsi)
 ===================================================================
 Magliana
 
-1. widget 'header'
+1. slide 'header'
 
 2. descrizione
 

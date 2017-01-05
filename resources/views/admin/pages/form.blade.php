@@ -60,6 +60,25 @@
 	  		<textarea class="form-control" rows="3" name="content" id="content">{{old('content', isset($page->content) ? $page->content : null)}}</textarea>
 		</div>
 
+
+		<div class="form-group">
+		  <label for="codice">Widget Prodotti Freschi</label>
+		  <select class="form-control" name="prodotti_freschi_widget_id">
+		    @foreach ($widgetProdottiFreschi as $key => $nome)
+		      <option value="{{$key}}" @if( old('prodotti_freschi_widget_id') == $key || (isset($page->prodotti_freschi_widget_id) && $page->prodotti_freschi_widget_id == $key)) selected @endif>{{$nome}}</option>
+		    @endforeach
+		  </select>
+		</div>
+
+		<div class="form-group">
+		  <label for="codice">Widget Prodotti Confezionati</label>
+		  <select class="form-control" name="prodotti_confezionati_widget_id">
+		    @foreach ($widgetProdottiConfezionati as $key => $nome)
+		      <option value="{{$key}}" @if( old('prodotti_confezionati_widget_id') == $key || (isset($page->prodotti_confezionati_widget_id) && $page->prodotti_confezionati_widget_id == $key)) selected @endif>{{$nome}}</option>
+		    @endforeach
+		  </select>
+		</div>
+
 		<hr />
 		<div class="form-group">
 		<label for="caratteristiche">Listing prodotti</label>
