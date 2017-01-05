@@ -85,6 +85,7 @@ Il pagamento in contrassegno prevede un costo aggiuntivo a quello di spedizione:
 3. mettere gli indici in tutte le foreignkey
   table->integer('tag_id')->unsigned()->index();
 4. nelle tabelle del blog NON CI SONO le foreignKey onDelete('cascade') !!!
+5. le immagini in upload devono essere ridimensionate con intervention image che è già installato (adesso carica immagine di 2000 X 2500 di 1,5 MB)
 
 
 

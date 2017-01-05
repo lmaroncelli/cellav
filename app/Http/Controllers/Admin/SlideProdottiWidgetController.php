@@ -47,9 +47,12 @@ class SlideProdottiWidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
       {
-      return view('admin.widget.slide-prodotti.form');
+      $widget = SlideProdottoWidget::find($id);
+      $slideProdotti = Slide::pluck('titolo', 'id');
+
+      return view('admin.widget.slide-prodotti.form', compact('widget','slideProdotti'));
       }
 
 
@@ -76,36 +79,13 @@ class SlideProdottiWidgetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-      /////////////////////
-      // upload MAGLIANA //
-      /////////////////////
+     $widget = SlideProdottoWidget::find($id);
+     $widget->fill($request->all())->save();
 
-      $data = [];
+      return redirect()->route('slide-prodotti-widget.index')->with('status', 'Widget modificato correttamente!');
 
-      foreach (array('magliana','cipro','tiburtina') as $negozio) 
-        {
-
-        if (!is_null($request->file('img_'.$negozio)))
-          {
-          $image = $request->file('img_'.$negozio);
-          $imageName = time().$image->getClientOriginalName();
-
-          $path_img_negozio = $image->storeAs('homepage/negozi',$imageName); 
-          $data['img_'.$negozio] = $path_img_negozio;
-          } 
-
-        $desc_negozio = $request->get('desc_'.$negozio);
-        $data['desc_'.$negozio] = $desc_negozio;
-        
-        }
-
-      DB::table('tblHomePages')
-          ->where('id', 1)
-          ->update($data);
-
-      return redirect()->route('pannello')->with('status', 'Homepage aggiornata correttamente!');
     }
 
 

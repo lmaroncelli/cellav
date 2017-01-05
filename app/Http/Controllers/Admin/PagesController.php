@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Page;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use App\Slide;
+use App\SlideProdottoWidget;
 
 class PagesController extends AdminController
 {
@@ -76,7 +78,13 @@ class PagesController extends AdminController
         $caratteristiche_associate = [];
         $categorieRicette_associate = [];
 
-        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate','categorieRicette_associate'));
+
+        $slideHeader = Slide::pluck('titolo', 'id');
+        
+        $widgetProdotti = SlideProdottoWidget::pluck('nome', 'id');
+
+
+        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate','categorieRicette_associate','slideHeader','widgetProdotti'));
     }
 
     /**

@@ -5,7 +5,7 @@
 @stop
 
 @section('title')
-	{{ $widget->exists ? 'Modifica widget' : 'Nuova widget'}}
+	{{ $widget->exists ? 'Modifica widget' : 'Nuovo widget'}}
 @stop
 
 @section('content')

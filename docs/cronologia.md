@@ -34,6 +34,13 @@ il widget "i confezionati Tiburtina" avrà:
 
 
 ==========================================================
+il widget "header" avrà:
+
+- titolo
+- slide header come homepage
+
+
+==========================================================
 il widget "mappa" avrà:
 
 - titolo (es: "mappa home page")
@@ -64,3 +71,36 @@ il widget "elenco elementi" avrà:
 cioè  un tab con 3 elementi dove per ognuno ci può essere foto e descrizione
 
 serve per HOMEPAGE e SERVIZI MAGLIANA (catering servizi a domicilio, corsi)
+
+
+
+
+
+
+
+
+
+
+**05/01/17** Pagine Negozi
+
+
+===================================================================
+Magliana
+
+1. widget 'header'
+
+2. descrizione
+
+3. widget 'elenco elementi'
+
+4. widget 'slide prodotti'
+
+5. widget 'mappa'
+
+6. listing prodotti
+
+7. widget 'gallery categorie prodotti' 
+
+8. link al virtual tour creato dal fotografo
+
+**gli altri negozi avranno questi campi OPPURE MENO**

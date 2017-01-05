@@ -42,6 +42,17 @@
 	    	<label for="nome">URI</label>
 	    	<input type="text" class="form-control" id="uri" placeholder="URI" name="uri" value="{{old('uri', isset($page->uri) ? $page->uri : null)}}">
 	  	</div>
+		
+		
+		<div class="form-group">
+		  <label for="codice">Header Slide</label>
+		  <select class="form-control" name="header_slide_id">
+		    @foreach ($slideHeader as $key => $titolo)
+		      <option value="{{$key}}" @if( old('header_slide_id') == $key || (isset($page->header_slide_id) && $page->header_slide_id == $key)) selected @endif>{{$titolo}}</option>
+		    @endforeach
+		  </select>
+		</div>
+
 
 		<div class="form-group">
 		  	<label for="nome">Content</label>

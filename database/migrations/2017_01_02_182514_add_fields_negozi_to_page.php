@@ -14,13 +14,11 @@ class AddFieldsNegoziToPage extends Migration
     public function up()
     {
         Schema::table('tblPages', function (Blueprint $table) {
-            $table->string('seo_title');
-            $table->text('seo_description');
-            $table->integer('header_slide_id')->unsigned()->nullable()->default(null);
+            $table->string('seo_title')->after('id');
+            $table->text('seo_description')->after('seo_title');
+            $table->integer('header_slide_id')->unsigned()->nullable()->default(null)->after('listingCategorieRicette');
             $table->foreign('header_slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
-            $table->integer('prodotti_freschi_slide_id')->unsigned()->nullable()->default(null)->after('header_slide_id');
-            $table->integer('prodotti_confezionati_slide_id')->unsigned()->nullable()->default(null)->after('prodotti_freschi_slide_id');
-            $table->string('gm_nome')->default('')->after('prodotti_confezionati_slide_id');
+            $table->string('gm_nome')->default('')->after('header_slide_id');
             $table->string('gm_indirizzo')->default('')->after('gm_nome');
             $table->string('gm_lat',10)->default('')->after('gm_indirizzo');
             $table->string('gm_long',10)->default('')->after('gm_lat');
@@ -33,9 +31,14 @@ class AddFieldsNegoziToPage extends Migration
      * @return void
      */
     public function down()
-    {
+    {   
+        // Your foreign keys is named table_fields_foreign
+        Schema::table('tblPages', function(Blueprint $table) {
+            $table->dropForeign('tblPages_header_slide_id_foreign');
+        });
+
         Schema::table('tblPages', function (Blueprint $table) {
-            //
+            $table->dropColumn(['seo_title','seo_description','header_slide_id','gm_nome','gm_indirizzo','gm_lat','gm_long',]);
         });
     }
 }

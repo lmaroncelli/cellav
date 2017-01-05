@@ -38,9 +38,7 @@ class SlideController extends Controller
      */
     public function uploadSlide(Request $request)
     {    
-        $slide_header = $this->slide_header;
-
-        $slider_id = $slide_header->id;
+        $slider_id = $request->get('slide_id');
 
         $folder = 'homepage/slide';
 
@@ -51,7 +49,10 @@ class SlideController extends Controller
     /* POST chiamato per modificare le descrizioni delle immagine slideheader */
     public function modifySlide(Request $request)
       {
-      foreach ($this->slide_header->immagini as $imageSlide) 
+      $slide_id = $request->get('slide_id');
+      $slide = Slide::with(['immagini'])->find($slide_id);
+
+      foreach ($slide->immagini as $imageSlide) 
         {
         if ($request->get('descrizione_'.$imageSlide->id) != '') 
           {
@@ -59,7 +60,7 @@ class SlideController extends Controller
           $imageSlide->save();
           }
         }
-      return redirect()->route('homepage.edit')->with('status', 'Homepage aggiornata correttamente!');
+      return redirect()->route('slide.edit',$slide_id)->with('status', 'Slide aggiornata correttamente!');
       }
 
 
@@ -109,7 +110,10 @@ class SlideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    //dd($request->all());
+    $slide = Slide::create($request->all());
+
+    return redirect()->route('slide.edit',$slide->id)->with('status', 'Slide creata correttamente!');
     }
 
     /**
@@ -131,7 +135,8 @@ class SlideController extends Controller
      */
     public function edit($id)
     {
-        //
+    $slide = Slide::find($id);
+    return view('admin.slide.form', compact('slide')); 
     }
 
     /**
@@ -143,7 +148,11 @@ class SlideController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    $slide = Slide::find($id);
+    $slide->fill($request->all())->save();
+    
+    return redirect()->route('slide.edit',$slide->id)->with('status', 'Slide modificata correttamente!');
+
     }
 
     /**

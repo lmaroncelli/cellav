@@ -28,8 +28,10 @@
         
         <button type="submit" class="btn btn-primary">{{ $slide->exists ? 'Modifica' : 'Salva'}}</button>
 
-      </form>
-    
+      </form>   
+      
+    @if ($slide->exists)
+
     <div class="slde">    
     
         @if ($slide->immagini->count())
@@ -91,9 +93,11 @@
 
     </div>
 
+    @endif {{-- fine se esiste la slide --}}
 @stop
 
-
+    @if ($slide->exists)
+    
     @section('script_head')
       <script src="/js/dropzone.js"></script>
     @stop
@@ -151,5 +155,7 @@
               }
             };
     </script>
-
+  
     @stop
+  
+    @endif  {{-- fine se esiste la slide --}}

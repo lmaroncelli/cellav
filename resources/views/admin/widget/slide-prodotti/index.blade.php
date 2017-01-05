@@ -11,7 +11,6 @@
        <thead>
            <tr>
                <th>Nome</th> 
-               <th></th> 
                <th>Edit</th> 
                <th>Delete</th> 
            </tr>
