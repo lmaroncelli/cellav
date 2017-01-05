@@ -4,7 +4,7 @@ namespace App;
 ;
 use Illuminate\Database\Eloquent\Model;
 
-class SlideProdottiWidget extends Model
+class SlideProdottoWidget extends Model
 {
 	protected $table = 'tblSlideProdottiWidget';
 

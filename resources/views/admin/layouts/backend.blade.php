@@ -65,9 +65,12 @@
                                 Widget <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">                
-                                <li><a href="{{ route('slide-prodotti-widget.index') }}">slide prodotti</a></li>
+                                <li><a href="{{ route('slide-prodotti-widget.index') }}">widget slide prodotti</a></li>
                             </ul>
                         </li>
+
+                        <li><a href="{{ route('slide.index') }}">Slide</a></li>
+                        <li><a href="{{ route('gallerie.index') }}">Gallerie</a></li>
 
                         <li><a href="{{ route('prodotti.index') }}">Prodotti</a></li>
 

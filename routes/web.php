@@ -73,17 +73,23 @@ Route::group(['middleware' => ['admin']], function () {
 
 		Route::post('admin/homepage/deleteNegozioImage', ['as' => 'homepage.deleteNegozioImage', 'uses' => 'Admin\HomePageController@deleteNegozioImageAjax']);
 
-		
-		
-
 		Route::post('admin/homepage/uploadSlideProdttiFreschi', ['as' => 'homepage.uploadSlideProdttiFreschi', 'uses' => 'Admin\HomePageController@uploadSlideProdttiFreschi']);
 
 		Route::post('admin/homepage/uploadSlideProdttiConfezionati', ['as' => 'homepage.uploadSlideProdttiConfezionati', 'uses' => 'Admin\HomePageController@uploadSlideProdttiConfezionati']);
 
 
 
+		/* SLIDE */
+	  Route::get('admin/slide/{slide}/confirm', ['as' => 'slide.confirm', 'uses' => 'Admin\SlideController@confirm']);		
+		
+		Route::post('admin/slide/uploadSlide', ['as' => 'slide.uploadSlide', 'uses' => 'Admin\SlideController@uploadSlide']);
+		Route::post('admin/slide/modifySlide', ['as' => 'slide.modifySlide', 'uses' => 'Admin\SlideController@modifySlide']);
+		Route::post('admin/slide/deleteSliderImage', ['as' => 'slide.deleteSliderImage', 'uses' => 'Admin\SlideController@deleteSliderImageAjax']);
+
+		Route::resource('admin/slide', 'Admin\SlideController');
+
 		/* WIDGET SLIDE PRODOTTI */
-	  Route::get('admin/slide-prodotti-widget/{page}/confirm', ['as' => 'slide-prodotti-widget.confirm', 'uses' => 'Admin\SlideProdottiWidgetController@confirm']);
+	  Route::get('admin/slide-prodotti-widget/{widget}/confirm', ['as' => 'slide-prodotti-widget.confirm', 'uses' => 'Admin\SlideProdottiWidgetController@confirm']);
 		Route::resource('admin/slide-prodotti-widget', 'Admin\SlideProdottiWidgetController');
 
 

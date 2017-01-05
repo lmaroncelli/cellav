@@ -1,0 +1,136 @@
+@extends('admin.layouts.backend')
+
+@section('css')
+  <link rel="stylesheet" href="/css/dropzone/basic.css">
+	<link rel="stylesheet" href="/css/dropzone/dropzone.css">
+@stop
+
+@section('title')
+  {{ $slide->exists ? 'Modifica slide' : 'Nuova slide'}}
+@stop
+
+@section('content')
+    
+    <div class="slde">    
+  
+        @if ($slide->immagini->count())
+          <form  method="POST" action="{{ route('slide.modifySlide') }}">
+          {{ csrf_field() }}
+          <input type="hidden" name="slide_id" value="{{$slide->id}}">
+          
+          @foreach ($slide->immagini as $immagine)
+          <div class="row">
+          
+          <div class="col-md-3">        
+            <img src="{{ url('images/'.$immagine->nome) }}" width="200" height="104">
+          </div>
+          
+          <div class="col-md-8">             
+    <textarea class="form-control" rows="3" name="descrizione_{{$immagine->id}}">{{old('descrizione_'.$immagine->descrizione, isset($immagine->descrizione) ? $immagine->descrizione : null)}}</textarea>
+          </div>        
+            
+          <div class="col-md-1">
+            <button type="button" class="btn btn-default delete_image_slide" data-id="{{$immagine->id}}">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </div>
+          
+          </div>
+          @endforeach
+
+          <div class="row">
+            <button type="submit" class="btn btn-primary">Modifica descrizioni</button>
+          </div>
+          
+          </form>
+         @else
+          <div class="row">
+            <p>Nessuna immagine caricata ancora</p>
+          </div>
+        @endif
+    </div>
+
+    <br>
+    <div class="row">
+      <form  method="POST" action="{{ route('slide.uploadSlide') }}" class="dropzone"  enctype="multipart/form-data" id="formUploadSlide">
+        {{ csrf_field() }}
+        <input type="hidden" name="slide_id" value="{{$slide->id}}">
+      </form>
+    
+
+      <div class="dz-preview dz-file-preview"  id="preview-template-silde-header" style="display: none;">
+        <div class="dz-details">
+          <div class="dz-filename"><span data-dz-name></span></div>
+          <div class="dz-size" data-dz-size></div>
+          <img data-dz-thumbnail />
+        </div>
+        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+        <div class="dz-success-mark"><span>✔</span></div>
+        <div class="dz-error-mark"><span>✘</span></div>
+        <div class="dz-error-message"><span data-dz-errormessage></span></div>
+      </div>
+
+    </div>
+
+@stop
+
+
+    @section('script_head')
+      <script src="/js/dropzone.js"></script>
+    @stop
+
+    @section('script')
+
+      <script type="text/javascript">
+
+
+
+            $( document ).ready(function() {
+
+                // eliminazione immagini header
+                $("button.delete_image_slide").click(function(e){
+                  if (confirm('Sei sicuro di voler eliminare l\'immagine?')) {
+                    var id = jQuery(this).data('id');
+                    var data = {
+                                "_token": "{{ csrf_token() }}",
+                                id:id,
+                                };
+                    $.ajax({ url: "{{route('slide.deleteSliderImage')}}",
+                             data: data,
+                             type: 'post',
+                             success: function(output) 
+                              {
+                              window.location.reload(true);
+                              }
+                    });
+                  };
+                });
+
+            });
+
+
+
+
+            Dropzone.options.formUploadSlide = {
+              paramName: "file", // The name that will be used to transfer the file
+              maxFilesize: 2, // MB
+              acceptedFiles: ".jpeg,.jpg,.png,.gif",
+              dictDefaultMessage: "Clicca o trascina qui i file da caricare nella slide",
+              //previewTemplate: document.getElementById('preview-template-silde-header').innerHTML,
+              accept: function(file, done) {
+                if (file.name == "xxx.jpg") {
+                  done("Naha, you don't.");
+                }
+                else { done(); }
+              },
+              init: function () {
+                this.on("complete", function (file) {
+                  if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
+                    setTimeout(function(){ location.reload(); }, 1000);
+                  }
+                });
+              }
+            };
+    </script>
+
+    @stop
