@@ -1,19 +1,39 @@
 @extends('layouts.frontend')
 
-@section('title')
-	
-	{{ isset($page) ? $page->title : $categoriaRicette->nome }}
 
+@section('seo_title'){!!$page->seo_title!!}@stop
+@section('seo_description'){!!$page->seo_description!!}@stop
+
+
+@section('title')
+	{{ isset($page) ? $page->title : $categoriaRicette->nome }}
 @stop
 
+
 @section('content')
+
+
+
 	
 	@if (isset($page))
+	
+		{{-- HEADER --}}
+		@if ( !is_null($page->headerSlide) )
+			 <div>heade slide</div>
+		@endif
+		{{-- FINE HEADER --}}
+
 		{!! $page->content !!}
+		
+		{{-- WIDGET PC --}}
+		@if ( !is_null($page->widgetProdottiConfezionati) )
+			 <div>widget PC</div>
+		@endif
+		{{-- FINE WIDGET PC --}}
+		
 	@endif
 
 	@if (isset($prodotti))
-	
 		<hr/>
 		@if (!$prodotti->count())
 			Nessun prodotto disponibile

@@ -24,4 +24,28 @@ class SlideProdottoWidget extends Model
 			return $this->hasOne('App\Slide','slide_id','id');
 		}
 
+	/**
+	 * [un widget è associato a molte pagine come widget prodotti freschi widget->pagineAsWidgetPF()]
+	 * potrei avere un'altra relazione che si riferisce ad un'altra FK e che si chiama in modo diverso
+	 * es: widget->pagineAsWidgetPC()
+	 * @return [type] [description]
+	 */
+	public function pagineAsWidgetPF()
+		{
+			return $this->hasMany('App\Page','prodotti_freschi_widget_id','id');
+		}
+
+
+
+	/**
+	 * [un widget è associato a molte pagine come widget prodotti confezionati widget->pagineAsWidgetPC()]
+	 * potrei avere un'altra relazione che si riferisce ad un'altra FK e che si chiama in modo diverso
+	 * es: widget->pagineAsWidgetPF()
+	 * @return [type] [description]
+	 */
+	public function pagineAsWidgetPC()
+		{
+			return $this->hasMany('App\Page','prodotti_confezionati_widget_id','id');
+		}
+
 }

@@ -92,6 +92,9 @@ class PagesController extends AdminController
     /**
      * Store a newly created resource in storage.
      *
+     * le FK header_slide_id, prodotti_freschi_widget_id, prodotti_confezionati_widget_id
+     * NON POSSONO ESSERE 0, quindi ho un mutator per ognuna che mette null al posto di 0
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -160,10 +163,10 @@ class PagesController extends AdminController
             $categorieRicette_associate = explode(',',$page->listingCategorieRicette);
 
 
-        $slideHeader = Slide::pluck('titolo', 'id');
+        $slideHeader =  Slide::pluck('titolo', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
         
-        $widgetProdottiFreschi = SlideProdottoWidget::pluck('nome', 'id');
-        $widgetProdottiConfezionati = SlideProdottoWidget::pluck('nome', 'id');
+        $widgetProdottiFreschi = SlideProdottoWidget::pluck('nome', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
+        $widgetProdottiConfezionati = SlideProdottoWidget::pluck('nome', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
 
         return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate', 'categorieRicette_associate','slideHeader','widgetProdottiFreschi','widgetProdottiConfezionati'));
 
@@ -172,6 +175,9 @@ class PagesController extends AdminController
     /**
      * Update the specified resource in storage.
      *
+     * le FK header_slide_id, prodotti_freschi_widget_id, prodotti_confezionati_widget_id
+     * NON POSSONO ESSERE 0, quindi ho un mutator per ognuna che mette null al posto di 0
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response

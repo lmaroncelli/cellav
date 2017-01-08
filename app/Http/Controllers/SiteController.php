@@ -130,6 +130,18 @@ class SiteController extends Controller
 			{
 
 			$page = Page::where('uri',$slug)->first();
+
+			if( !is_null($page->headerSlide) )
+				{
+				$slide_header = Slide::with(['immagini'])->where('id',$page->headerSlide)->first();	
+				}
+			
+			$widgetProdottiConfezionati = $page->widgetProdottiConfezionati;
+			$widgetProdottiFreschi = $page->widgetProdottiFreschi;
+
+		
+
+
 			$categorieRicette = null;
 
 			if ($page->listing) 
