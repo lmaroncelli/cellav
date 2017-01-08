@@ -21,7 +21,7 @@ class SlideProdottoWidget extends Model
 
 	public function slide()
 		{
-			return $this->hasOne('App\Slide','slide_id','id');
+			return $this->belongsTo('App\Slide','slide_id','id');
 		}
 
 	/**

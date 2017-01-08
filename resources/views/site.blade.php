@@ -5,6 +5,15 @@
 @section('seo_description'){!!$page->seo_description!!}@stop
 
 
+
+@section('css')
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<link href="{{ url('frontend/assets/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
+
+	<link href="{{ url('frontend/assets/css/jquery.bxslider.css') }}" rel="stylesheet">
+
+@stop
+
 @section('title')
 	{{ isset($page) ? $page->title : $categoriaRicette->nome }}
 @stop
@@ -26,8 +35,8 @@
 		{!! $page->content !!}
 		
 		{{-- WIDGET PC --}}
-		@if ( !is_null($page->widgetProdottiConfezionati) )
-			 <div>widget PC</div>
+		@if (!is_null($widgetProdottiConfezionati))
+			@include('pages.prodotti_confezionati')
 		@endif
 		{{-- FINE WIDGET PC --}}
 		
@@ -82,4 +91,20 @@
 		</ul>
 	@endif
 
+@stop
+
+@section('script')
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src={{ url('frontend/assets/js/ie10-viewport-bug-workaround.js') }}></script>
+
+	<script src="{{ url('frontend/assets/js/bxslider/jquery.bxslider.min.js') }}"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+		  $('.bxslider').bxSlider({
+		  	adaptiveHeight: true,
+		  	 mode: 'fade'
+		  });
+		});
+	</script>
 @stop

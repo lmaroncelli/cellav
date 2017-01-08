@@ -22,7 +22,7 @@ class Slide extends Model
 
 	public function widget()
 		{
-			return $this->belongsTo('App\SlideProdottiWidget','slide_id','id');
+			return $this->hasOne('App\SlideProdottiWidget','slide_id','id');
 		}
 
 	/**

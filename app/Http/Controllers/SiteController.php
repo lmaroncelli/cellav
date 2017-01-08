@@ -135,6 +135,10 @@ class SiteController extends Controller
 				{
 				$slide_header = Slide::with(['immagini'])->where('id',$page->headerSlide)->first();	
 				}
+			else
+				{
+				$slide_header = null;
+				}
 			
 			$widgetProdottiConfezionati = $page->widgetProdottiConfezionati;
 			$widgetProdottiFreschi = $page->widgetProdottiFreschi;
@@ -150,7 +154,7 @@ class SiteController extends Controller
 			if ($page->listingCategorieRicette)
 				$categorieRicette = self::_getCategorieRicette($page);
 
-			return view('site',compact('page','prodotti', 'categorieRicette'));
+			return view('site',compact('page','prodotti', 'categorieRicette','slide_header','widgetProdottiConfezionati','widgetProdottiFreschi'));
 			
 			}
 				

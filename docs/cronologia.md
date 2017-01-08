@@ -104,3 +104,12 @@ Magliana
 8. link al virtual tour creato dal fotografo
 
 **gli altri negozi avranno questi campi OPPURE MENO**
+
+
+
+**08/01/17** Relazione one-one Widget--Slide
+
+se WIDGET hasOne SLIDE allora devo mettere widget_id nella tabella della slide
+SICCOME ho già messo la FK slide_id nella tabella dei widget, ALLORA giro la relazione e dico 
+
+SLIDE hasOne WIDGET (è sempre 1 a 1, ma in questo modo la slide_id va nella tabella widget)
