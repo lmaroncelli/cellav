@@ -92,6 +92,11 @@ Route::group(['middleware' => ['admin']], function () {
 	  Route::get('admin/slide-prodotti-widget/{widget}/confirm', ['as' => 'slide-prodotti-widget.confirm', 'uses' => 'Admin\SlideProdottiWidgetController@confirm']);
 		Route::resource('admin/slide-prodotti-widget', 'Admin\SlideProdottiWidgetController');
 
+		/* WIDGET THREECOLS */
+	  Route::get('admin/three-cols-widget/{widget}/confirm', ['as' => 'three-cols-widget.confirm', 'uses' => 'Admin\ThreeColumnsWidgetController@confirm']);
+		
+		Route::resource('admin/three-cols-widget', 'Admin\ThreeColumnsWidgetController');
+
 
 });
 

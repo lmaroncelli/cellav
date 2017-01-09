@@ -59,15 +59,24 @@ il widget "gallery categorie prodotti" avrà:
 
 
 ==========================================================
-il widget "elenco elementi" avrà:
+il widget "ThreeColumnsWidget" avrà:
 
-- titolo
-- img1
-- dec1
-- img2
-- dec2
-- img2
-- dec2
+- nome
+- img_1
+- titolo_1
+- descrizione_1
+- link_1 alla pagina statica (link pulsante visualizza)
+- img_2
+- titolo_2
+- descrizione_2
+- link_2
+- img_3
+- titolo_3
+- descrizione_3
+- link_3
+
+
+
 cioè  un tab con 3 elementi dove per ognuno ci può essere foto e descrizione
 
 serve per HOMEPAGE e SERVIZI MAGLIANA (catering servizi a domicilio, corsi)

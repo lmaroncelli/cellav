@@ -33,6 +33,7 @@ class AddWidgetFieldsToPages extends Migration
             $table->dropForeign('tblPages_prodotti_freschi_widget_id_foreign');
             $table->dropForeign('tblPages_prodotti_confezionati_widget_id_foreign');
         });
+        
         Schema::table('tblPages', function (Blueprint $table) {
             $table->dropColumn(['prodotti_freschi_widget_id','prodotti_confezionati_widget_id',]);
         });

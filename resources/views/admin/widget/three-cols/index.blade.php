@@ -1,12 +1,12 @@
 @extends('admin.layouts.backend')
 
 @section('title')
-	Widget Slide Prodotti
+	Widget 3 colonne
 @stop
 
 @section('content')
 	
-	<a href="{{ route('slide-prodotti-widget.create') }}" class="btn btn-primary" title="Crea un nuovo widget">Nuovo</a>
+	<a href="{{ route('three-cols-widget.create') }}" class="btn btn-primary" title="Crea una nuovo widget">Nuovo</a>
 	<table class="table table-striped">
        <thead>
            <tr>
@@ -20,8 +20,8 @@
 	           @foreach ($widgets as $count => $widget)
 	               <tr>
 	                   <td>{{$widget->nome}}</td>
-	                   <td><a href="{{ route('slide-prodotti-widget.edit',$widget->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
-	                   <td><a href="{{ route('slide-prodotti-widget.confirm',$widget->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+	                   <td><a href="{{ route('three-cols-widget.edit',$widget->id) }}"><span class="glyphicon glyphicon-edit"></span></a></td>
+	                   <td><a href="{{ route('three-cols-widget.confirm',$widget->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
 	               </tr>
 	           @endforeach
 			@else

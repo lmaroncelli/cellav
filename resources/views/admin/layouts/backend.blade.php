@@ -66,6 +66,7 @@
                             </a>
                             <ul class="dropdown-menu">                
                                 <li><a href="{{ route('slide-prodotti-widget.index') }}">widget slide prodotti</a></li>
+                                <li><a href="{{ route('three-cols-widget.index') }}">widget 3 colonne</a></li>
                             </ul>
                         </li>
 

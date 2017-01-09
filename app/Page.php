@@ -32,6 +32,11 @@ class Page extends Model
   			return $this->belongsTo('App\SlideProdottoWidget','prodotti_confezionati_widget_id','id');
   		}  	
 
+    public function widgetThreeColumns()
+      {
+        return $this->belongsTo('App\ThreeColumnsWidget','three_columns_widget_id','id');
+      }   
+
 
   	// le FK header_slide_id, prodotti_freschi_widget_id, prodotti_confezionati_widget_id
   	// NON POSSONO ESSERE 0, quindi faccio un mutator per ognuna che mette null al posto di 0
@@ -53,7 +58,7 @@ class Page extends Model
   	      $this->attributes['prodotti_freschi_widget_id'] = $value;
   	  }
 
-  	 public function setProdottiConfezionatiWidgetIdAttribute($value)
+  	 public function setThreeColumnsWidgetIdAttribute($value)
   	  {
   	  		if ($value == 0) 
   	  			{
@@ -61,6 +66,17 @@ class Page extends Model
   	  			}
   	      $this->attributes['prodotti_confezionati_widget_id'] = $value;
   	  }
+
+
+      public function setProdottiConfezionatiWidgetIdAttribute($value)
+       {
+          if ($value == 0) 
+            {
+            $value = null;
+            }
+           $this->attributes['three_columns_widget_id'] = $value;
+       }
+
 
 
 }
