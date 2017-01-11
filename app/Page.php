@@ -65,7 +65,7 @@ class Page extends Model
   	  			{
   	  			$value = null;
   	  			}
-  	      $this->attributes['prodotti_confezionati_widget_id'] = $value;
+  	      $this->attributes['three_columns_widget_id'] = $value;
   	  }
 
 
@@ -75,7 +75,7 @@ class Page extends Model
             {
             $value = null;
             }
-           $this->attributes['three_columns_widget_id'] = $value;
+           $this->attributes['prodotti_confezionati_widget_id'] = $value;
        }
 
 
