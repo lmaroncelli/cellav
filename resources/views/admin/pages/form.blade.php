@@ -60,6 +60,15 @@
 	  		<textarea class="form-control" rows="3" name="content" id="content">{{old('content', isset($page->content) ? $page->content : null)}}</textarea>
 		</div>
 
+		<div class="form-group">
+		  <label for="codice">Widget 3 colonne</label>
+		  <select class="form-control" name="three_columns_widget_id">
+		    @foreach ($widgetThreeColumns as $key => $nome)
+		      <option value="{{$key}}" @if( old('three_columns_widget_id') == $key || (isset($page->three_columns_widget_id) && $page->three_columns_widget_id == $key)) selected @endif>{{$nome}}</option>
+		    @endforeach
+		  </select>
+		</div>
+
 
 		<div class="form-group">
 		  <label for="codice">Widget Prodotti Freschi</label>

@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Page;
 use App\Slide;
 use App\SlideProdottoWidget;
+use App\ThreeColumnsWidget;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -80,13 +81,13 @@ class PagesController extends AdminController
         $categorieRicette_associate = [];
 
 
-        $slideHeader =  Slide::pluck('titolo', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
-        
-        $widgetProdottiFreschi = SlideProdottoWidget::pluck('nome', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
-        $widgetProdottiConfezionati = SlideProdottoWidget::pluck('nome', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
+        $slideHeader =    ['0' => 'Nessuno'] + Slide::pluck('titolo', 'id')->all();
+        $widgetProdottiFreschi =   ['0' => 'Nessuno'] + SlideProdottoWidget::pluck('nome', 'id')->all();
+        $widgetProdottiConfezionati =   ['0' => 'Nessuno'] + SlideProdottoWidget::pluck('nome', 'id')->all();
+        $widgetThreeColumns =  ['0' => 'Nessuno'] + ThreeColumnsWidget::pluck('nome', 'id')->all();
 
 
-        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate','categorieRicette_associate','slideHeader','widgetProdottiFreschi','widgetProdottiConfezionati'));
+        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate','categorieRicette_associate','slideHeader','widgetProdottiFreschi','widgetProdottiConfezionati','widgetThreeColumns'));
     }
 
     /**
@@ -163,12 +164,13 @@ class PagesController extends AdminController
             $categorieRicette_associate = explode(',',$page->listingCategorieRicette);
 
 
-        $slideHeader =  Slide::pluck('titolo', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
-        
-        $widgetProdottiFreschi = SlideProdottoWidget::pluck('nome', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
-        $widgetProdottiConfezionati = SlideProdottoWidget::pluck('nome', 'id')->prepend(Collection::make(['0' => 'Nessuno']));
+        $slideHeader =    ['0' => 'Nessuno'] + Slide::pluck('titolo', 'id')->all();
+        $widgetProdottiFreschi =   ['0' => 'Nessuno'] + SlideProdottoWidget::pluck('nome', 'id')->all();
+        $widgetProdottiConfezionati =   ['0' => 'Nessuno'] + SlideProdottoWidget::pluck('nome', 'id')->all();
+        $widgetThreeColumns =  ['0' => 'Nessuno'] + ThreeColumnsWidget::pluck('nome', 'id')->all();
 
-        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate', 'categorieRicette_associate','slideHeader','widgetProdottiFreschi','widgetProdottiConfezionati'));
+
+        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate', 'categorieRicette_associate','slideHeader','widgetProdottiFreschi','widgetProdottiConfezionati','widgetThreeColumns'));
 
     }
 
@@ -183,13 +185,14 @@ class PagesController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-
+    {   
         
         $content = self::_manage_content_summernote($request->get('content'));
 
         $page = Page::find($id);
+        
         $page->fill(['content' => $content]);
+
         $page->fill($request->except('content','listingCaratteristiche', 'listingCategorie', 'listingCategorieRicette'));
 
         // caratteristiche e categorie
@@ -219,8 +222,8 @@ class PagesController extends AdminController
 
         $page->fill(['listingCategorieRicette' => $listingCategorieRicette]);
 
-
         $page->save();
+
         return redirect()->route('pages.index')->with('status', 'Pagina modificata correttamente!');
 
     }

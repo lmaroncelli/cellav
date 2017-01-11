@@ -12,7 +12,8 @@ class Page extends Model
     protected $fillable = [
         'title','uri','content','listing','listingCaratteristiche', 'listingCategorie', 'inMenu', 'header_slide_id',
 'prodotti_freschi_widget_id',
-'prodotti_confezionati_widget_id'
+'prodotti_confezionati_widget_id',
+'three_columns_widget_id',
     ];
 
 
