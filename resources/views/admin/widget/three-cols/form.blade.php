@@ -12,10 +12,10 @@
 	
 
 	@if ($widget->exists)
-		<form  method="POST" action="{{ route('three-cols-widget.update', $widget->id) }}">
+		<form  method="POST" action="{{ route('three-cols-widget.update', $widget->id) }}" enctype="multipart/form-data">
 		{{ method_field('PUT') }}
 	@else
-		<form  method="POST" action="{{ route('three-cols-widget.store') }}">
+		<form  method="POST" action="{{ route('three-cols-widget.store') }}" enctype="multipart/form-data">
 	@endif
 		
 		{{ csrf_field() }}
