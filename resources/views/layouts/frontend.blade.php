@@ -45,8 +45,9 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
-
-
+    
+    @yield('script_head')
+  
   </head>
 
   <body>

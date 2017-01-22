@@ -9,10 +9,38 @@
 @section('css')
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<link href="{{ url('frontend/assets/css/ie10-viewport-bug-workaround.css') }}" rel="stylesheet">
-
 	<link href="{{ url('frontend/assets/css/jquery.bxslider.css') }}" rel="stylesheet">
 
+	{{-- demo slider categorie prodotti --}}
+	
+	<link href="{{ url('demo/css/flexslider.css') }}" rel="stylesheet">
+
+	{{--  flex slide caption CSS --}}
+	<style type="text/css">
+	.flex-caption {
+	  width: 100%;
+	  padding: 2%;
+	  left: 0;
+	  bottom: 0;
+	  background: rgba(0,0,0,.5);
+	  color: #fff;
+	  text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+	  font-size: 14px;
+	  line-height: 18px;
+	}
+	
+	/* override to suite the site*/
+	.flexslider {
+		margin-bottom: 0;
+	}
+	</style>
+
 @stop
+
+@section('script_head')
+	<script src="{{ url('demo/js/modernizr.js') }}"></script>
+@stop
+
 
 @section('title')
 	{{ isset($page) ? $page->title : $categoriaRicette->nome }}
@@ -34,11 +62,24 @@
 
 		{!! $page->content !!}
 		
+		
+		{{-- GALLERY CATEGORIE PRODOTTI --}}
+			@include('pages.gallery_categorie_prodotti')
+		{{-- GALLERY CATEGORIE PRODOTTI --}}
+
+
+		{{-- WIDGET 3 COLS --}}
+		@if (!is_null($widgetThreeColumns))
+			@include('pages.widget_three_columns')
+		@endif
+		{{-- FINE WIDGET 3 COLS --}}
+		
 		{{-- WIDGET PC --}}
 		@if (!is_null($widgetProdottiConfezionati))
 			@include('pages.prodotti_confezionati')
 		@endif
 		{{-- FINE WIDGET PC --}}
+
 		
 	@endif
 
@@ -107,4 +148,35 @@
 		  });
 		});
 	</script>
+
+	
+	<!-- FlexSlider -->
+	<script defer src="{{ url('demo/js/jquery.flexslider.js') }}"></script>
+
+	<script type="text/javascript">
+
+	  $(window).load(function(){
+	    $('#carousel').flexslider({
+	      animation: "slide",
+	      controlNav: false,
+	      animationLoop: false,
+	      slideshow: false,
+	      itemWidth: 210,
+	      itemMargin: 5,
+	      asNavFor: '#slider'
+	    });
+
+	    $('#slider').flexslider({
+	      animation: "slide",
+	      controlNav: false,
+	      animationLoop: false,
+	      slideshow: false,
+	      sync: "#carousel",
+	      start: function(slider){
+	        $('body').removeClass('loading');
+	      }
+	    });
+	  });
+	</script>
+
 @stop

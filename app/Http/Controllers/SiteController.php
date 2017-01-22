@@ -142,7 +142,7 @@ class SiteController extends Controller
 			
 			$widgetProdottiConfezionati = $page->widgetProdottiConfezionati;
 			$widgetProdottiFreschi = $page->widgetProdottiFreschi;
-
+			$widgetThreeColumns = $page->widgetThreeColumns;
 		
 
 
@@ -154,7 +154,7 @@ class SiteController extends Controller
 			if ($page->listingCategorieRicette)
 				$categorieRicette = self::_getCategorieRicette($page);
 
-			return view('site',compact('page','prodotti', 'categorieRicette','slide_header','widgetProdottiConfezionati','widgetProdottiFreschi'));
+			return view('site',compact('page','prodotti', 'categorieRicette','slide_header','widgetProdottiConfezionati','widgetProdottiFreschi','widgetThreeColumns'));
 			
 			}
 				
