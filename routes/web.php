@@ -88,6 +88,13 @@ Route::group(['middleware' => ['admin']], function () {
 
 		Route::resource('admin/slide', 'Admin\SlideController');
 
+
+		/* SLIDE CATEGORIE PRODOTTI */
+		Route::resource('admin/slide-categorie', 'Admin\SlideCategorieProdottiController');
+
+
+
+
 		/* WIDGET SLIDE PRODOTTI */
 	  Route::get('admin/slide-prodotti-widget/{widget}/confirm', ['as' => 'slide-prodotti-widget.confirm', 'uses' => 'Admin\SlideProdottiWidgetController@confirm']);
 		Route::resource('admin/slide-prodotti-widget', 'Admin\SlideProdottiWidgetController');

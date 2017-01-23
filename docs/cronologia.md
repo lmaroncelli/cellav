@@ -55,7 +55,26 @@ NO QUESTO NON SARA' UN WIDGET MA I CAMPI SARANNO IN TUTTE LE PAGINE ??
 il widget "gallery categorie prodotti" avrà:
 
 - titolo
-- gallery del tipo (foto piccola, foto grande, link alla pagina)
+- slide categoria_prodotto
+
+questa slide permetterà prima di caricare le slide con dropzone come le altre slide;
+poi per ogni immagine oltre alla 
+- descrizione
+ci sarà un campo per
+- url della pagina di destinazione 
+e 
+- la categoria prodotto di riferimento
+
+tblSlideCategorieProdotti(id, titolo)
+
+tblImmaginiSlideCategorieProdotti(id, slide_id, nome, descrizione, url-pagina,categoria_id)
+
+
+
+Poi ci sarà la tblSlideCategorieProdottoWidget
+
+
+
 
 
 ==========================================================

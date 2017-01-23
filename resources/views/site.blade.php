@@ -13,7 +13,7 @@
 
 	{{-- demo slider categorie prodotti --}}
 	
-	<link href="{{ url('demo/css/flexslider.css') }}" rel="stylesheet">
+	<link href="{{ url('frontend/assets/css/flexslider.css') }}" rel="stylesheet">
 
 	{{--  flex slide caption CSS --}}
 	<style type="text/css">
@@ -38,7 +38,7 @@
 @stop
 
 @section('script_head')
-	<script src="{{ url('demo/js/modernizr.js') }}"></script>
+	<script src="{{ url('frontend/assets/js/flexslider/modernizr.js') }}"></script>
 @stop
 
 
@@ -151,7 +151,7 @@
 
 	
 	<!-- FlexSlider -->
-	<script defer src="{{ url('demo/js/jquery.flexslider.js') }}"></script>
+	<script defer src="{{ url('frontend/assets/js/flexslider/jquery.flexslider.js') }}"></script>
 
 	<script type="text/javascript">
 

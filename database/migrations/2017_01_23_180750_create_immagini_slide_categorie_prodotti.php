@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImmaginiSlideTable extends Migration
+class CreateImmaginiSlideCategorieProdotti extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateImmaginiSlideTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblImmaginiSlide', function (Blueprint $table) {
+        Schema::create('tblImmaginiSlideCategorieProdotti', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('slide_id')->unsigned();
             $table->string('nome');
             $table->text('descrizione')->nullable()->default(null);
+            $table->string('url_pagina')->default('');
+            $table->integer('categoria_id')->unsigned();
             $table->foreign('slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
+            $table->foreign('categoria_id')->references('id')->on('tblCategorie')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,12 +32,13 @@ class CreateImmaginiSlideTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {   
         // Your foreign keys is named table_fields_foreign
-        Schema::table('tblImmaginiSlide', function(Blueprint $table) {
-            $table->dropForeign('tblImmaginiSlide_slide_id_foreign');
+        Schema::table('tblImmaginiSlideCategorieProdotti', function(Blueprint $table) {
+            $table->dropForeign('tblImmaginiSlideCategorieProdotti_slide_id_foreign');
+            $table->dropForeign('tblImmaginiSlideCategorieProdotti_categoria_id_foreign');
         });
         
-        Schema::dropIfExists('tblImmaginiSlide');
+        Schema::dropIfExists('tblImmaginiSlideCategorieProdotti');
     }
 }

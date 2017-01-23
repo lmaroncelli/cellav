@@ -16,6 +16,11 @@ ed andranno uploadate in
 "frontend/assets/img/"
 
 
+- le slide delle categorie di prodotti hanno immagini
+
+800x504
+
+
 DOMANDE
 ===========
 

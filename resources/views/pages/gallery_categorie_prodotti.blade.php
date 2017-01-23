@@ -30,7 +30,7 @@
     </li>
     <li>
       <img src="immagini_prova/2.jpg" />
-      <p class="flex-caption">Imamgin2 2</p>
+      <p class="flex-caption">clicca <a href="{{ url('/') }}">Imamgin2 2</a></p>
     </li>
     <li>
       <img src="immagini_prova/3.jpg" />
