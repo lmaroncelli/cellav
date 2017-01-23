@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Categoria;
 use App\Http\Controllers\Controller;
-use App\Slide;
 use App\ImmagineSlide;
+use App\ImmaginiSlideCategorieProdotti;
+use App\SlideCategorieProdotti;
+use Illuminate\Http\Request;
 
 
 class SlideCategorieProdottiController extends Controller
@@ -50,7 +52,7 @@ class SlideCategorieProdottiController extends Controller
     public function modifySlide(Request $request)
       {
       $slide_id = $request->get('slide_id');
-      $slide = Slide::with(['immagini'])->find($slide_id);
+      $slide = SlideCategorieProdotti::with(['immagini'])->find($slide_id);
 
       foreach ($slide->immagini as $imageSlide) 
         {
@@ -87,7 +89,7 @@ class SlideCategorieProdottiController extends Controller
      */
     public function index()
     {
-    $slide = Slide::all();
+    $slide = SlideCategorieProdotti::all();
     
     return view('admin.slide-categorie.index', compact('slide'));
     }
@@ -97,9 +99,10 @@ class SlideCategorieProdottiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Slide $slide)
+    public function create(SlideCategorieProdotti $slide)
     {
-    return view('admin.slide-categorie.form', compact('slide')); 
+    $categorie = Categoria::pluck('nome', 'id');
+    return view('admin.slide-categorie.form', compact('slide','categorie')); 
     }
 
     /**
@@ -110,10 +113,43 @@ class SlideCategorieProdottiController extends Controller
      */
     public function store(Request $request)
     {
-    //dd($request->all());
-    $slide = Slide::create($request->all());
 
-    return redirect()->route('slide-categorie.edit',$slide->id)->with('status', 'Slide creata correttamente!');
+    $slide = SlideCategorieProdotti::create(['titolo' => $request->get('titolo')]);
+
+    $categorie = Categoria::pluck('id');
+
+    foreach ($categorie as $id) 
+      {
+      $immagine = [];
+      $immagine['nome'] = '';
+      $immagine['descrizione'] = '';
+      $immagine['url_pagina'] = '';
+
+      $immagine['nome'] = $request->get('nome_'.$id);
+      $immagine['descrizione'] = $request->get('desc_'.$id);
+      $immagine['url_pagina'] = $request->get('url_pagina_'.$id);
+      $immagine['categoria_id'] = $id; 
+      $immagine['nome'] = '';
+
+      $img = "img_$id";
+      if (!is_null($request->file('img_'.$id)))
+        {
+        $image = $request->file('img_'.$id);
+        $imageName = time().$image->getClientOriginalName();
+
+        $path_img = $image->storeAs('slide_categorie',$imageName); 
+
+        $immagine['nome'] = $path_img;
+        } 
+
+      $immagineSlide = new ImmaginiSlideCategorieProdotti($immagine);
+
+      $slide->immagini()->save($immagineSlide);
+
+
+      }
+
+    return redirect()->route('slide-categorie')->with('status', 'Slide creata correttamente!');
     }
 
     /**
@@ -135,7 +171,7 @@ class SlideCategorieProdottiController extends Controller
      */
     public function edit($id)
     {
-    $slide = Slide::find($id);
+    $slide = SlideCategorieProdotti::find($id);
     return view('admin.slide-categorie.form', compact('slide')); 
     }
 
@@ -148,7 +184,7 @@ class SlideCategorieProdottiController extends Controller
      */
     public function update(Request $request, $id)
     {
-    $slide = Slide::find($id);
+    $slide = SlideCategorieProdotti::find($id);
     $slide->fill($request->all())->save();
     
     return redirect()->route('slide-categorie.edit',$slide->id)->with('status', 'Slide modificata correttamente!');

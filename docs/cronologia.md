@@ -57,7 +57,7 @@ il widget "gallery categorie prodotti" avrà:
 - titolo
 - slide categoria_prodotto
 
-questa slide permetterà prima di caricare le slide con dropzone come le altre slide;
+questa slide permetterà prima di caricare le slide ognuna con un tab come per il 3 cols widget;
 poi per ogni immagine oltre alla 
 - descrizione
 ci sarà un campo per

@@ -71,6 +71,7 @@
                         </li>
 
                         <li><a href="{{ route('slide.index') }}">Slide</a></li>
+                        <li><a href="{{ route('slide-categorie.index') }}">Slide categorie prodotti</a></li>
                         <li><a href="{{ route('gallerie.index') }}">Gallerie</a></li>
 
                         <li><a href="{{ route('prodotti.index') }}">Prodotti</a></li>

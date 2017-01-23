@@ -20,7 +20,7 @@ class CreateImmaginiSlideCategorieProdotti extends Migration
             $table->text('descrizione')->nullable()->default(null);
             $table->string('url_pagina')->default('');
             $table->integer('categoria_id')->unsigned();
-            $table->foreign('slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
+            $table->foreign('slide_id')->references('id')->on('tblSlideCategorieProdotti')->onDelete('cascade');
             $table->foreign('categoria_id')->references('id')->on('tblCategorie')->onDelete('cascade');
             $table->timestamps();
         });
