@@ -34,19 +34,19 @@
       <div id="exTab2"> 
 
         <ul class="nav nav-tabs">
-          @foreach ($categorie as $id => $nome)
+          @foreach ($categorie as $id => $nome_cat)
             <?php 
             ($id==1) ? $class_active='active' : $class_active=''; 
             ?>
             <li class="{{$class_active}}">
-              <a  href="#{{$id}}" data-toggle="tab">{{$nome}}</a>
+              <a  href="#{{$id}}" data-toggle="tab">{{$nome_cat}}</a>
             </li>
           @endforeach
         </ul>
 
         <div class="tab-content">
           
-         @foreach ($categorie as $id => $nome)
+         @foreach ($categorie as $id => $nome_cat)
           <?php 
           $img = "img_$id";
           $nome = "nome_$id";
@@ -55,34 +55,54 @@
           ($id==1) ? $class_active='active' : $class_active=''; 
           ?>
           <div class="tab-pane {{$class_active}}" id="{{$id}}">
-            <h3>Inserisci i dati per la categoria  {{$nome}}</h3>
+            <h3>Inserisci i dati per la categoria  {{$nome_cat}}</h3>
             <p>
-              @if (is_null($slide->$img) || $slide->$img == '')
+
+              @if (isset($immaginiSlide_arr) && array_key_exists($id, $immaginiSlide_arr))
+                
+                @if ( $immaginiSlide_arr[$id]->nome != '' )
+                  <img src="{{ url('images/'.$immaginiSlide_arr[$id]->nome) }}" width="100" height="50">
+                  <button type="button" class="btn btn-default delete_image_negozio" data-colname="img_{{$id}}">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button>
+                @else
+                  <div class="form-group">
+                    <label for="titolo">Immagine</label>
+                    <input type="file" class="form-control" id="img" name="img_{{$id}}">
+                  </div>
+                @endif
+                  
+                <div class="form-group">
+                  <label for="{{$desc}}">Descrizione</label>
+                  <textarea class="form-control" rows="3" name="{{$desc}}">{{old('$desc', isset($immaginiSlide_arr[$id]->descrizione) ? $immaginiSlide_arr[$id]->descrizione : null)}}</textarea>
+                </div>                
+               
+
+                <div class="form-group">
+                  <label for="{{$url_pagina}}">URL pagina</label>
+                <input type="text" class="form-control" id="{{$url_pagina}}" placeholder="URI" name="{{$url_pagina}}" value="{{old('$url_pagina', isset($immaginiSlide_arr[$id]->url_pagina) ? $immaginiSlide_arr[$id]->url_pagina : null)}}">
+                </div>
+
+
+              @else
+
                 <div class="form-group">
                   <label for="titolo">Immagine</label>
                   <input type="file" class="form-control" id="img" name="img_{{$id}}">
                 </div>
-              @else
-                <img src="{{ url('images/'.$slide->$img) }}" width="100" height="50">
-                <button type="button" class="btn btn-default delete_image_negozio" data-colname="img_{{$id}}">
-                  <span class="glyphicon glyphicon-remove"></span>
-                </button>
-              @endif
-              
-              <div class="form-group">
-                  <label for="{{$nome}}">Nome</label>
-                <input type="text" class="form-control" id="{{$nome}}" placeholder="Titolo" name="{{$nome}}" value="{{old('$nome', isset($slide->$nome) ? $slide->$nome : null)}}">
-              </div>
-              
-              <div class="form-group">
-                <label for="{{$desc}}">Descrizione</label>
-                <textarea class="form-control" rows="3" name="{{$desc}}">{{old('$desc', isset($slide->$desc) ? $slide->$desc : null)}}</textarea>
-              </div>
 
+                <div class="form-group">
+                  <label for="{{$desc}}">Descrizione</label>
+                  <textarea class="form-control" rows="3" name="{{$desc}}">{{old('$desc', isset($slide->$desc) ? $slide->$desc : null)}}</textarea>
+                </div>
+                
                 <div class="form-group">
                   <label for="{{$url_pagina}}">URL pagina</label>
                 <input type="text" class="form-control" id="{{$url_pagina}}" placeholder="URI" name="{{$url_pagina}}" value="{{old('$url_pagina', isset($slide->$url_pagina) ? $slide->$url_pagina : null)}}">
                 </div>
+                
+              @endif
+
             </p>
           </div>
           @endforeach

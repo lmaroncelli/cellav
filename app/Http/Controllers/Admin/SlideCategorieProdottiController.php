@@ -125,7 +125,6 @@ class SlideCategorieProdottiController extends Controller
       $immagine['descrizione'] = '';
       $immagine['url_pagina'] = '';
 
-      $immagine['nome'] = $request->get('nome_'.$id);
       $immagine['descrizione'] = $request->get('desc_'.$id);
       $immagine['url_pagina'] = $request->get('url_pagina_'.$id);
       $immagine['categoria_id'] = $id; 
@@ -149,7 +148,7 @@ class SlideCategorieProdottiController extends Controller
 
       }
 
-    return redirect()->route('slide-categorie')->with('status', 'Slide creata correttamente!');
+    return redirect()->route('slide-categorie.index')->with('status', 'Slide creata correttamente!');
     }
 
     /**
@@ -172,7 +171,20 @@ class SlideCategorieProdottiController extends Controller
     public function edit($id)
     {
     $slide = SlideCategorieProdotti::find($id);
-    return view('admin.slide-categorie.form', compact('slide')); 
+
+    // creo un array che associa l'oggetto immagine della tblImmaginiSlideCategorieProdotti
+    // alla chiave categoria_id
+    $immaginiSlide_arr = [];
+    $immaginiSlide = $slide->immagini;
+    
+    foreach ($immaginiSlide as $immagineSlide) 
+      {
+      $immaginiSlide_arr[$immagineSlide->categoria_id] = $immagineSlide;
+      }
+
+
+    $categorie = Categoria::pluck('nome', 'id');
+    return view('admin.slide-categorie.form', compact('slide','categorie','immaginiSlide_arr')); 
     }
 
     /**
@@ -182,12 +194,37 @@ class SlideCategorieProdottiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_slide)
     {
-    $slide = SlideCategorieProdotti::find($id);
-    $slide->fill($request->all())->save();
-    
-    return redirect()->route('slide-categorie.edit',$slide->id)->with('status', 'Slide modificata correttamente!');
+    $slide = SlideCategorieProdotti::find($id_slide);
+    $slide->fill(['titolo' => $request->get('titolo')])->save();
+
+    $categorie = Categoria::pluck('id');
+    foreach ($categorie as $id) 
+      {
+      $immagineSlide = ImmaginiSlideCategorieProdotti::where('slide_id',$id_slide)->where('categoria_id',$id)->first();      
+      $immagine = [];
+
+      $immagine['descrizione'] = $request->get('desc_'.$id);
+      $immagine['url_pagina'] = $request->get('url_pagina_'.$id);
+
+      $img = "img_$id";
+
+      if (!is_null($request->file('img_'.$id)))
+        {
+        $image = $request->file('img_'.$id);
+        $imageName = time().$image->getClientOriginalName();
+
+        $path_img = $image->storeAs('slide_categorie',$imageName); 
+
+        $immagine['nome'] = $path_img;
+        } 
+
+      $immagineSlide->fill($immagine)->save();
+
+      }
+
+    return redirect()->route('slide-categorie.index')->with('status', 'Slide modificata correttamente!');
 
     }
 

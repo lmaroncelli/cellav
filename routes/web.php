@@ -90,6 +90,9 @@ Route::group(['middleware' => ['admin']], function () {
 
 
 		/* SLIDE CATEGORIE PRODOTTI */
+
+		 Route::get('admin/slide-categorie/{slide}/confirm', ['as' => 'slide-categorie.confirm', 'uses' => 'Admin\SlideCategorieProdottiController@confirm']);
+		 
 		Route::resource('admin/slide-categorie', 'Admin\SlideCategorieProdottiController');
 
 
