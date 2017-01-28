@@ -1,53 +1,26 @@
 <!-- Place somewhere in the <body> of your page -->
 <div id="carousel" class="flexslider">
   <ul class="slides">
-    <li>
-      <img src="immagini_prova/1.jpg" />
-    </li>
-    <li>
-      <img src="immagini_prova/2.jpg" />
-    </li>
-    <li>
-      <img src="immagini_prova/3.jpg" />
-    </li>
-    <li>
-      <img src="immagini_prova/4.jpg" />
-    </li>
-    <li>
-      <img src="immagini_prova/5.jpg" />
-    </li>
-    <li>
-      <img src="immagini_prova/6.jpg" />
-    </li>
-    <!-- items mirrored twice, total of 12 -->
+    @foreach ($slide_categorie_prodotti->immagini as $immagine)
+      @if ($immagine->nome != '')
+        <li>
+          <img src="{{ url('images/'.$immagine->nome) }}" />
+        </li>
+      @endif
+    @endforeach
+    <!-- items mirrored twice -->
   </ul>
 </div>
 <div id="slider" class="flexslider">
   <ul class="slides">
-    <li>
-      <img src="immagini_prova/1.jpg" />
-      <p class="flex-caption">Adventurer Cheesecake Brownie</p>
-    </li>
-    <li>
-      <img src="immagini_prova/2.jpg" />
-      <p class="flex-caption">clicca <a href="{{ url('/') }}">Imamgin2 2</a></p>
-    </li>
-    <li>
-      <img src="immagini_prova/3.jpg" />
-      <p class="flex-caption">Altra caption</p>
-    </li>
-    <li>
-      <img src="immagini_prova/4.jpg" />
-      <p class="flex-caption">e mmmo !!!!!</p>
-    </li>
-    <li>
-      <img src="immagini_prova/5.jpg" />
-      <p class="flex-caption">e mmmo 5 !!!!!</p>
-    </li>
-    <li>
-      <img src="immagini_prova/6.jpg" />
-      <p class="flex-caption">e mmmo  6!!!!!</p>
-    </li>
-    <!-- items mirrored twice, total of 12 -->
+    @foreach ($slide_categorie_prodotti->immagini as $immagine)
+      @if ($immagine->nome != '')
+        <li>
+          <img src="{{ url('images/'.$immagine->nome) }}" />
+           <p class="flex-caption">{{$immagine->descrizione}}</p>
+        </li>
+      @endif
+    @endforeach
+    <!-- items mirrored twice -->
   </ul>
 </div>

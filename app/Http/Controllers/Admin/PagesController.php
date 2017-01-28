@@ -8,6 +8,7 @@ use App\CategoriaRicetta;
 use App\Http\Requests;
 use App\Page;
 use App\Slide;
+use App\SlideCategorieProdotti;
 use App\SlideProdottoWidget;
 use App\ThreeColumnsWidget;
 use Illuminate\Database\Eloquent\Collection;
@@ -165,12 +166,13 @@ class PagesController extends AdminController
 
 
         $slideHeader =    ['0' => 'Nessuno'] + Slide::pluck('titolo', 'id')->all();
+        $slideCategorieProdotti =    ['0' => 'Nessuno'] + SlideCategorieProdotti::pluck('titolo', 'id')->all();
         $widgetProdottiFreschi =   ['0' => 'Nessuno'] + SlideProdottoWidget::pluck('nome', 'id')->all();
         $widgetProdottiConfezionati =   ['0' => 'Nessuno'] + SlideProdottoWidget::pluck('nome', 'id')->all();
         $widgetThreeColumns =  ['0' => 'Nessuno'] + ThreeColumnsWidget::pluck('nome', 'id')->all();
 
 
-        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate', 'categorieRicette_associate','slideHeader','widgetProdottiFreschi','widgetProdottiConfezionati','widgetThreeColumns'));
+        return view('admin.pages.form', compact('page','caratteristiche','categorie', 'categorieRicette', 'caratteristiche_associate','categorie_associate', 'categorieRicette_associate','slideHeader', 'slideCategorieProdotti', 'widgetProdottiFreschi','widgetProdottiConfezionati','widgetThreeColumns'));
 
     }
 

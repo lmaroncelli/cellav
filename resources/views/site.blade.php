@@ -55,7 +55,7 @@
 	@if (isset($page))
 	
 		{{-- HEADER --}}
-		@if ( !is_null($page->headerSlide) )
+		@if ( !is_null($slide_header) )
 			 <div>heade slide</div>
 		@endif
 		{{-- FINE HEADER --}}
@@ -64,7 +64,9 @@
 		
 		
 		{{-- GALLERY CATEGORIE PRODOTTI --}}
+		@if ( !is_null($slide_categorie_prodotti) )	
 			@include('pages.gallery_categorie_prodotti')
+		@endif
 		{{-- GALLERY CATEGORIE PRODOTTI --}}
 
 

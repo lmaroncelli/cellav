@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Page;
 use App\Prodotto;
 use App\Slide;
+use App\SlideCategorieProdotti;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -139,6 +140,16 @@ class SiteController extends Controller
 				{
 				$slide_header = null;
 				}
+
+
+			if( !is_null($page->categorie_prodotti_slide_id) )
+				{
+				$slide_categorie_prodotti = SlideCategorieProdotti::with(['immagini'])->where('id',$page->categorie_prodotti_slide_id)->first();	
+				}
+			else
+				{
+				$slide_categorie_prodotti = null;
+				}
 			
 			$widgetProdottiConfezionati = $page->widgetProdottiConfezionati;
 			$widgetProdottiFreschi = $page->widgetProdottiFreschi;
@@ -154,7 +165,7 @@ class SiteController extends Controller
 			if ($page->listingCategorieRicette)
 				$categorieRicette = self::_getCategorieRicette($page);
 
-			return view('site',compact('page','prodotti', 'categorieRicette','slide_header','widgetProdottiConfezionati','widgetProdottiFreschi','widgetThreeColumns'));
+			return view('site',compact('page','prodotti', 'categorieRicette','slide_header', 'slide_categorie_prodotti','widgetProdottiConfezionati','widgetProdottiFreschi','widgetThreeColumns'));
 			
 			}
 				
