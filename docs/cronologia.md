@@ -41,14 +41,12 @@ lo slide "header" avrà:
 
 
 ==========================================================
-il widget "mappa" avrà:
+"mappa": NO QUESTO NON SARA' UN WIDGET MA I CAMPI SARANNO IN TUTTE LE PAGINE ??
 
-- titolo (es: "mappa home page")
 - nome (Celiachiamo Lab)
 - indirizzo (Via della Magliana 183)
 - lat (14.032233)
 - long (7.09324234)
-NO QUESTO NON SARA' UN WIDGET MA I CAMPI SARANNO IN TUTTE LE PAGINE ??
 
 
 Chiave	

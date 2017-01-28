@@ -15,6 +15,10 @@ class Page extends Model
 'prodotti_freschi_widget_id',
 'prodotti_confezionati_widget_id',
 'three_columns_widget_id',
+'gm_nome',
+'gm_indirizzo',
+'gm_lat',
+'gm_long',
     ];
 
 

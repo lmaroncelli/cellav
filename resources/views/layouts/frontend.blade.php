@@ -110,14 +110,25 @@
     </nav>
 
     <div class="container">
-
       <div class="starter-template">
+
         <h1>@yield('title')</h1>
         @include('admin.show_errors')
         @yield('content')
 
-      </div>
+      <hr class="featurette-divider">
+      
+      <div id="map"></div>
 
+      <hr class="featurette-divider">
+
+       <!-- FOOTER -->
+       <footer>
+         <p class="pull-right"><a href="#">Back to top</a></p>
+         <p>&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+       </footer>
+  
+      </div>
     </div><!-- /.container -->
 
 
@@ -127,7 +138,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ url('frontend/assets/js/bootstrap.min.js') }}"><\/script>')</script>
     <script src={{ url('frontend/assets/js/bootstrap.min.js') }}></script>
+    
+    @yield('feed_map')    
 
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqImK9lRFJdcFLSt0W-t_QQC70fCsCwV0&callback=initMap">
+        </script>
     @yield('script')
   </body>
 </html>

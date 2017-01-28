@@ -20,8 +20,8 @@ class AddFieldsNegoziToPage extends Migration
             $table->foreign('header_slide_id')->references('id')->on('tblSlide')->onDelete('cascade');
             $table->string('gm_nome')->default('')->after('header_slide_id');
             $table->string('gm_indirizzo')->default('')->after('gm_nome');
-            $table->string('gm_lat',10)->default('')->after('gm_indirizzo');
-            $table->string('gm_long',10)->default('')->after('gm_lat');
+            $table->string('gm_lat',20)->default('')->after('gm_indirizzo');
+            $table->string('gm_long',20)->default('')->after('gm_lat');
         });
     }
 

@@ -136,6 +136,25 @@
 
 @stop
 
+
+
+@section('feed_map')
+	
+	@if ($page->gm_lat != '' && $page->gm_long != '')
+
+		{{-- carica le variabile js con i valori della pagina  --}}
+		<script>
+			var $lat = {{$page->gm_lat}};
+			var $long = {{$page->gm_long}};
+		</script>
+		<script src={{ url('frontend/assets/js/custom.js') }}></script>
+
+	@endif
+@stop
+
+
+
+
 @section('script')
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src={{ url('frontend/assets/js/ie10-viewport-bug-workaround.js') }}></script>
