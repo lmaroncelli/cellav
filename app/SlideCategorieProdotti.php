@@ -20,21 +20,13 @@ class SlideCategorieProdotti extends Model
 		}
 
 
-/*	public function widget()
-		{
-			return $this->hasOne('App\SlideProdottiWidget','slide_id','id');
-		}*/
-
 	/**
-	 * [uno slide è associato a molte pagine come header slide->pagineAsHeader()]
-	 * potrei avere un'altra relazione che si riferisce ad un'altra FK e che si chiama in modo diverso
-	 * es: slide->pagineAsFooter()
 	 * @return [type] [description]
 	 */
-	/*public function pagineAsHeader()
+	public function pagine()
 		{
-			return $this->hasMany('App\Page','header_slide_id','id');
-		}*/
+			return $this->hasMany('App\Page','categorie_prodotti_slide_id','id');
+		}
 
 
 	public function scopeTitolo($query, $titolo)

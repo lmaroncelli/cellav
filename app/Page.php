@@ -11,6 +11,7 @@ class Page extends Model
 
     protected $fillable = [
         'title','uri','content','listing','listingCaratteristiche', 'listingCategorie', 'inMenu', 'header_slide_id',
+        'categorie_prodotti_slide_id',
 'prodotti_freschi_widget_id',
 'prodotti_confezionati_widget_id',
 'three_columns_widget_id',
@@ -22,6 +23,11 @@ class Page extends Model
   		{
   			return $this->belongsTo('App\Slide','header_slide_id','id');
   		}
+
+    public function categorieProdottiSlide()
+      {
+        return $this->belongsTo('App\SlideCategorieProdotti','categorie_prodotti_slide_id','id');
+      }
 
 		public function widgetProdottiFreschi()
   		{
@@ -39,7 +45,7 @@ class Page extends Model
       }   
 
 
-  	// le FK header_slide_id, prodotti_freschi_widget_id, prodotti_confezionati_widget_id
+  	// le FK header_slide_id, categorie_prodotti_slide_id, prodotti_freschi_widget_id, prodotti_confezionati_widget_id
   	// NON POSSONO ESSERE 0, quindi faccio un mutator per ognuna che mette null al posto di 0
   	public function setHeaderSlideIdAttribute($value)
   	  {
@@ -49,6 +55,15 @@ class Page extends Model
   	  			}
   	      $this->attributes['header_slide_id'] = $value;
   	  }
+
+    public function setCategorieProdottiSlideIdAttribute($value)
+      {
+          if ($value == 0) 
+            {
+            $value = null;
+            }
+          $this->attributes['categorie_prodotti_slide_id'] = $value;
+      }
 
   	 public function setProdottiFreschiWidgetIdAttribute($value)
   	  {

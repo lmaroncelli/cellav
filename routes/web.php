@@ -92,7 +92,7 @@ Route::group(['middleware' => ['admin']], function () {
 		/* SLIDE CATEGORIE PRODOTTI */
 
 		 Route::get('admin/slide-categorie/{slide}/confirm', ['as' => 'slide-categorie.confirm', 'uses' => 'Admin\SlideCategorieProdottiController@confirm']);
-		 
+
 		Route::resource('admin/slide-categorie', 'Admin\SlideCategorieProdottiController');
 
 
@@ -102,9 +102,15 @@ Route::group(['middleware' => ['admin']], function () {
 	  Route::get('admin/slide-prodotti-widget/{widget}/confirm', ['as' => 'slide-prodotti-widget.confirm', 'uses' => 'Admin\SlideProdottiWidgetController@confirm']);
 		Route::resource('admin/slide-prodotti-widget', 'Admin\SlideProdottiWidgetController');
 
+
+
+		/* WIDGET CATEGORIE PRODOTTI */
+	  Route::get('admin/categorie-prodotti-widget/{widget}/confirm', ['as' => 'categorie-prodotti-widget.confirm', 'uses' => 'Admin\SlideCategorieProdottiWidgetController@confirm']);
+		Route::resource('admin/categorie-prodotti-widget', 'Admin\SlideCategorieProdottiWidgetController');
+
+
 		/* WIDGET THREECOLS */
 	  Route::get('admin/three-cols-widget/{widget}/confirm', ['as' => 'three-cols-widget.confirm', 'uses' => 'Admin\ThreeColumnsWidgetController@confirm']);
-		
 		Route::resource('admin/three-cols-widget', 'Admin\ThreeColumnsWidgetController');
 
 

@@ -52,10 +52,7 @@ NO QUESTO NON SARA' UN WIDGET MA I CAMPI SARANNO IN TUTTE LE PAGINE ??
 
 
 ==========================================================
-il widget "gallery categorie prodotti" avrà:
-
-- titolo
-- slide categoria_prodotto
+la slide "categorie prodotti" NON SARA' ASSOCIATA AD UN WIDGET, ma come per la slide header, sarà associata direttamente alla pagina !!
 
 questa slide permetterà prima di caricare le slide ognuna con un tab come per il 3 cols widget;
 poi per ogni immagine oltre alla 
@@ -68,11 +65,6 @@ e
 tblSlideCategorieProdotti(id, titolo)
 
 tblImmaginiSlideCategorieProdotti(id, slide_id, nome, descrizione, url-pagina,categoria_id)
-
-
-
-Poi ci sarà la tblSlideCategorieProdottoWidget
-
 
 
 
