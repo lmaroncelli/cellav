@@ -51,6 +51,14 @@ il widget "mappa" avrà:
 NO QUESTO NON SARA' UN WIDGET MA I CAMPI SARANNO IN TUTTE LE PAGINE ??
 
 
+Chiave	
+AIzaSyDqImK9lRFJdcFLSt0W-t_QQC70fCsCwV0
+Tipo	
+Nessuna
+Data di creazione	
+20 dic 2013, 12:22:41
+
+
 ==========================================================
 la slide "categorie prodotti" NON SARA' ASSOCIATA AD UN WIDGET, ma come per la slide header, sarà associata direttamente alla pagina !!
 
