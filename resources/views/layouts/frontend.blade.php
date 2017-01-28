@@ -115,13 +115,10 @@
         <h1>@yield('title')</h1>
         @include('admin.show_errors')
         @yield('content')
-
-      <hr class="featurette-divider">
+        
+        <hr class="featurette-divider">
+        @yield('mappa', '')
       
-      <div id="map"></div>
-
-      <hr class="featurette-divider">
-
        <!-- FOOTER -->
        <footer>
          <p class="pull-right"><a href="#">Back to top</a></p>

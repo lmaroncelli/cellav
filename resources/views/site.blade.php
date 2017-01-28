@@ -137,21 +137,39 @@
 @stop
 
 
+@if ($page->gm_lat != '' && $page->gm_long != '')
 
-@section('feed_map')
-	
-	@if ($page->gm_lat != '' && $page->gm_long != '')
+	@section('mappa')
+		<div class="row">
+		  <div class="col-md-3">
+		    <label>Trova itinerario</label>
+		    <input type="text" class="form-control" placeholder="Via Tonti,16 Rimini" id="partenza" value="{{old('partenza')}}">
+		    <p>
+		    	{!!nl2br($page->gm_indirizzo)!!}
+		    </p>
+		  	<input id="submitMappa" type="button" class="btn btn-default btn-xs" value="trova percorso sulla mappa">
+		  </div>
+		  <div class="col-md-9">
+		    <div id="map"></div>
+		  </div>
+		 </div>
 
-		{{-- carica le variabile js con i valori della pagina  --}}
-		<script>
-			var $lat = {{$page->gm_lat}};
-			var $long = {{$page->gm_long}};
-		</script>
-		<script src={{ url('frontend/assets/js/custom.js') }}></script>
+		<hr class="featurette-divider">
+	@stop
 
-	@endif
-@stop
 
+	@section('feed_map')
+			{{-- carica le variabile js con i valori della pagina  --}}
+			<script>
+				var $lat = {{$page->gm_lat}};
+				var $long = {{$page->gm_long}};
+				var $info = "{{ json_encode($page->gm_indirizzo) }}";
+				var $title = "{{$page->gm_nome}}";
+			</script>
+			<script src={{ url('frontend/assets/js/custom.js') }}></script>
+	@stop
+
+@endif
 
 
 
