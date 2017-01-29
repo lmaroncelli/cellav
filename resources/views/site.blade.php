@@ -81,7 +81,13 @@
 			@include('pages.prodotti_confezionati')
 		@endif
 		{{-- FINE WIDGET PC --}}
+		
 
+		{{-- PARALLAX --}}
+		
+		<div class="parallax"></div>
+
+		{{-- FINE PARALLAX --}}
 		
 	@endif
 

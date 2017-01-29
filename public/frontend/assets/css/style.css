@@ -107,3 +107,31 @@ div.prodotti_freschi div.embed-responsive-4by3 {
     width: 100%;
 }
 
+
+/*	################################################################
+	4. PARALLAX
+################################################################# */
+
+.parallax {
+    /* The image used */
+    background-image: url("images/parallax/pane.jpg");
+
+    /* Set a specific height */
+    min-height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*
+Some mobile devices have a problem with background-attachment: fixed. However, you can use media queries to turn off the parallax effect for mobile devices:
+ */
+
+@media only screen and (max-device-width: 1024px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}
