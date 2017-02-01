@@ -4,6 +4,12 @@ ed andranno uploadate in
 "frontend/assets/img/slide/"
 
 
+siccome il container al massimo è 1170px allora le immagini dell'header verranno ridimensionate a questo width con intervention image.
+
+
+================================================================================================
+================================================================================================
+
 - le slide dei prodotti freschi e confezionati dovranno avere immagini
 "590 X 462"
 ed andranno uploadate in 
