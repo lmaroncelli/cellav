@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Slide;
 use App\ImmagineSlide;
+use App\Slide;
+use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 
 class SlideController extends Controller
@@ -26,8 +27,16 @@ class SlideController extends Controller
       
       $path = $image->storeAs($folder,$imageName);
 
-      $immagineSlide = ImmagineSlide::create(['slide_id' => $id ,'nome' => $path]);
+      // open an image file
+      $img = Image::make(storage_path('app/'.$path));
 
+      // resize image instance
+      $img->resize(1170);
+
+      // save image in desired format
+      $img->save();
+
+      $immagineSlide = ImmagineSlide::create(['slide_id' => $id ,'nome' => $path]);
 
       return response()->json(['success'=>$imageName]);
     }

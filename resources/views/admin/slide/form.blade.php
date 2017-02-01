@@ -1,8 +1,8 @@
 @extends('admin.layouts.backend')
 
 @section('css')
-  <link rel="stylesheet" href="/css/dropzone/basic.css">
-	<link rel="stylesheet" href="/css/dropzone/dropzone.css">
+  <link rel="stylesheet" href="{{ url('css/dropzone/basic.css') }}">
+	<link rel="stylesheet" href="{{ url('css/dropzone/dropzone.css') }}">
 @stop
 
 @section('title')
@@ -99,7 +99,7 @@
     @if ($slide->exists)
     
     @section('script_head')
-      <script src="/js/dropzone.js"></script>
+      <script src="{{ url('js/dropzone.js') }}"></script>
     @stop
 
     @section('script')
@@ -149,7 +149,7 @@
               init: function () {
                 this.on("complete", function (file) {
                   if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                    setTimeout(function(){ location.reload(); }, 1000);
+                    //setTimeout(function(){ location.reload(); }, 1000);
                   }
                 });
               }
