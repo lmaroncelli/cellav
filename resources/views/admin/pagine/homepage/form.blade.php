@@ -93,17 +93,17 @@
 
           <ul class="nav nav-tabs">
             <li class="active">
-              <a  href="#1" data-toggle="tab">MAGLIANA</a>
+              <a  href="#1" data-toggle="tab">CELIACHIAMO LAB</a>
             </li>
-            <li><a href="#2" data-toggle="tab">CIPRO</a>
+            <li><a href="#2" data-toggle="tab">CELIACHIAMO SHOP</a>
             </li>
-            <li><a href="#3" data-toggle="tab">TIBURTINA</a>
+            <li><a href="#3" data-toggle="tab">CELIACHIAMO TIBURTINA</a>
             </li>
           </ul>
-
+          
           <div class="tab-content ">
             <div class="tab-pane active" id="1">
-              <h3>Inserisci i dati per il widget "Celiachiamo MAGLIANA"</h3>
+              <h3>Inserisci i dati per "Celiachiamo LAB"</h3>
               <p>
                 @if (is_null($homepage->img_magliana) || $homepage->img_magliana == '')
                   <div class="form-group">
@@ -124,7 +124,7 @@
               </p>
             </div>
             <div class="tab-pane" id="2">
-             <h3>Inserisci i dati per il widget "Celiachiamo CIPRO"</h3>
+             <h3>Inserisci i dati per "Celiachiamo SHOP"</h3>
              <p>
                 @if (is_null($homepage->img_cipro) || $homepage->img_cipro == '')
                   <div class="form-group">
@@ -144,7 +144,7 @@
               </p>
             </div>
             <div class="tab-pane" id="3">
-              <h3>Inserisci i dati per il widget "Celiachiamo TIBURTINA"</h3>
+              <h3>Inserisci i dati per "Celiachiamo TIBURTINA"</h3>
               <p>
                 @if (is_null($homepage->img_tiburtina) || $homepage->img_tiburtina == '')
                  <div class="form-group">

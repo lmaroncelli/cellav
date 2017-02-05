@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\HomePage;
 use App\Http\Controllers\Controller;
 use App\ImmagineSlide;
 use App\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\HomePage;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class HomePageController extends Controller
 {
@@ -82,6 +83,16 @@ class HomePageController extends Controller
           $imageName = time().$image->getClientOriginalName();
 
           $path_img_negozio = $image->storeAs('homepage/negozi',$imageName); 
+
+          // open an image file
+          $img = Image::make(storage_path('app/'.$path_img_negozio));
+
+          // resize image instance
+          $img->resize(455);
+
+          // save image in desired format
+          $img->save();
+
           $data['img_'.$negozio] = $path_img_negozio;
           } 
 
