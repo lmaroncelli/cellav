@@ -1,23 +1,50 @@
+<div class="content-section-b">
+    <div class="container">
+        <div class="row">
 
-<div class="row prodotti_freschi">
-   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-           <ul class="bxslider">
-              @foreach ($slide_freschi->immagini as $count => $immagine)
-						    <li><img src="{{ url('images/'.$immagine->nome) }}" /></li>                
-              @endforeach
-						</ul>
-       </div>
-   </div>
-   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <p>Nullam eu ipsum arcu. Donec imperdiet lectus enim, congue maximus quam sodales id.</p>
-          <p><a href="#" class="btn btn-default" role="button">Visualizza</a></p>
-       </div>
-       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-           <div class="embed-responsive embed-responsive-4by3">
-					    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY"></iframe>
-					</div>
-       </div>
-   </div>
-</div>
+
+            <div class="col-sm-6 wow fadeInLeftBig">
+                <div class="owl-carousel" id="owl-demo-1">
+                    @foreach ($slide_freschi->immagini as $count => $immagine)
+                      <a class="image-link" href="{{ url('images/'.$immagine->nome) }}">
+                          <div class="item">
+                              <img  class="img-responsive img-rounded" src="{{ url('images/'.$immagine->nome) }}"/>
+                              </img>
+                          </div>
+                      </a>
+                     @endforeach
+                </div>
+            </div>
+            
+            <div class="col-sm-6 wow fadeInRightBig" data-animation-delay="200">
+                <h3 class="section-heading">
+                    Prodotti Freschi
+                </h3>
+                <div class="sub-title lead3">
+                    DI NOSTRA PRODUZIONE
+                </div>
+                <p class="lead">
+                    In his igitur partibus duabus nihil erat, quod Zeno commuta rest gestiret. 
+            Sed virtutem ipsam inchoavit, nihil ampliusuma. Scien tiam pollicentur, 
+            uam non erat mirum sapientiae lorem cupido
+            patria esse cariorem. Quae qui non vident, nihilamane umquam magnum ac cognitione.
+                </p>
+                <p>
+                    <a class="btn btn-embossed btn-primary" href="#" role="button">
+                        APPROFONDISCI
+                    </a>
+                </p>
+                <p>
+                  <a class="popup-youtube" href="https://www.youtube.com/embed/hrqf_OwWqXs">
+                    <img src="{{ url('frontend_new/assets/img/p_freschi_video1.png') }}" alt="Prodotti freschi">
+                  </a>
+                  <a class="popup-youtube" href="https://www.youtube.com/embed/hrqf_OwWqXs">
+                    <img src="{{ url('frontend_new/assets/img/p_freschi_video2.png') }}" alt="Prodotti freschi">
+                  </a>
+                </p>
+            </div>
+
+
+        </div>{{-- / row --}}
+    </div> {{-- container --}}
+</div> {{-- content-section-b --}}

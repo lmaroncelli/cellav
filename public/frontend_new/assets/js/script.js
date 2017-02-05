@@ -33,6 +33,8 @@ $(document).ready(function() {
 		
 		//MagnificPopup
 		$('.image-link').magnificPopup({type:'image'});
+		$('.popup-youtube').magnificPopup({type:'iframe'});
+		
 
 
 		// OwlCarousel N1
