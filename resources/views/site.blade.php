@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.frontend_new')
 
 
 @section('seo_title'){!!$page->seo_title!!}@stop
