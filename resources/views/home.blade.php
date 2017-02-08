@@ -21,25 +21,25 @@
 	<!-- NavBar-->
 	<nav class="navbar-default" role="navigation">
 		<div class="container">
-			<div class="navbar-header">
+			<div class="navbar-header text-left">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#home"></a>
+				<a class="navbar-brand" href="#home">HOME</a>
 			</div>
 
 			<div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li class="menuItem"><a href="#whatis">NEGOZI</a></li>
-					<li class="menuItem"><a href="#useit">PRODOTTI FRESCHI</a></li>
-					<li class="menuItem"><a href="#screen">PRODOTTI CONFEZIONATI</a></li>
-					<li class="menuItem"><a href="#credits">SHOP ONLINE</a></li>
-					<li class="menuItem"><a href="#contact">BLOG</a></li>
-					<li class="menuItem"><a href="#contact">CELIACHIA: COS'E'</a></li>
-					<li class="menuItem"><a href="#contact">CONTATTI</a></li>
+					<li class="menuItem text-center"><a href="#whatis">NEGOZI</a></li>
+					<li class="menuItem text-center"><a href="#useit">PRODOTTI FRESCHI</a></li>
+					<li class="menuItem text-center"><a href="#screen">PRODOTTI CONFEZIONATI</a></li>
+					<li class="menuItem text-center"><a href="#credits">SHOP ONLINE</a></li>
+					<li class="menuItem text-center"><a href="#contact">BLOG</a></li>
+					<li class="menuItem text-center"><a href="#contact">CELIACHIA: COS'E'</a></li>
+					<li class="menuItem text-center"><a href="#contact">CONTATTI</a></li>
 				</ul>
 			</div>
 		   
