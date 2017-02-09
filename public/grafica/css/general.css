@@ -92,10 +92,10 @@ margin: auto;
   height: auto;
 }
 
-#owl-demo-1 .item{
+#owl-demo-freschi .item, #owl-demo-confezionati .item{
   margin: 3px;
 }
-#owl-demo-1 .item img{
+#owl-demo-freschi .item img,  #owl-demo-confezionati .item img{
   display: block;
   width: 100%;
   height: auto;

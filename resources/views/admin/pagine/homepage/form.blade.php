@@ -374,7 +374,7 @@
 
              Dropzone.options.formUploadSlideProdttiFreschi = {
               paramName: "file", // The name that will be used to transfer the file
-              maxFilesize: 2, // MB
+              maxFilesize: 3, // MB
               acceptedFiles: ".jpeg,.jpg,.png,.gif",
               dictDefaultMessage: "Clicca o trascina qui i file da caricare nella slide prdotti freschi",
               //previewTemplate: document.getElementById('preview-template-silde-freschi').innerHTML,

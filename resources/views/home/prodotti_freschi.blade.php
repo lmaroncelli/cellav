@@ -4,7 +4,7 @@
 
 
             <div class="col-sm-6 wow fadeInLeftBig">
-                <div class="owl-carousel" id="owl-demo-1">
+                <div class="owl-carousel" id="owlf">
                     @foreach ($slide_freschi->immagini as $count => $immagine)
                       <a class="image-link" href="{{ url('images/'.$immagine->nome) }}">
                           <div class="item">
@@ -27,14 +27,13 @@
                     In his igitur partibus duabus nihil erat, quod Zeno commuta rest gestiret. 
             Sed virtutem ipsam inchoavit, nihil ampliusuma. Scien tiam pollicentur, 
             uam non erat mirum sapientiae lorem cupido
-            patria esse cariorem. Quae qui non vident, nihilamane umquam magnum ac cognitione.
-                </p>
                 <p>
                     <a class="btn btn-embossed btn-primary transparent" href="#" role="button">
                         APPROFONDISCI
                     </a>
                 </p>
-                <p>
+                <h4>Video di preparazione</h4>
+                <p class="video_freschi">
                   <a class="popup-youtube" href="https://www.youtube.com/embed/hrqf_OwWqXs">
                     <img src="{{ url('frontend_new/assets/img/p_freschi_video1.png') }}" alt="Prodotti freschi">
                   </a>

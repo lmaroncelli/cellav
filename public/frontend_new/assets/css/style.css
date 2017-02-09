@@ -389,12 +389,29 @@ h3,
 h4,
 .h4 {
   font-size: 20px;
+  font-family: "Libre Baskerville", Helvetica, Arial, sans-serif;
+  color: #deb85b;
 }
 p {
   font-size: 16px;
   line-height: 1.72222;
   margin: 0 0 15px;
 }
+
+p.video_confezionati {
+  margin-top:15px;
+  padding: 20px;
+  border-top: 2px dotted #919191;
+  /*border-bottom: 3px dotted #919191;*/
+}
+
+p.video_freschi {
+  margin-top:10px;
+  padding-top: 20px;
+  border-top: 2px dotted #fff;
+  /*border-bottom: 2px dotted #fff;*/
+}
+
 li{list-style-type:none}
 .white {color:white}
 .hidden { visibility: hidden;}
@@ -705,6 +722,11 @@ fieldset[disabled] .btn-default.active {
   color: #ffffff;
   background-color: #deb85b;
 }
+.btn-primary.transparent {
+  background-color: transparent;
+  border: 1px solid #deb85b;
+}
+
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,

@@ -76,6 +76,9 @@
 	  		@include('home.prodotti_freschi')
 		@endif
 
+		@if (!is_null($slide_confezionati))
+	  		@include('home.prodotti_confezionati')
+		@endif
 		
 
 	{{-- 
@@ -90,9 +93,6 @@
   		@include('home.prodotti_freschi')
 	@endif
 	
-	@if (!is_null($slide_confezionati))
-  		@include('home.prodotti_confezionati')
-	@endif
 
 	
 
