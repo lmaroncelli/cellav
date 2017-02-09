@@ -33,8 +33,8 @@
 
 			<div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li class="menuItem text-center"><a href="#whatis">NEGOZI</a></li>
-					<li class="menuItem text-center"><a href="#useit">PRODOTTI FRESCHI</a></li>
+					<li class="menuItem text-center"><a href="#negozi">NEGOZI</a></li>
+					<li class="menuItem text-center"><a href="#freschi">PRODOTTI FRESCHI</a></li>
 					<li class="menuItem text-center"><a href="#screen">PRODOTTI CONFEZIONATI</a></li>
 					<li class="menuItem text-center"><a href="#credits">SHOP ONLINE</a></li>
 					<li class="menuItem text-center"><a href="#contact">BLOG</a></li>
@@ -58,7 +58,7 @@
 @section('content')
 	
 		{{-- negozi --}}
-		<div id="whatis" class="content-section-b" style="border-top: 0">
+		<div id="negozi" class="content-section-b" style="border-top: 0">
 			<div class="container">
 
 				<div class="col-md-6 col-md-offset-3 text-center wrap_title">

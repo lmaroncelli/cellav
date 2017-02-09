@@ -374,11 +374,17 @@ h1,
 }
 h2,
 .h2 {
-  font-size: 63px;
+  font-size: 66.68px;
+  font-family: "Playball", Helvetica, Arial, sans-serif;
+  color: #deb85b;
+  font-weight: normal;
 }
 h3,
 .h3 {
-  font-size: 30px;
+  font-size: 28px;
+  font-family: "Libre Baskerville", Helvetica, Arial, sans-serif;
+  color: #deb85b;
+
 }
 h4,
 .h4 {
@@ -392,13 +398,26 @@ p {
 li{list-style-type:none}
 .white {color:white}
 .hidden { visibility: hidden;}
+
+
 .lead {
   margin-bottom: 30px;
   margin-top: 20px;
   font-size: 20px;
   line-height: 1.46428571;
   font-weight: 300;
+  color:#919191;
 }
+
+.row_prodotti_freschi .lead {
+  margin-bottom: 30px;
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 1.46428571;
+  font-weight: normal;
+  color:#fff;
+}
+
 @media (min-width: 768px) {
   .lead {
 	
@@ -684,7 +703,7 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #ffffff;
-  background-color: #1abc9c;
+  background-color: #deb85b;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -692,14 +711,14 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #48c9b0;
-  border-color: #48c9b0;
+  background-color: #deb85b;
+  border-color: #deb85b;
 }
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  background: #16a085;
-  border-color: #16a085;
+  background: #deb85b;
+  border-color: #deb85b;
 }
 .btn-primary.disabled,
 .btn-primary[disabled],

@@ -56,6 +56,16 @@ line-height: 1.46428571;
 font-weight: 300;
 }
 
+
+.row_prodotti_freschi .lead3 {
+margin-bottom: 0px;
+margin-top: 0px;
+font-size: 20px;
+color: #fff;
+line-height: 1.46428571;
+font-weight: bold;
+}
+
 .float {
 -webkit-animation-name: floatingx;
 -webkit-animation-duration: 4s;
@@ -299,12 +309,42 @@ color: #ECEBEB;
 
 .content-section-b {
 	border-top: 1px solid #e7e7e7;
-	border-bottom: 1px solid #e7e7e7;
-	padding: 90px 0; 
+	border-bottom: 1px solid #e7e7e7; 
 }
+
+.content-section-freschi { 
+	width: 100%;
+	background: url('../img/maschera_freschi.png') no-repeat center top;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	
+
+	/*background: #3c4049; 
+	background: -webkit-linear-gradient(-90deg, #3c4049, #cbcbcb); 
+	background: -o-linear-gradient(-90deg, #3c4049, #cbcbcb); 
+	background: -moz-linear-gradient(-90deg, #3c4049, #cbcbcb); 
+	background: linear-gradient(-90deg, #3c4049, #cbcbcb); 
+	background-image: 
+	        linear-gradient(#3c4049, #cbcbcb),
+	        linear-gradient(#3c4049, #cbcbcb);*/
+}
+
+.row_prodotti_freschi {
+	margin-left: 30px;
+	margin-right: -15px;
+}
+
+ .row_prodotti_freschi>.fadeInRightBig  {
+	padding-left: 5%;
+ }
 
 .section-heading {
 	margin-bottom: 30px;
+	font-family: "Playball", Helvetica, Arial, sans-serif;
+	font-size: 75px;
+	font-weight: normal;
 }
 
 .section-heading-spacer {

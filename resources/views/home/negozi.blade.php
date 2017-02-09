@@ -6,7 +6,7 @@
     ?>
     <div class="col-sm-4 wow fadeInDown text-center">
       <img class="rotate" src="{{ url('images/'.$homepage->$img) }}" width="242" height="200" alt="Generic placeholder image">
-      <h3> CELIACHIAMO @if ($count == 0) LAB @elseif($count == 1) SHOP @else TIBURTINA @endif </h3>
+      <h3> Celiaciamo @if ($count == 0) Lab @elseif($count == 1) Shop @else Tiburtina @endif </h3>
       <p class="lead">{{ $homepage->$desc }}</p>
       <p><a class="btn btn-embossed btn-primary view" role="button">Visualizza</a></p>
     </div><!-- /.col-lg-4 -->

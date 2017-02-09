@@ -1,6 +1,6 @@
-<div class="content-section-b">
+<div id="freschi" class="content-section-b content-section-freschi">
     <div class="container">
-        <div class="row">
+        <div class="row row_prodotti_freschi">
 
 
             <div class="col-sm-6 wow fadeInLeftBig">
@@ -16,7 +16,7 @@
                 </div>
             </div>
             
-            <div class="col-sm-6 wow fadeInRightBig" data-animation-delay="200">
+            <div class="col-sm-6 wow fadeInRightBig text-center" data-animation-delay="200">
                 <h3 class="section-heading">
                     Prodotti Freschi
                 </h3>
@@ -30,7 +30,7 @@
             patria esse cariorem. Quae qui non vident, nihilamane umquam magnum ac cognitione.
                 </p>
                 <p>
-                    <a class="btn btn-embossed btn-primary" href="#" role="button">
+                    <a class="btn btn-embossed btn-primary transparent" href="#" role="button">
                         APPROFONDISCI
                     </a>
                 </p>
