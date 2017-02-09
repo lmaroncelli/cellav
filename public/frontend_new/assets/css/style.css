@@ -2372,9 +2372,9 @@ select[multiple].navbar-form .btn {
   }
 
 
-  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+/*  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     padding-top: 40px;
-  }
+  }*/
   
 }
 
@@ -2404,7 +2404,14 @@ select[multiple].navbar-form .btn {
 .container {
     /*width: 1270px;*/
     width: 100%;
+
   }
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+  padding: 0;
+  padding-top: 40px;
+  }
+
 }
 
 .navbar-default {
@@ -3543,6 +3550,16 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
     border-radius: 0 0 6px 6px !important;
   }
 }
+
+@media (max-width: 1024px) {
+    /* fino a 1024px tengo il menu fisso su 2 righe a dx*/
+  .navbar-nav {
+    width: 500px;
+  }
+
+}
+
+
 .dropdown-menu .divider {
   margin-top: 3px;
   margin-bottom: 3px;
@@ -4926,6 +4943,46 @@ footer p {
 		.pull-right {margin-bottom: 40px;}
 		address{margin-top:130px;}
 		.address{text-align:center}
+    
+    .navbar-header {
+      background: none;
+          height: 100%;
+      background-repeat: no-repeat;
+      position: relative;
+      background-size: 85%;
+    }
+
+    .navbar-default {
+      min-height: 0;
+      height: 0;
+    }
+
+    .container {
+       padding-top:0;
+    }
+
+    .navbar-default .navbar-brand {
+      color: #deb85b;
+      top:0;
+      left:0;
+    }
+    .navbar-default .navbar-nav > li > a {
+      color: #deb85b;
+      font-size: 16px;
+    }
+    .navbar-default .navbar-nav > li > a:hover {
+      color: #deb85b;
+    }
+
+    .navbar-collapse.in {
+      height: auto;
+      overflow-y:visible;
+    }
+    
+    .nav.navbar-nav {
+     background-color: #f7f7f7;
+    }
+
 	}
 
 	@media only screen and (min-width: 768px) and (max-width: 959px) {
