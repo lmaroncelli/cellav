@@ -88,10 +88,10 @@ class HomePageController extends Controller
           $img = Image::make(storage_path('app/'.$path_img_negozio));
 
           // resize image instance
-          $img->resize(455);
+          $img->resize(100,50);
 
-          // save image in desired format
-          $img->save();
+          // // save file with medium quality
+          $img->save(storage_path('app_thumb/homepage/negozi/' .$imageName), 60);
 
           $data['img_'.$negozio] = $path_img_negozio;
           } 

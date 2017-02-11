@@ -111,7 +111,7 @@
                     <input type="file" class="form-control" id="img" name="img_magliana">
                   </div>
                 @else
-                  <img src="{{ url('images/'.$homepage->img_magliana) }}" width="100" height="50">
+                  <img src="{{ url('thumbs/'.$homepage->img_magliana) }}" width="100" height="50">
                   <button type="button" class="btn btn-default delete_image_negozio" data-colname="img_magliana">
                     <span class="glyphicon glyphicon-remove"></span>
                   </button>
@@ -132,7 +132,7 @@
                     <input type="file" class="form-control" id="img" name="img_cipro">
                   </div>
                 @else
-                  <img src="{{ url('images/'.$homepage->img_cipro) }}" width="100" height="50">
+                  <img src="{{ url('thumbs/'.$homepage->img_cipro) }}" width="100" height="50">
                   <button type="button" class="btn btn-default delete_image_negozio" data-colname="img_cipro">
                     <span class="glyphicon glyphicon-remove"></span>
                   </button>
@@ -152,7 +152,7 @@
                    <input type="file" class="form-control" id="img" name="img_tiburtina">
                  </div>
                 @else
-                  <img src="{{ url('images/'.$homepage->img_tiburtina) }}" width="100" height="50">
+                  <img src="{{ url('thumbs/'.$homepage->img_tiburtina) }}" width="100" height="50">
                   <button type="button" class="btn btn-default delete_image_negozio" data-colname="img_tiburtina">
                     <span class="glyphicon glyphicon-remove"></span>
                   </button>
