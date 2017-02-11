@@ -150,9 +150,15 @@
 	 new WOW().init();
 	</script>
 	<script src="{{ url('frontend_new/assets/js/classie.js') }}"></script>
-	<script src="{{ url('frontend_new/assets/js/uiMorphingButton_inflow.js') }}"></script>
+	{{-- <script src="{{ url('frontend_new/assets/js/uiMorphingButton_inflow.js') }}"></script> --}}
 	<!-- Magnific Popup core JS file -->
 	<script src="{{ url('frontend_new/assets/js/jquery.magnific-popup.js') }}"></script> 
+
+	@yield('feed_map')    
+
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqImK9lRFJdcFLSt0W-t_QQC70fCsCwV0&callback=initMap">
+    </script>
 </body>
 
 </html>

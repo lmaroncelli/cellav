@@ -65,6 +65,8 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::post('admin/homepage', ['as' => 'homepage.save', 'uses' => 'Admin\HomePageController@update']);
 
 
+		Route::post('admin/homepage/save_map', ['as' => 'homepage.save_map', 'uses' => 'Admin\HomePageController@saveMap']);
+
 		Route::post('admin/homepage/uploadSlideHeader', ['as' => 'homepage.uploadSlideHeader', 'uses' => 'Admin\HomePageController@uploadSlideHeader']);
 
 		Route::post('admin/homepage/modifySlideHeader', ['as' => 'homepage.modifySlideHeader', 'uses' => 'Admin\HomePageController@modifySlideHeader']);

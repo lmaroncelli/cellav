@@ -22,6 +22,10 @@ class HomePage extends Model
 	        'desc_cipro',
 	        'img_tiburtina',
 	        'desc_tiburtina',
+	        'gm_nome',
+					'gm_indirizzo',
+					'gm_lat',
+					'gm_long',
 			];
 
 }

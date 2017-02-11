@@ -78,6 +78,25 @@
 		@if (!is_null($slide_confezionati))
 	  		@include('home.prodotti_confezionati')
 		@endif
+
+		{{-- PARALLAX --}}
+		<div class="parallax" style="background-image: url({{url('frontend_new/assets/img/parallax_1.jpg')}});"></div>
+		{{-- FINE PARALLAX --}}
+
+		@if ($homepage->gm_lat != '' && $homepage->gm_long != '')
+	  		@include('home.mappa')
+
+	  		@section('feed_map')
+	  				{{-- carica le variabile js con i valori della pagina  --}}
+	  				<script>
+	  					var $lat = {{$homepage->gm_lat}};
+	  					var $long = {{$homepage->gm_long}};
+	  					var $info = "{{ json_encode($homepage->gm_indirizzo) }}";
+	  					var $title = "{{$homepage->gm_nome}}";
+	  				</script>
+	  				<script src={{ url('frontend_new/assets/js/custom.js') }}></script>
+	  		@stop
+		@endif
 		
 
 	{{-- 

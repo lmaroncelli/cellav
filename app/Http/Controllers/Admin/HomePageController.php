@@ -255,4 +255,19 @@ class HomePageController extends Controller
         echo "ok";
       }
 
+    public function saveMap(Request $request)
+      {
+
+      //dd($request->all());
+      $homepage = $this->homepage;
+
+      $homepage->fill($request->all());
+
+      $homepage->save();
+
+      //dd($homepage);
+      return redirect()->route('homepage.edit')->with('status', 'Homepage aggiornata correttamente!');
+
+      }
+
 }

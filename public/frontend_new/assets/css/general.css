@@ -66,7 +66,7 @@ line-height: 1.46428571;
 font-weight: bold;
 }
 
-.row_prodotti_confezionati .lead3 {
+.row_prodotti_confezionati .lead3, .mappa .lead3 {
 	font-size: 20px;
 	font-weight: bold;
 }
@@ -352,7 +352,7 @@ color: #ECEBEB;
  }
 
 .section-heading {
-	margin-bottom: 30px;
+	margin-bottom: 3px;
 	font-family: "Playball", Helvetica, Arial, sans-serif;
 	font-size: 75px;
 	font-weight: normal;

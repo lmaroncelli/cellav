@@ -283,10 +283,31 @@
   </div>
 
 
+ <div class="row">
+    <h2>Mappa</h2>
+  </div>
+
+  <form  method="POST" action="{{ route('homepage.save_map') }}">
+    {{ csrf_field() }}    
+    <div class="form-group">
+        <label for="gm_nome">Nome</label>
+        <input type="text" class="form-control" id="gm_nome" placeholder="Celiachiamo LAB" name="gm_nome" value="{{old('gm_nome', isset($homepage->gm_nome) ? $homepage->gm_nome : null)}}">
+        <label for="gm_indirizzo">Indirizzo</label>
+        <textarea class="form-control" rows="3" name="gm_indirizzo" id="gm_indirizzo">{{old('gm_indirizzo', isset($homepage->gm_indirizzo) ? $homepage->gm_indirizzo : null)}}</textarea>
+        <label for="gm_lat">Latitudine</label>
+        <input type="text" class="form-control" id="gm_lat" placeholder="41.8505419" name="gm_lat" value="{{old('gm_lat', isset($homepage->gm_lat) ? $homepage->gm_lat : null)}}">
+        <label for="gm_long">Longitudine</label>
+        <input type="text" class="form-control" id="gm_long" placeholder="12.45956769999998" name="gm_long" value="{{old('gm_long', isset($homepage->gm_long) ? $homepage->gm_long : null)}}">
+      </div>
+      
+      <div class="row">
+        <button type="submit" class="btn btn-primary">Salva Mappa</button>
+      </div>    
+    </form>
 
 @stop
 
-
+  
     @section('script_head')
       <script src="{{ url('js/dropzone.js') }}"></script>
     @stop
