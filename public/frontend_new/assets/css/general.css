@@ -329,8 +329,8 @@ color: #ECEBEB;
 	/*-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
-	background-size: cover;
-*/	
+	background-size: cover;*/
+	
 
 	/*background: #3c4049; 
 	background: -webkit-linear-gradient(-90deg, #3c4049, #cbcbcb); 
@@ -341,7 +341,6 @@ color: #ECEBEB;
 	        linear-gradient(#3c4049, #cbcbcb),
 	        linear-gradient(#3c4049, #cbcbcb);*/
 }
-
 
 .row_prodotti_freschi {
 	margin-left: 30px;

@@ -188,7 +188,7 @@
       @foreach ($slide_freschi->immagini as $immagine)
         <div class="row">
             <div class="col-md-3"> 
-              <img src="{{ url('images/'.$immagine->nome) }}" width="125" height="100">
+              <img src="{{ url('thumbs/'.$immagine->nome) }}" width="100" height="86">
             </div>
             <div class="col-md-1">
               <button type="button" class="btn btn-default delete_image_slide" data-id="{{$immagine->id}}">
@@ -242,7 +242,7 @@
       @foreach ($slide_confezionati->immagini as $immagine)
         <div class="row">
             <div class="col-md-3"> 
-              <img src="{{ url('images/'.$immagine->nome) }}" width="125" height="100">
+              <img src="{{ url('images/'.$immagine->nome) }}" width="100" height="86">
             </div>
             <div class="col-md-1">
               <button type="button" class="btn btn-default delete_image_slide" data-id="{{$immagine->id}}">

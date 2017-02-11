@@ -8,6 +8,7 @@ use App\ImmagineSlide;
 use App\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -116,7 +117,7 @@ class HomePageController extends Controller
      * @param  string  $folder [folder dove salvare le immagini]
      * @return [type]          [description]
      */
-    private function _uploadSlide(Request $request, $id = 0, $folder = 'homepage/slideProdotti')
+    private function _uploadSlide(Request $request, $id = 0, $folder = 'homepage/slideProdotti', $tw = 100, $th = 86)
     {
 
     try 
@@ -135,7 +136,7 @@ class HomePageController extends Controller
       $img = Image::make(storage_path('app/'.$path));
 
       // resize image instance
-      $img->resize(200,104);
+      $img->resize($tw, $th);
 
       // // save file with medium quality
       $img->save(storage_path('app_thumb/'. $folder. '/' .$imageName), 60);
@@ -167,7 +168,10 @@ class HomePageController extends Controller
 
         $folder = 'homepage/slideHeader';
 
-        return $this->_uploadSlide($request, $slider_id, $folder);
+        $tw = 200;
+        $th = 104;
+
+        return $this->_uploadSlide($request, $slider_id, $folder, $tw, $th);
     }
 
 
@@ -180,7 +184,10 @@ class HomePageController extends Controller
 
         $slider_id = $slide_freschi->id;
 
-        return $this->_uploadSlide($request, $slider_id);
+        $tw = 100;
+        $th = 86;
+
+        return $this->_uploadSlide($request, $slider_id, 'homepage/slideProdotti', $tw, $th);
     }
 
     public function uploadSlideProdttiConfezionati(Request $request)
@@ -188,8 +195,11 @@ class HomePageController extends Controller
         $slide_confezionati = $this->slide_confezionati;
 
         $slider_id = $slide_confezionati->id;
+        
+        $tw = 100;
+        $th = 86;
 
-        return $this->_uploadSlide($request, $slider_id);
+        return $this->_uploadSlide($request, $slider_id, 'homepage/slideProdotti', $tw, $th);
     }
 
 
@@ -219,6 +229,7 @@ class HomePageController extends Controller
         if(!is_null($foto_vecchia) && $foto_vecchia != '')
           {
         Storage::delete([$foto_vecchia]);
+        File::delete(base_path() . '/storage/app_thumb/'.$foto_vecchia);
           }
         ImmagineSlide::destroy($id);
 

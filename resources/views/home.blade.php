@@ -81,20 +81,6 @@
 		
 
 	{{-- 
-
-	@if (!is_null($first_header_image))
-		@include('home.slider')
-	@endif
-
-  @include('home.negozi')
-
-	@if (!is_null($slide_freschi))
-  		@include('home.prodotti_freschi')
-	@endif
-	
-
-	
-
 	<div>
 	{{$homepage->content}}	
 	</div>
