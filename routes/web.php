@@ -192,6 +192,51 @@ Route::get('images/{filename_withslash}', function ($filename_withslash)
 })->where('filename_withslash', '(.*)');
 
 
+
+// se l'immagine è vuota e punta a http://homestead.app/images/
+Route::get('thumbs/', function ()
+{	
+    	$path = public_path() . '/frontend/assets/img/image-not-found.jpg';
+			$file = File::get($path);
+			$type = File::mimeType($path);
+
+			$response = Response::make($file, 200);
+			$response->header("Content-Type", $type);
+		
+
+    return $response;
+
+});
+
+Route::get('thumbs/{filename_withslash}', function ($filename_withslash)
+{	
+    $path = storage_path() . '/app_thumb/' . $filename_withslash;
+
+    // se l'immagine è sbagliata
+    if(!File::exists($path)) 
+    	{
+    	$path = public_path() . '/frontend/assets/img/image-not-found.jpg';
+			$file = File::get($path);
+			$type = File::mimeType($path);
+
+			$response = Response::make($file, 200);
+			$response->header("Content-Type", $type);
+			} 
+		else 
+			{
+	    $file = File::get($path);
+	    $type = File::mimeType($path);
+
+	    $response = Response::make($file, 200);
+	    $response->header("Content-Type", $type);
+			}
+
+
+    return $response;
+
+})->where('filename_withslash', '(.*)');
+
+
 //////////////////
 // ROUTE LIBERA //
 //////////////////

@@ -50,8 +50,7 @@
 
 @section('header')
 	<!-- FullScreen -->
-    <div class="intro-header">    
-        <!-- /.container -->
+    <div class="intro-header" style="height: 100%; padding-top: 50px; padding-bottom: 50px; color: #f8f8f8; background: url('{{ $first_header_image }}') no-repeat center center">
     </div>
 @stop
 

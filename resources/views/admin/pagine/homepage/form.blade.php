@@ -25,7 +25,7 @@
           <div class="row">
           
           <div class="col-md-3">        
-            <img src="{{ url('images/'.$immagine->nome) }}" width="200" height="104">
+            <img src="{{ url('thumbs/'.$immagine->nome) }}" width="200" height="104">
           </div>
           
           <div class="col-md-8">             
@@ -68,8 +68,8 @@
           <img data-dz-thumbnail />
         </div>
         <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-        <div class="dz-success-mark"><span>✔</span></div>
-        <div class="dz-error-mark"><span>✘</span></div>
+        {{-- <div class="dz-success-mark"><span>✔</span></div>
+        <div class="dz-error-mark"><span>✘</span></div> --}}
         <div class="dz-error-message"><span data-dz-errormessage></span></div>
       </div>
 
@@ -221,8 +221,8 @@
           <img data-dz-thumbnail />
         </div>
         <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-        <div class="dz-success-mark"><span>✔</span></div>
-        <div class="dz-error-mark"><span>✘</span></div>
+        {{-- <div class="dz-success-mark"><span>✔</span></div>
+        <div class="dz-error-mark"><span>✘</span></div> --}}
         <div class="dz-error-message"><span data-dz-errormessage></span></div>
       </div>
     </div>
@@ -268,15 +268,15 @@
 
   <div class="row margin">
     <div class="col-md-12">
-      <div class="dz-preview dz-file-preview"  id="preview-template-silde-freschi" style="display: none;">
+      <div class="dz-preview dz-file-preview"  id="preview-template-silde-confezionati" style="display: none;">
         <div class="dz-details">
           <div class="dz-filename"><span data-dz-name></span></div>
           <div class="dz-size" data-dz-size></div>
           <img data-dz-thumbnail />
         </div>
         <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-        <div class="dz-success-mark"><span>✔</span></div>
-        <div class="dz-error-mark"><span>✘</span></div>
+        {{-- <div class="dz-success-mark"><span>✔</span></div>
+        <div class="dz-error-mark"><span>✘</span></div> --}}
         <div class="dz-error-message"><span data-dz-errormessage></span></div>
       </div>
     </div>
@@ -357,20 +357,33 @@
               acceptedFiles: ".jpeg,.jpg,.png,.gif",
               dictDefaultMessage: "Clicca o trascina qui i file da caricare nella header slide",
               //previewTemplate: document.getElementById('preview-template-silde-header').innerHTML,
+              
               accept: function(file, done) {
                 if (file.name == "xxx.jpg") {
                   done("Naha, you don't.");
                 }
                 else { done(); }
               },
+              
               init: function () {
+                var error = 0;
+                this.on('error', function(file, response) {
+                    $('#preview-template-silde-header').find('.dz-error-message').html(response);
+                    $('#preview-template-silde-header').fadeIn();
+                    error = 1;
+                });
+
                 this.on("complete", function (file) {
                   if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                    setTimeout(function(){ location.reload(); }, 1000);
+                    if(!error)
+                      setTimeout(function(){ location.reload(); }, 1000);
                   }
                 });
+
+              
               }
-            };
+
+              };
 
              Dropzone.options.formUploadSlideProdttiFreschi = {
               paramName: "file", // The name that will be used to transfer the file
@@ -385,11 +398,21 @@
                 else { done(); }
               },
               init: function () {
+                var error = 0;
+                this.on('error', function(file, response) {
+                    $('#preview-template-silde-header').find('.dz-error-message').html(response);
+                    $('#preview-template-silde-header').fadeIn();
+                    error = 1;
+                });
+
                 this.on("complete", function (file) {
                   if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                    setTimeout(function(){ location.reload(); }, 1000);
+                    if(!error)
+                      setTimeout(function(){ location.reload(); }, 1000);
                   }
                 });
+
+
               }
             };
 
@@ -406,11 +429,20 @@
                 else { done(); }
               },
               init: function () {
+                var error = 0;
+                this.on('error', function(file, response) {
+                    $('#preview-template-silde-header').find('.dz-error-message').html(response);
+                    $('#preview-template-silde-header').fadeIn();
+                    error = 1;
+                });
+
                 this.on("complete", function (file) {
                   if (this.getUploadingFiles().length === 0 && this.getQueuedFiles().length === 0) {
-                    setTimeout(function(){ location.reload(); }, 1000);
+                    if(!error)
+                      setTimeout(function(){ location.reload(); }, 1000);
                   }
                 });
+
               }
             };
     </script>

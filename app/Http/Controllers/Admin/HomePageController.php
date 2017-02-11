@@ -118,16 +118,39 @@ class HomePageController extends Controller
      */
     private function _uploadSlide(Request $request, $id = 0, $folder = 'homepage/slideProdotti')
     {
+
+    try 
+      {
+
       $image = $request->file('file');
 
       $imageName = time().$image->getClientOriginalName();
       
       $path = $image->storeAs($folder,$imageName);
 
+
+      /* CREO LA thumb */
+
+      // open an image file
+      $img = Image::make(storage_path('app/'.$path));
+
+      // resize image instance
+      $img->resize(200,104);
+
+      // // save file with medium quality
+      $img->save(storage_path('app_thumb/'. $folder. '/' .$imageName), 60);
+
       $immagineSlide = ImmagineSlide::create(['slide_id' => $id ,'nome' => $path]);
 
-
       return response()->json(['success'=>$imageName]);
+
+      }
+      //catch exception
+      catch(Exception $e) 
+        {
+        header("HTTP/1.0 400 Bad Request");
+        echo "Ups error message";
+        }
     }
 
 
