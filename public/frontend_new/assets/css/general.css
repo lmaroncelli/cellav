@@ -142,16 +142,16 @@ filter: alpha(opacity=95) !important;
 	z-index:99; /* makes sure it stays on top */
 }
 
+
 #status {
 	width:200px;
 	height:200px;
 	position:absolute;
 	left:50%; /* centers the loading animation horizontally one the screen */
-	top:50%; /* centers the loading animation vertically one the screen */
-	background-image:url(../img/status.gif); /* path to your loading animation */
+	top:40%; /* centers the loading animation vertically one the screen */
+	background-image:url(../img/celiachia.gif); /* path to your loading animation */
 	background-repeat:no-repeat;
 	background-position:center;
-	margin:-100px 0 0 -100px; /* is width and height divided by two */
 }
 
 
@@ -365,9 +365,10 @@ color: #ECEBEB;
 }
 
 .banner {
-	padding: 100px 0;
+	padding: 0;
 	color: #f8f8f8;
-	background: url(../img/intro/banner-bg.jpg) no-repeat center center;
+	height: 100%;
+	background: url(../img/sfondo_celiachiacose.jpg) no-repeat left center;
 	background-size: cover;
 }
 

@@ -3,7 +3,7 @@
         <div class="row row_prodotti_freschi">
 
 
-            <div class="col-sm-6 wow fadeInLeftBig">
+            <div class="col-sm-6 wow fadeInLeftBig" style="padding-top: 20px;">
                 <div class="owl-carousel" id="owlf">
                     @foreach ($slide_freschi->immagini as $count => $immagine)
                       <a class="image-link" href="{{ url('images/'.$immagine->nome) }}">

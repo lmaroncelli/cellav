@@ -412,6 +412,12 @@ p.video_freschi {
   /*border-bottom: 2px dotted #fff;*/
 }
 
+p.video_confezionati a , p.video_freschi a {
+  display: inline-block;
+  padding: 5px 0;
+}
+
+
 li{list-style-type:none}
 .white {color:white}
 .hidden { visibility: hidden;}

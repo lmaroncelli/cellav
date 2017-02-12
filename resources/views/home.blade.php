@@ -35,10 +35,10 @@
 				<ul class="nav navbar-nav">
 					<li class="menuItem text-center"><a href="#negozi">NEGOZI</a></li>
 					<li class="menuItem text-center"><a href="#freschi">PRODOTTI FRESCHI</a></li>
-					<li class="menuItem text-center"><a href="#screen">PRODOTTI CONFEZIONATI</a></li>
+					<li class="menuItem text-center"><a href="#confezionati">PRODOTTI CONFEZIONATI</a></li>
 					<li class="menuItem text-center"><a href="#credits">SHOP ONLINE</a></li>
 					<li class="menuItem text-center"><a href="#contact">BLOG</a></li>
-					<li class="menuItem text-center"><a href="#contact">CELIACHIA: COS'E'</a></li>
+					<li class="menuItem text-center"><a href="#celiachia">CELIACHIA: COS'E'</a></li>
 					<li class="menuItem text-center"><a href="#contact">CONTATTI</a></li>
 				</ul>
 			</div>
@@ -82,6 +82,13 @@
 		{{-- PARALLAX --}}
 		<div class="parallax" style="background-image: url({{url('frontend_new/assets/img/parallax_1.jpg')}});"></div>
 		{{-- FINE PARALLAX --}}
+
+
+		{{-- CELIACHIA COS'E' --}}
+		<div id="celiachia" class="banner">
+			
+		</div>
+		{{-- FINE CELIACHIA COS'E' --}}
 
 		@if ($homepage->gm_lat != '' && $homepage->gm_long != '')
 	  		@include('home.mappa')
