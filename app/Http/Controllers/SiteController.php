@@ -125,7 +125,12 @@ class SiteController extends Controller
 					}
 				}
 
-			return view('home',compact('first_header_image','header_images','first_desc_image','desc_images', 'slide_freschi', 'slide_confezionati', 'homepage'));
+			///////////////////////////////////////////////////////////////
+			// MOMENTANEAMENTE SELEZIONO SOLO I PRODOTTI CON LE IMMAGINI //
+			///////////////////////////////////////////////////////////////
+			$prodotti = Prodotto::where('img_main' ,'!=','')->get();
+
+			return view('home',compact('first_header_image','header_images','first_desc_image','desc_images', 'slide_freschi', 'slide_confezionati', 'homepage','prodotti'));
 			} 
 		else 
 			{

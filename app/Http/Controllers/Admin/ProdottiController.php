@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Prodotto;
 use App\Produttore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class ProdottiController extends AdminController
@@ -147,6 +148,25 @@ class ProdottiController extends AdminController
 
         return redirect()->route('prodotti.index')->with('status', 'Prodotto modificato correttamente!');
     }
+
+
+    public function deleteImageMainAjax(Request $request)
+      {
+      $id = $request->get('id');
+
+      $prodotto = Prodotto::find($id);
+
+      if(!is_null($prodotto->img_main) && $prodotto->img_main != '')
+        {
+        Storage::delete([$prodotto->img_main]);
+        }
+      
+      $prodotto->img_main = null;
+
+      $prodotto->save();        
+
+      echo "ok";
+      }
 
     /**
      * Remove the specified resource from storage.

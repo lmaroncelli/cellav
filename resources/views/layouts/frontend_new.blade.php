@@ -27,11 +27,7 @@
  
     <!-- Custom Google Web Font -->
     <link href="{{ url('frontend_new/assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
-	
-	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700|Playball" rel="stylesheet">
-	
+
     <!-- Custom CSS-->
     <link href="{{ url('frontend_new/assets/css/general.css') }}" rel="stylesheet">
 	

@@ -108,12 +108,19 @@ padding: 8px 12px;
 #owl-demo .item,
 #owlc .item,
 #owlf .item,
+#owlshopping .item
 {
 	margin: 4px;
 }
 #owl-demo .item img,
 #owlc .item img,
-#owlf .item img{
+#owlf .item img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+#owlshopping .item img {
 	display: block;
 	width: 100%;
 	height: auto;

@@ -66,7 +66,7 @@ line-height: 1.46428571;
 font-weight: bold;
 }
 
-.row_prodotti_confezionati .lead3, .mappa .lead3 {
+.row_prodotti_confezionati .lead3, .mappa .lead3, .shopping .lead3{
 	font-size: 20px;
 	font-weight: bold;
 }
@@ -100,14 +100,20 @@ margin: auto;
 
 #owl-demo .item,
 #owlc .item,
-#owlf .item{
+#owlf .item,
+#owlshopping .item{
   margin: 3px;
 }
 
 #owl-demo .item img,
 #owlc .item img,
-#owlf .item img
-{
+#owlf .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#owlshopping .item img {
   display: block;
   width: 100%;
   height: auto;

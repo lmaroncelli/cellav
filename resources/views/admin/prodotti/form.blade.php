@@ -204,6 +204,25 @@
 
             });
 
+
+              $("button.delete_image_prodotto").click(function(e){
+                if (confirm('Sei sicuro di voler eliminare l\'immagine?')) {
+                 
+                  var data = {
+                              "_token": "{{ csrf_token() }}",
+                              id:'{{$prodotto->id}}',
+                              };
+                  $.ajax({ url: "{{route('prodotti.deleteImageMain')}}",
+                           data: data,
+                           type: 'post',
+                           success: function(output) 
+                            {
+                            window.location.reload(true);
+                            }
+                  });
+                };
+              });
+
 	     });
 
 	</script>

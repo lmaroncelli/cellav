@@ -62,6 +62,15 @@ $(document).ready(function() {
 			  singleItem:true
 		});
 
+		// carosel prodotti shopping
+		$("#owlshopping").owlCarousel({
+			  navigation : true, // Show next and prev buttons
+			  slideSpeed : 300,
+			  paginationSpeed : 400,
+			  items:3,
+		});
+		
+
 
 
 		//SmothScroll

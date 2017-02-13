@@ -36,6 +36,9 @@ Route::group(['middleware' => ['admin']], function () {
 		Route::resource('admin/pages', 'Admin\PagesController');
 
 		Route::get('admin/prodotti/{prodotto}/confirm', ['as' => 'prodotti.confirm', 'uses' => 'Admin\ProdottiController@confirm']);
+
+		Route::post('admin/prodotti/deleteImageMain', ['as' => 'prodotti.deleteImageMain', 'uses' => 'Admin\ProdottiController@deleteImageMainAjax']);
+		
 		Route::resource('admin/prodotti', 'Admin\ProdottiController');
 
 		Route::get('admin/ricette/{ricetta}/confirm', ['as' => 'ricette.confirm', 'uses' => 'Admin\RicetteController@confirm']);

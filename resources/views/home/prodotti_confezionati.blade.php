@@ -36,7 +36,7 @@
                     @foreach ($slide_confezionati->immagini as $count => $immagine)
                       <a class="image-link" href="{{ url('images/'.$immagine->nome) }}">
                           <div class="item">
-                              <img  class="img-responsive img-rounded" src="{{ url('images/'.$immagine->nome) }}"/>
+                              <img  class="img-responsive" src="{{ url('images/'.$immagine->nome) }}"/>
                               </img>
                           </div>
                       </a>
