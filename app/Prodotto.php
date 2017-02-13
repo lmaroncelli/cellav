@@ -24,6 +24,7 @@ class Prodotto extends Model
     protected $fillable = [
         'nome',
 		'codice',
+    'img_main',
 		'disponibile',
 		'scadenza',
 		'prezzo',

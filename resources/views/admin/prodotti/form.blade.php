@@ -12,10 +12,10 @@
 	
 
 	@if ($prodotto->exists)
-		<form  method="POST" action="{{ route('prodotti.update', $prodotto->id) }}">
+		<form  method="POST" action="{{ route('prodotti.update', $prodotto->id) }}" enctype="multipart/form-data">
 		{{ method_field('PUT') }}
 	@else
-		<form  method="POST" action="{{ route('prodotti.store') }}">
+		<form  method="POST" action="{{ route('prodotti.store') }}" enctype="multipart/form-data">
 	@endif
 		
 		{{ csrf_field() }}
@@ -28,7 +28,20 @@
           @endforeach
         </select>
       </div>
-			<div class="form-group">
+
+			@if (is_null($prodotto->img_main) || $prodotto->img_main == '')
+        <div class="form-group">
+          <label for="titolo">Immagine</label>
+          <input type="file" class="form-control" id="img" name="img_main">
+        </div>
+      @else
+        <img src="{{ url('thumbs/'.$prodotto->img_main) }}" height="50">
+        <button type="button" class="btn btn-default delete_image_prodotto" data-colname="img_main">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      @endif
+
+      <div class="form-group">
 	    	<label for="codice">Codice</label>
 	    	<input type="text" class="form-control" id="codice" placeholder="Codice" name="codice" value="{{old('codice', isset($prodotto->codice) ? $prodotto->codice : null)}}">
 	  	</div>

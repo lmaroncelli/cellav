@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Prodotto;
 use App\Produttore;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProdottiController extends AdminController
 {
@@ -106,13 +107,43 @@ class ProdottiController extends AdminController
     public function update(Request $request, $id)
     {
         $prodotto = Prodotto::find($id);
-        $prodotto->fill($request->all())->save();
+        $prodotto->fill($request->except('img_main'));
+
+        if ( !is_null($request->file('img_main')) )
+          {
+          $image = $request->file('img_main');
+          $imageName = time().$image->getClientOriginalName();
+
+          $path_img_prodotto = $image->storeAs('prodotti',$imageName); 
+
+          // open an image file
+          $img = Image::make(storage_path('app/'.$path_img_prodotto));
+
+          // resize image instance
+         // resize the image to a height of 200 and constrain aspect ratio (auto width)
+         $img->resize(null, 50, function ($constraint) {
+             $constraint->aspectRatio();
+         });
+
+          // // save file with medium quality
+          $img->save(storage_path('app_thumb/prodotti/' .$imageName), 60);
+
+
+          $prodotto->img_main = $path_img_prodotto;
+          } 
 
         $caratteristiche = $request->get('caratteristiche');
-        $prodotto->caratteristiche()->sync($caratteristiche);
+
+        if(!is_null($caratteristiche))
+          {
+          $prodotto->caratteristiche()->sync($caratteristiche);
+          }
 
         $categorie = $request->get('categorie');
+
         $prodotto->categorie()->sync($categorie);
+
+        $prodotto->save();
 
         return redirect()->route('prodotti.index')->with('status', 'Prodotto modificato correttamente!');
     }
