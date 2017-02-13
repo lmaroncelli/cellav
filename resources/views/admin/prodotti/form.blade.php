@@ -1,7 +1,7 @@
 @extends('admin.layouts.backend')
 
 @section('css')
-	<link href="/css/supernote.css" rel="stylesheet">
+	<link href="{{ url('css/supernote.css') }}" rel="stylesheet">
 @stop
 
 @section('title')
