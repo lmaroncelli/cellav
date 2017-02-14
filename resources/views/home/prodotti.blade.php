@@ -18,12 +18,25 @@
 			<div class="col-md-offset-2 col-md-8 text-center">
 				<div class="owl-carousel" id="owlshopping">
 				@foreach ($prodotti as $prodotto)
-					<a class="image-link" href="{{ url('images/'.$prodotto->img_main) }}">
 					    <div class="item">
-					        <img class="img-responsive" src="{{ url('images/'.$prodotto->img_main) }}"/>
-					        </img>
+							<a class="image-link" href="{{ url('images/'.$prodotto->img_main) }}">
+					        <img class="img-responsive" src="{{ url('images/'.$prodotto->img_main) }}"/></img>
+							</a>
+				            <div class="sub-title lead3">
+				              {{$prodotto->nome}}
+				            </div>
+				            <p class="lead">
+				            {{ str_limit(strip_tags($prodotto->descrizione),20) }} 
+				            </p>
+				            <p class="prezzo">
+				            	{{$prodotto->prezzo}} €
+				            </p>
+				            <p>
+				                <a class="btn btn-embossed btn-primary" href="#" role="button">
+				                    ACQUISTA
+				                </a>
+				            </p>
 					    </div>
-					</a>
 				@endforeach
 				</div>
 			</div>

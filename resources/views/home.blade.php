@@ -84,10 +84,14 @@
 		{{-- FINE PARALLAX --}}
 
 		
-			@if ($prodotti->count())
-		  		@include('home.prodotti');
-			@endif
-	
+		@if ($prodotti->count())
+	  		@include('home.prodotti');
+		@endif
+		
+
+		{{-- PARALLAX --}}
+		<div class="parallax" style="background-image: url({{url('frontend_new/assets/img/parallax_2.jpg')}});"></div>
+		{{-- FINE PARALLAX --}}
 
 		{{-- CELIACHIA COS'E' --}}
 		<div id="celiachia" class="banner">

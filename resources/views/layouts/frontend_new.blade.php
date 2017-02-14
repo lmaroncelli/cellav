@@ -140,7 +140,7 @@
 	
 	</script>
 	<!-- Smoothscroll -->
-	<script type="text/javascript" src="{{ url('frontend_new/assets/js/jquery.corner.js') }}"></script> 
+	{{-- <script type="text/javascript" src="{{ url('frontend_new/assets/js/jquery.corner.js') }}"></script>  --}}
 	<script src="{{ url('frontend_new/assets/js/wow.min.js') }}"></script>
 	<script>
 	 new WOW().init();
