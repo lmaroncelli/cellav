@@ -112,6 +112,10 @@ function initMap() {
   marker.setMap(null);
   marker2.setMap(null);
   marker3.setMap(null);
-  var top = document.getElementById("right-panel").offsetTop;
-  window.scrollTo(0, top);
+  var offset = $("#right-panel").offset(); // Contains .top and .left
+  offset.top -= 250;
+  $('html, body').animate({
+      scrollTop: offset.top,
+      scrollLeft: offset.left
+  });
  }

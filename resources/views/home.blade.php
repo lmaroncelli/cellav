@@ -37,7 +37,7 @@
 					<li class="menuItem text-center"><a href="#freschi">PRODOTTI FRESCHI</a></li>
 					<li class="menuItem text-center"><a href="#confezionati">PRODOTTI CONFEZIONATI</a></li>
 					<li class="menuItem text-center"><a href="#shop_online">SHOP ONLINE</a></li>
-					<li class="menuItem text-center"><a href="#contact">BLOG</a></li>
+					<li class="menuItem text-center"><a href="#blog">BLOG</a></li>
 					<li class="menuItem text-center"><a href="#celiachia">CELIACHIA: COS'E'</a></li>
 					<li class="menuItem text-center"><a href="#contact">CONTATTI</a></li>
 				</ul>
@@ -92,6 +92,8 @@
 		{{-- PARALLAX --}}
 		<div class="parallax" style="background-image: url({{url('frontend_new/assets/img/parallax_2_light.jpg')}});"></div>
 		{{-- FINE PARALLAX --}}
+
+		@include('home.social_fan_pages');		
 
 		{{-- CELIACHIA COS'E' --}}
 		<div id="celiachia" class="banner">

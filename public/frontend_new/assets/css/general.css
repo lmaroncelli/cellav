@@ -1097,6 +1097,13 @@ color: #ECEBEB;
 	transition: none !important;
 }
 
+
+
+.row.row_social_pages .separatore {
+	border-right: 1px solid #deb85b;
+}
+
+
 /* Media Queries */
 /* Media queries!
 -------------------------------------------------------------------------------*/
@@ -1124,6 +1131,11 @@ color: #ECEBEB;
 
 /* All Mobile Sizes (devices and browser) */
 	@media only screen and (max-width: 767px) {
+		
+		.row.row_social_pages .separatore {
+			border-right: 0px;
+		}
+
 		.intro-header {
 			height: 0%;
 			padding-top: 50px;
