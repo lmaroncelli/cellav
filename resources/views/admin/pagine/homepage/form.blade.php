@@ -292,12 +292,52 @@
     <div class="form-group">
         <label for="gm_nome">Nome</label>
         <input type="text" class="form-control" id="gm_nome" placeholder="Celiachiamo LAB" name="gm_nome" value="{{old('gm_nome', isset($homepage->gm_nome) ? $homepage->gm_nome : null)}}">
-        <label for="gm_indirizzo">Indirizzo</label>
+        <label for="gm_indirizzo">Descrizione</label>
         <textarea class="form-control" rows="3" name="gm_indirizzo" id="gm_indirizzo">{{old('gm_indirizzo', isset($homepage->gm_indirizzo) ? $homepage->gm_indirizzo : null)}}</textarea>
-        <label for="gm_lat">Latitudine</label>
-        <input type="text" class="form-control" id="gm_lat" placeholder="41.8505419" name="gm_lat" value="{{old('gm_lat', isset($homepage->gm_lat) ? $homepage->gm_lat : null)}}">
-        <label for="gm_long">Longitudine</label>
-        <input type="text" class="form-control" id="gm_long" placeholder="12.45956769999998" name="gm_long" value="{{old('gm_long', isset($homepage->gm_long) ? $homepage->gm_long : null)}}">
+          <br/>
+          <div id="exTab3"> 
+
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a  href="#1map" data-toggle="tab">CELIACHIAMO LAB</a>
+              </li>
+              <li><a href="#2map" data-toggle="tab">CELIACHIAMO SHOP</a>
+              </li>
+              <li><a href="#3map" data-toggle="tab">CELIACHIAMO TIBURTINA</a>
+              </li>
+            </ul>
+            
+            <div class="tab-content ">
+              <div class="tab-pane active" id="1map">
+                <h3>Inserisci i dati per "Celiachiamo LAB"</h3>
+                <label for="gm_lat">Latitudine</label>
+                <input type="text" class="form-control" id="gm_lat" placeholder="41.8505419" name="gm_lat" value="{{old('gm_lat', isset($homepage->gm_lat) ? $homepage->gm_lat : null)}}">
+                <label for="gm_long">Longitudine</label>
+                <input type="text" class="form-control" id="gm_long" placeholder="12.45956769999998" name="gm_long" value="{{old('gm_long', isset($homepage->gm_long) ? $homepage->gm_long : null)}}">
+                <label for="gm_info">Info Window</label>
+                <input type="text" class="form-control" id="gm_info" placeholder="Celiachiamo LAB" name="gm_info" value="{{old('gm_info', isset($homepage->gm_info) ? $homepage->gm_info : null)}}">
+              </div>
+              <div class="tab-pane" id="2map">
+               <h3>Inserisci i dati per "Celiachiamo SHOP"</h3>
+               <label for="gm_lat2">Latitudine</label>
+               <input type="text" class="form-control" id="gm_lat2" placeholder="41.8505419" name="gm_lat2" value="{{old('gm_lat2', isset($homepage->gm_lat2) ? $homepage->gm_lat2 : null)}}">
+               <label for="gm_long2">Longitudine</label>
+               <input type="text" class="form-control" id="gm_long2" placeholder="12.45956769999998" name="gm_long2" value="{{old('gm_long2', isset($homepage->gm_long2) ? $homepage->gm_long2 : null)}}">
+               <label for="gm_info2">Info Window</label>
+               <input type="text" class="form-control" id="gm_info2" placeholder="Celiachiamo LAB" name="gm_info2" value="{{old('gm_info2', isset($homepage->gm_info2) ? $homepage->gm_info2 : null)}}">
+              </div>
+              <div class="tab-pane" id="3map">
+                <h3>Inserisci i dati per "Celiachiamo TIBURTINA"</h3>
+                <label for="gm_lat3">Latitudine</label>
+                <input type="text" class="form-control" id="gm_lat3" placeholder="41.8505419" name="gm_lat3" value="{{old('gm_lat3', isset($homepage->gm_lat3) ? $homepage->gm_lat3 : null)}}">
+                <label for="gm_long3">Longitudine</label>
+                <input type="text" class="form-control" id="gm_long3" placeholder="12.45956769999998" name="gm_long3" value="{{old('gm_long3', isset($homepage->gm_long3) ? $homepage->gm_long3 : null)}}">
+                <label for="gm_info3">Info Window</label>
+                <input type="text" class="form-control" id="gm_info3" placeholder="Celiachiamo LAB" name="gm_info3" value="{{old('gm_info3', isset($homepage->gm_info3) ? $homepage->gm_info3 : null)}}">
+              </div>
+            </div>
+           
+        </div> {{-- end exTab3 --}}
       </div>
       
       <div class="row">

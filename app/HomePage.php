@@ -26,6 +26,13 @@ class HomePage extends Model
 					'gm_indirizzo',
 					'gm_lat',
 					'gm_long',
+					'gm_info',
+					'gm_lat2',
+					'gm_long2',
+					'gm_info2',
+					'gm_lat3',
+					'gm_long3',
+					'gm_info3',
 			];
 
 }

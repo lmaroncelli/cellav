@@ -6,14 +6,23 @@
     <div class="sub-title lead3">
        DOVE TROVARCI
     </div>
-    <label>TROVA ITINERARIO</label>
-    <input type="text" class="form-control" placeholder="Via Tonti,16 Rimini" id="partenza" value="{{old('partenza')}}">
+    <div class="form-group">
+      <label>TROVA ITINERARIO</label>
+      <input type="text" class="form-control" placeholder="Via Tonti,16 Rimini" id="partenza" value="{{old('partenza')}}">
+    </div>
+      <input id="submitMappa" type="button" class="btn btn-default btn-xs" value="trova percorso sulla mappa">
     <p>
-    	{!!nl2br($homepage->gm_indirizzo)!!}
+      {!!nl2br($homepage->gm_indirizzo)!!}
     </p>
-  	<input id="submitMappa" type="button" class="btn btn-default btn-xs" value="trova percorso sulla mappa">
   </div>
   <div class="col-md-9">
     <div id="map"></div>
   </div>
  </div>
+ <div class="row istruzioni_mappa">
+   <div class="col-md-offset-2 col-md-8">
+     <div id="right-panel"></div>
+   </div>
+ </div>
+
+ 

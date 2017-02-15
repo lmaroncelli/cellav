@@ -43,7 +43,7 @@
           <div class="row">
           
           <div class="col-md-3">        
-            <img src="{{ url('images/'.$immagine->nome) }}" width="200" height="104">
+            <img src="{{ url('thumbs/'.$immagine->nome) }}" width="200" height="104">
           </div>
           
           <div class="col-md-8">             

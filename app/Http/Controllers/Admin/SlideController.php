@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\ImmagineSlide;
 use App\Slide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 

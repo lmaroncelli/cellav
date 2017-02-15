@@ -18,10 +18,8 @@
 			<div class="col-md-offset-2 col-md-8 text-center">
 				<div class="owl-carousel" id="owlshopping">
 				@foreach ($prodotti as $prodotto)
-					    <div class="item">
-							<a class="image-link" href="{{ url('images/'.$prodotto->img_main) }}">
+					    <div class="item itemShopping">
 					        <img class="img-responsive" src="{{ url('images/'.$prodotto->img_main) }}"/></img>
-							</a>
 				            <div class="sub-title lead3">
 				              {{$prodotto->nome}}
 				            </div>

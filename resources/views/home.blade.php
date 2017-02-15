@@ -80,7 +80,7 @@
 		@endif
 
 		{{-- PARALLAX --}}
-		<div class="parallax" style="background-image: url({{url('frontend_new/assets/img/parallax_1.jpg')}});"></div>
+		<div class="parallax" style="background-image: url({{url('frontend_new/assets/img/parallax_1_light.jpg')}});"></div>
 		{{-- FINE PARALLAX --}}
 
 		
@@ -90,7 +90,7 @@
 		
 
 		{{-- PARALLAX --}}
-		<div class="parallax" style="background-image: url({{url('frontend_new/assets/img/parallax_2.jpg')}});"></div>
+		<div class="parallax" style="background-image: url({{url('frontend_new/assets/img/parallax_2_light.jpg')}});"></div>
 		{{-- FINE PARALLAX --}}
 
 		{{-- CELIACHIA COS'E' --}}
@@ -107,8 +107,16 @@
 	  				<script>
 	  					var $lat = {{$homepage->gm_lat}};
 	  					var $long = {{$homepage->gm_long}};
-	  					var $info = "{{ json_encode($homepage->gm_indirizzo) }}";
-	  					var $title = "{{$homepage->gm_nome}}";
+	  					var $info = "{{ $homepage->gm_info }}";
+
+	  					var $lat2 = {{$homepage->gm_lat2}};
+	  					var $long2 = {{$homepage->gm_long2}};
+	  					var $info2 = "{{ $homepage->gm_info2 }}";
+
+	  					var $lat3 = {{$homepage->gm_lat3}};
+	  					var $long3 = {{$homepage->gm_long3}};
+	  					var $info3 = "{{ $homepage->gm_info3 }}";
+	  					
 	  				</script>
 	  				<script src={{ url('frontend_new/assets/js/custom.js') }}></script>
 	  		@stop
